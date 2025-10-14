@@ -297,6 +297,360 @@
             to { opacity: 1; transform: translateX(0); }
         }
         
+        /* Hero Section Styles */
+        .floating-shapes {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+        
+        .shape {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: floatShapes 20s infinite linear;
+        }
+        
+        .shape-1 {
+            width: 80px;
+            height: 80px;
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+        
+        .shape-2 {
+            width: 120px;
+            height: 120px;
+            top: 60%;
+            right: 15%;
+            animation-delay: -5s;
+        }
+        
+        .shape-3 {
+            width: 60px;
+            height: 60px;
+            top: 80%;
+            left: 20%;
+            animation-delay: -10s;
+        }
+        
+        .shape-4 {
+            width: 100px;
+            height: 100px;
+            top: 30%;
+            right: 30%;
+            animation-delay: -15s;
+        }
+        
+        .shape-5 {
+            width: 40px;
+            height: 40px;
+            top: 10%;
+            right: 10%;
+            animation-delay: -7s;
+        }
+        
+        @keyframes floatShapes {
+            0% { transform: translateY(0px) rotate(0deg); opacity: 0.3; }
+            50% { transform: translateY(-20px) rotate(180deg); opacity: 0.8; }
+            100% { transform: translateY(0px) rotate(360deg); opacity: 0.3; }
+        }
+        
+        .school-logo {
+            width: 120px;
+            height: 120px;
+        }
+        
+        .logo-circle {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0.1) 100%);
+            border: 3px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(10px);
+            animation: logoGlow 3s ease-in-out infinite;
+        }
+        
+        @keyframes logoGlow {
+            0%, 100% { box-shadow: 0 0 20px rgba(255,255,255,0.3); }
+            50% { box-shadow: 0 0 40px rgba(255,255,255,0.6); }
+        }
+        
+        .text-shadow-lg {
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .divider {
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, #fbbf24, transparent);
+            border-radius: 2px;
+        }
+        
+        /* Feature Cards */
+        .feature-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 16px;
+            padding: 24px;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            transition: left 0.5s;
+        }
+        
+        .feature-card:hover::before {
+            left: 100%;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+        
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 16px;
+            color: white;
+        }
+        
+        /* Main Navigation Buttons */
+        .main-nav-btn {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 24px;
+            padding: 32px;
+            width: 100%;
+            max-width: 500px;
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            color: #1f2937;
+            text-align: right;
+        }
+        
+        .main-nav-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(102, 126, 234, 0.1), transparent);
+            transition: left 0.6s;
+        }
+        
+        .main-nav-btn:hover::before {
+            left: 100%;
+        }
+        
+        .main-nav-btn:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+            border-color: #667eea;
+        }
+        
+        .main-nav-btn.active {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+            border-color: #667eea;
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.2);
+        }
+        
+        .btn-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            flex-shrink: 0;
+        }
+        
+        .supervisor-btn .btn-icon {
+            background: linear-gradient(135deg, #a855f7 0%, #ec4899 100%);
+        }
+        
+        .btn-content {
+            flex: 1;
+        }
+        
+        .btn-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 12px;
+        }
+        
+        .feature-tag {
+            background: rgba(102, 126, 234, 0.1);
+            color: #667eea;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            border: 1px solid rgba(102, 126, 234, 0.2);
+        }
+        
+        .supervisor-btn .feature-tag {
+            background: rgba(168, 85, 247, 0.1);
+            color: #a855f7;
+            border-color: rgba(168, 85, 247, 0.2);
+        }
+        
+        .btn-arrow {
+            color: #667eea;
+            opacity: 0.7;
+            transition: all 0.3s ease;
+        }
+        
+        .main-nav-btn:hover .btn-arrow {
+            opacity: 1;
+            transform: translateX(-5px);
+        }
+        
+        /* Statistics Cards */
+        .stat-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 16px;
+            padding: 24px;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        
+        .stat-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 16px;
+            color: white;
+        }
+        
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 900;
+            color: #1f2937;
+            margin-bottom: 8px;
+        }
+        
+        .stat-label {
+            font-size: 0.875rem;
+            color: #6b7280;
+            font-weight: 600;
+        }
+        
+        /* Quick Action Buttons */
+        .quick-action-btn {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            padding: 12px 24px;
+            color: white;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+        }
+        
+        .quick-action-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+        
+        /* Scroll Indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .scroll-arrow {
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .main-nav-btn {
+                flex-direction: column;
+                text-align: center;
+                gap: 16px;
+            }
+            
+            .btn-content {
+                text-align: center;
+            }
+            
+            .btn-arrow {
+                transform: rotate(90deg);
+            }
+            
+            .main-nav-btn:hover .btn-arrow {
+                transform: rotate(90deg) translateY(-5px);
+            }
+        }
+        
         /* Custom scrollbar */
         ::-webkit-scrollbar {
             width: 8px;
@@ -318,31 +672,173 @@
     </style>
 </head>
 <body class="min-h-full bg-gray-50">
-    <!-- Header -->
-    <header class="gradient-bg text-white py-6">
-        <div class="container mx-auto px-4 text-center">
-            <h1 class="text-4xl font-bold mb-2">متوسطة وثانوية ترعة ثقيف</h1>
-            <h2 class="text-3xl font-bold mb-2">السجل المهاري التطوعي</h2>
-            <p class="text-xl opacity-90">منصة تسجيل وإدارة الأعمال التطوعية للطلاب</p>
-        </div>
-    </header>
-
-    <!-- Navigation -->
-    <nav class="no-print relative">
-        <div class="absolute inset-0 bg-gradient-to-r from-purple-600/20 to-blue-600/20 backdrop-blur-lg"></div>
-        <div class="container mx-auto px-4 relative z-10">
-            <div class="flex justify-center space-x-6 py-6">
-                <button onclick="showSection('student')" id="studentBtn" class="nav-btn active animate-fade-in">
-                    <i class="fas fa-user-graduate ml-2 text-lg"></i>
-                    <span class="font-bold">قسم الطالب</span>
-                </button>
-                <button onclick="showSection('supervisor')" id="supervisorBtn" class="nav-btn animate-fade-in">
-                    <i class="fas fa-user-tie ml-2 text-lg"></i>
-                    <span class="font-bold">قسم المشرف</span>
-                </button>
+    <!-- Hero Section -->
+    <section class="gradient-bg text-white relative overflow-hidden min-h-screen flex items-center">
+        <!-- Animated Background Elements -->
+        <div class="absolute inset-0">
+            <div class="floating-shapes">
+                <div class="shape shape-1"></div>
+                <div class="shape shape-2"></div>
+                <div class="shape shape-3"></div>
+                <div class="shape shape-4"></div>
+                <div class="shape shape-5"></div>
             </div>
         </div>
-    </nav>
+        
+        <div class="container mx-auto px-4 relative z-10">
+            <!-- School Logo and Header -->
+            <div class="text-center mb-12 animate-fade-in">
+                <div class="school-logo mx-auto mb-8">
+                    <div class="logo-circle">
+                        <i class="fas fa-graduation-cap text-6xl text-white"></i>
+                    </div>
+                </div>
+                <h1 class="text-5xl md:text-7xl font-black mb-4 text-shadow-lg">
+                    <span class="block">متوسطة وثانوية</span>
+                    <span class="block text-yellow-300">ترعة ثقيف</span>
+                </h1>
+                <div class="divider mx-auto mb-6"></div>
+                <h2 class="text-3xl md:text-4xl font-bold mb-4 text-blue-100">السجل المهاري التطوعي</h2>
+                <p class="text-xl md:text-2xl opacity-90 max-w-3xl mx-auto leading-relaxed">
+                    منصة متطورة لتسجيل وإدارة الأعمال التطوعية والمهارات المكتسبة للطلاب
+                </p>
+            </div>
+
+            <!-- Interactive Features Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+                <div class="feature-card animate-slide-in" style="animation-delay: 0.2s">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">تتبع التقدم</h3>
+                    <p class="text-sm opacity-90">متابعة مستمرة لإنجازاتك التطوعية</p>
+                </div>
+                <div class="feature-card animate-slide-in" style="animation-delay: 0.4s">
+                    <div class="feature-icon">
+                        <i class="fas fa-certificate text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">شهادات معتمدة</h3>
+                    <p class="text-sm opacity-90">احصل على شهادات موثقة لأعمالك</p>
+                </div>
+                <div class="feature-card animate-slide-in" style="animation-delay: 0.6s">
+                    <div class="feature-icon">
+                        <i class="fas fa-users text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">مجتمع تفاعلي</h3>
+                    <p class="text-sm opacity-90">انضم لمجتمع الطلاب المتطوعين</p>
+                </div>
+            </div>
+
+            <!-- Main Navigation Buttons -->
+            <div class="flex flex-col md:flex-row justify-center items-center gap-8 mb-12">
+                <button onclick="showSection('student')" id="studentBtn" class="main-nav-btn student-btn active group">
+                    <div class="btn-icon">
+                        <i class="fas fa-user-graduate text-4xl group-hover:scale-110 transition-transform duration-300"></i>
+                    </div>
+                    <div class="btn-content">
+                        <h3 class="text-2xl font-bold mb-2">قسم الطالب</h3>
+                        <p class="text-sm opacity-90">سجل أعمالك التطوعية ومهاراتك</p>
+                        <div class="btn-features">
+                            <span class="feature-tag">
+                                <i class="fas fa-plus-circle ml-1"></i>إضافة فرص
+                            </span>
+                            <span class="feature-tag">
+                                <i class="fas fa-brain ml-1"></i>تسجيل مهارات
+                            </span>
+                            <span class="feature-tag">
+                                <i class="fas fa-print ml-1"></i>طباعة السجل
+                            </span>
+                        </div>
+                    </div>
+                    <div class="btn-arrow">
+                        <i class="fas fa-arrow-left text-2xl"></i>
+                    </div>
+                </button>
+
+                <button onclick="showSection('supervisor')" id="supervisorBtn" class="main-nav-btn supervisor-btn group">
+                    <div class="btn-icon">
+                        <i class="fas fa-user-tie text-4xl group-hover:scale-110 transition-transform duration-300"></i>
+                    </div>
+                    <div class="btn-content">
+                        <h3 class="text-2xl font-bold mb-2">قسم المشرف</h3>
+                        <p class="text-sm opacity-90">إدارة ومراجعة سجلات الطلاب</p>
+                        <div class="btn-features">
+                            <span class="feature-tag">
+                                <i class="fas fa-eye ml-1"></i>مراجعة السجلات
+                            </span>
+                            <span class="feature-tag">
+                                <i class="fas fa-stamp ml-1"></i>اعتماد الأعمال
+                            </span>
+                            <span class="feature-tag">
+                                <i class="fas fa-cloud ml-1"></i>إدارة البيانات
+                            </span>
+                        </div>
+                    </div>
+                    <div class="btn-arrow">
+                        <i class="fas fa-arrow-left text-2xl"></i>
+                    </div>
+                </button>
+            </div>
+
+            <!-- Statistics Section -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12">
+                <div class="stat-card animate-fade-in" style="animation-delay: 0.8s">
+                    <div class="stat-icon">
+                        <i class="fas fa-users text-2xl"></i>
+                    </div>
+                    <div class="stat-number" id="studentsCount">0</div>
+                    <div class="stat-label">طالب مسجل</div>
+                </div>
+                <div class="stat-card animate-fade-in" style="animation-delay: 1s">
+                    <div class="stat-icon">
+                        <i class="fas fa-hands-helping text-2xl"></i>
+                    </div>
+                    <div class="stat-number" id="opportunitiesCount">0</div>
+                    <div class="stat-label">فرصة تطوعية</div>
+                </div>
+                <div class="stat-card animate-fade-in" style="animation-delay: 1.2s">
+                    <div class="stat-icon">
+                        <i class="fas fa-clock text-2xl"></i>
+                    </div>
+                    <div class="stat-number" id="totalHours">0</div>
+                    <div class="stat-label">ساعة تطوعية</div>
+                </div>
+                <div class="stat-card animate-fade-in" style="animation-delay: 1.4s">
+                    <div class="stat-icon">
+                        <i class="fas fa-brain text-2xl"></i>
+                    </div>
+                    <div class="stat-number" id="skillsCount">0</div>
+                    <div class="stat-label">مهارة مكتسبة</div>
+                </div>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="text-center">
+                <h3 class="text-2xl font-bold mb-6">إجراءات سريعة</h3>
+                <div class="flex flex-wrap justify-center gap-4">
+                    <button onclick="showQuickGuide()" class="quick-action-btn">
+                        <i class="fas fa-question-circle text-xl ml-2"></i>
+                        دليل الاستخدام
+                    </button>
+                    <button onclick="showAboutSchool()" class="quick-action-btn">
+                        <i class="fas fa-school text-xl ml-2"></i>
+                        عن المدرسة
+                    </button>
+                    <button onclick="showContactInfo()" class="quick-action-btn">
+                        <i class="fas fa-phone text-xl ml-2"></i>
+                        تواصل معنا
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scroll Indicator -->
+        <div class="scroll-indicator">
+            <div class="scroll-arrow">
+                <i class="fas fa-chevron-down text-2xl animate-bounce"></i>
+            </div>
+        </div>
+    </section>
 
     <!-- Student Section -->
     <div id="studentSection" class="container mx-auto px-4 py-8">
@@ -1224,10 +1720,262 @@
             }, 3000);
         }
 
+        // Quick Actions Functions
+        function showQuickGuide() {
+            const guideHtml = `
+                <div id="quickGuideModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+                    <div class="bg-white rounded-2xl max-w-2xl w-full max-h-96 overflow-y-auto">
+                        <div class="p-6">
+                            <div class="flex items-center justify-between mb-6">
+                                <h3 class="text-2xl font-bold text-gray-800 flex items-center">
+                                    <i class="fas fa-question-circle text-blue-600 ml-3"></i>
+                                    دليل الاستخدام السريع
+                                </h3>
+                                <button onclick="closeModal('quickGuideModal')" class="text-gray-500 hover:text-gray-700">
+                                    <i class="fas fa-times text-xl"></i>
+                                </button>
+                            </div>
+                            <div class="space-y-4">
+                                <div class="bg-blue-50 p-4 rounded-lg">
+                                    <h4 class="font-bold text-blue-800 mb-2 flex items-center">
+                                        <i class="fas fa-user-graduate ml-2"></i>للطلاب:
+                                    </h4>
+                                    <ul class="text-sm text-blue-700 space-y-1">
+                                        <li>• اضغط على "قسم الطالب" للدخول</li>
+                                        <li>• أدخل رقم الجوال والسجل المدني</li>
+                                        <li>• أكمل معلوماتك الشخصية</li>
+                                        <li>• أضف الفرص التطوعية والمهارات المكتسبة</li>
+                                        <li>• اطبع سجلك المهاري عند الحاجة</li>
+                                    </ul>
+                                </div>
+                                <div class="bg-purple-50 p-4 rounded-lg">
+                                    <h4 class="font-bold text-purple-800 mb-2 flex items-center">
+                                        <i class="fas fa-user-tie ml-2"></i>للمشرفين:
+                                    </h4>
+                                    <ul class="text-sm text-purple-700 space-y-1">
+                                        <li>• اضغط على "قسم المشرف" للدخول</li>
+                                        <li>• أدخل بيانات الدخول المعتمدة</li>
+                                        <li>• راجع واعتمد سجلات الطلاب</li>
+                                        <li>• أضف التوقيع والختم الرسمي</li>
+                                        <li>• إدارة البيانات والمزامنة مع السحابة</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            document.body.insertAdjacentHTML('beforeend', guideHtml);
+        }
+
+        function showAboutSchool() {
+            const aboutHtml = `
+                <div id="aboutSchoolModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+                    <div class="bg-white rounded-2xl max-w-2xl w-full max-h-96 overflow-y-auto">
+                        <div class="p-6">
+                            <div class="flex items-center justify-between mb-6">
+                                <h3 class="text-2xl font-bold text-gray-800 flex items-center">
+                                    <i class="fas fa-school text-green-600 ml-3"></i>
+                                    عن متوسطة وثانوية ترعة ثقيف
+                                </h3>
+                                <button onclick="closeModal('aboutSchoolModal')" class="text-gray-500 hover:text-gray-700">
+                                    <i class="fas fa-times text-xl"></i>
+                                </button>
+                            </div>
+                            <div class="space-y-4">
+                                <div class="text-center mb-6">
+                                    <div class="w-20 h-20 mx-auto mb-4 bg-gradient-to-br from-green-500 to-blue-600 rounded-full flex items-center justify-center">
+                                        <i class="fas fa-graduation-cap text-white text-3xl"></i>
+                                    </div>
+                                </div>
+                                <div class="bg-gradient-to-r from-green-50 to-blue-50 p-4 rounded-lg">
+                                    <h4 class="font-bold text-gray-800 mb-3">رؤيتنا</h4>
+                                    <p class="text-gray-700 text-sm">إعداد جيل متميز من الطلاب المتطوعين القادرين على خدمة المجتمع وتطوير مهاراتهم الشخصية والمهنية</p>
+                                </div>
+                                <div class="bg-gradient-to-r from-blue-50 to-purple-50 p-4 rounded-lg">
+                                    <h4 class="font-bold text-gray-800 mb-3">رسالتنا</h4>
+                                    <p class="text-gray-700 text-sm">توفير بيئة تعليمية محفزة للعمل التطوعي وتنمية المهارات من خلال منصة رقمية متطورة تدعم تسجيل وتوثيق الأعمال التطوعية</p>
+                                </div>
+                                <div class="grid grid-cols-2 gap-4">
+                                    <div class="bg-yellow-50 p-3 rounded-lg text-center">
+                                        <i class="fas fa-award text-yellow-600 text-2xl mb-2"></i>
+                                        <h5 class="font-bold text-yellow-800 text-sm">التميز</h5>
+                                    </div>
+                                    <div class="bg-red-50 p-3 rounded-lg text-center">
+                                        <i class="fas fa-heart text-red-600 text-2xl mb-2"></i>
+                                        <h5 class="font-bold text-red-800 text-sm">الإنسانية</h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            document.body.insertAdjacentHTML('beforeend', aboutHtml);
+        }
+
+        function showContactInfo() {
+            const contactHtml = `
+                <div id="contactInfoModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+                    <div class="bg-white rounded-2xl max-w-md w-full">
+                        <div class="p-6">
+                            <div class="flex items-center justify-between mb-6">
+                                <h3 class="text-2xl font-bold text-gray-800 flex items-center">
+                                    <i class="fas fa-phone text-blue-600 ml-3"></i>
+                                    تواصل معنا
+                                </h3>
+                                <button onclick="closeModal('contactInfoModal')" class="text-gray-500 hover:text-gray-700">
+                                    <i class="fas fa-times text-xl"></i>
+                                </button>
+                            </div>
+                            <div class="space-y-4">
+                                <div class="flex items-center p-3 bg-blue-50 rounded-lg">
+                                    <i class="fas fa-map-marker-alt text-blue-600 text-xl ml-3"></i>
+                                    <div>
+                                        <h4 class="font-bold text-blue-800">العنوان</h4>
+                                        <p class="text-sm text-blue-700">ترعة ثقيف، المملكة العربية السعودية</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center p-3 bg-green-50 rounded-lg">
+                                    <i class="fas fa-phone text-green-600 text-xl ml-3"></i>
+                                    <div>
+                                        <h4 class="font-bold text-green-800">الهاتف</h4>
+                                        <p class="text-sm text-green-700">0502001993</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center p-3 bg-purple-50 rounded-lg">
+                                    <i class="fas fa-envelope text-purple-600 text-xl ml-3"></i>
+                                    <div>
+                                        <h4 class="font-bold text-purple-800">البريد الإلكتروني</h4>
+                                        <p class="text-sm text-purple-700">terahschool2@gmail.com</p>
+                                    </div>
+                                </div>
+                                <div class="text-center pt-4 border-t">
+                                    <p class="text-sm text-gray-600 mb-3">تابعنا على وسائل التواصل</p>
+                                    <div class="flex justify-center space-x-4">
+                                        <a href="https://x.com/a_a_althagafi?t=SKoq7PoEIK_sP9WabZ7QYA&s=09" target="_blank" rel="noopener noreferrer" class="text-blue-500 hover:text-blue-600">
+                                            <i class="fab fa-twitter text-2xl"></i>
+                                        </a>
+                                        <a href="https://t.me/althagafi993" target="_blank" rel="noopener noreferrer" class="text-blue-500 hover:text-blue-600">
+                                            <i class="fab fa-telegram text-2xl"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            document.body.insertAdjacentHTML('beforeend', contactHtml);
+        }
+
+        function closeModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.remove();
+            }
+        }
+
+        // Update Statistics
+        function updateStatistics() {
+            const students = Object.keys(studentsData).length;
+            let totalOpportunities = 0;
+            let totalHours = 0;
+            let totalSkills = 0;
+
+            Object.values(studentsData).forEach(student => {
+                if (student.opportunities) {
+                    totalOpportunities += student.opportunities.length;
+                    student.opportunities.forEach(opp => {
+                        if (opp.hours) {
+                            totalHours += parseInt(opp.hours) || 0;
+                        }
+                        if (opp.skills) {
+                            totalSkills += opp.skills.length;
+                        }
+                    });
+                }
+            });
+
+            // Animate numbers
+            animateNumber('studentsCount', students);
+            animateNumber('opportunitiesCount', totalOpportunities);
+            animateNumber('totalHours', totalHours);
+            animateNumber('skillsCount', totalSkills);
+        }
+
+        function animateNumber(elementId, targetNumber) {
+            const element = document.getElementById(elementId);
+            const startNumber = 0;
+            const duration = 2000;
+            const startTime = performance.now();
+
+            function updateNumber(currentTime) {
+                const elapsed = currentTime - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                const currentNumber = Math.floor(startNumber + (targetNumber - startNumber) * progress);
+                
+                element.textContent = currentNumber.toLocaleString('ar-SA');
+                
+                if (progress < 1) {
+                    requestAnimationFrame(updateNumber);
+                }
+            }
+            
+            requestAnimationFrame(updateNumber);
+        }
+
+        // Enhanced Navigation
+        function showSection(section) {
+            const studentSection = document.getElementById('studentSection');
+            const supervisorSection = document.getElementById('supervisorSection');
+            const studentBtn = document.getElementById('studentBtn');
+            const supervisorBtn = document.getElementById('supervisorBtn');
+
+            if (section === 'student') {
+                studentSection.classList.remove('hidden');
+                supervisorSection.classList.add('hidden');
+                studentBtn.classList.add('active');
+                supervisorBtn.classList.remove('active');
+                
+                // Add animation
+                studentSection.classList.add('animate-fade-in');
+                setTimeout(() => studentSection.classList.remove('animate-fade-in'), 600);
+                
+                // Smooth scroll to section
+                studentSection.scrollIntoView({ behavior: 'smooth' });
+            } else {
+                studentSection.classList.add('hidden');
+                supervisorSection.classList.remove('hidden');
+                supervisorBtn.classList.add('active');
+                studentBtn.classList.remove('active');
+                
+                // Add animation
+                supervisorSection.classList.add('animate-fade-in');
+                setTimeout(() => supervisorSection.classList.remove('animate-fade-in'), 600);
+                
+                // Smooth scroll to section
+                supervisorSection.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
         // Initialize
         document.addEventListener('DOMContentLoaded', function() {
-            showSection('student');
+            // Update statistics on page load
+            updateStatistics();
+            
+            // Update statistics every 30 seconds
+            setInterval(updateStatistics, 30000);
+            
+            // Add scroll effect to hero section
+            window.addEventListener('scroll', function() {
+                const scrolled = window.pageYOffset;
+                const heroSection = document.querySelector('.gradient-bg');
+                if (heroSection) {
+                    heroSection.style.transform = `translateY(${scrolled * 0.5}px)`;
+                }
+            });
         });
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'98e9af7e95a49355',t:'MTc2MDQ3MjI2NC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'98e9bc1455b89355',t:'MTc2MDQ3Mjc3OS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
