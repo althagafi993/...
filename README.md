@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
@@ -1411,8 +1411,8 @@
             const opportunityDiv = document.getElementById(opportunityId);
             const printWindow = window.open('', '_blank');
             
-            printWindow.document.write(`
-                <!DOCTYPE html>
+     
+
                 <html lang="ar" dir="rtl">
                 <head>
                     <meta charset="UTF-8">
@@ -1882,8 +1882,6 @@
                 });
             }
             
-            printWindow.document.write(`
-                <!DOCTYPE html>
                 <html lang="ar" dir="rtl">
                 <head>
                     <meta charset="UTF-8">
