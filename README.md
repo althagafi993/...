@@ -1351,7 +1351,7 @@
             const printWindow = window.open('', '_blank');
             
             printWindow.document.write(`
- <!DOCTYPE html>
+
                 <html lang="ar" dir="rtl">
                 <head>
                     <meta charset="UTF-8">
