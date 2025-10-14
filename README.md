@@ -7,29 +7,313 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap');
+        
         body {
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Cairo', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
         }
+        
         .gradient-bg {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            position: relative;
+            overflow: hidden;
         }
+        
+        .gradient-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="white" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="white" opacity="0.1"/><circle cx="50" cy="10" r="0.5" fill="white" opacity="0.1"/><circle cx="10" cy="60" r="0.5" fill="white" opacity="0.1"/><circle cx="90" cy="40" r="0.5" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            animation: float 20s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(1deg); }
+        }
+        
         .card-shadow {
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
         }
+        
+        .glass-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+        
+        .modern-input {
+            background: rgba(255, 255, 255, 0.9);
+            border: 2px solid transparent;
+            border-radius: 12px;
+            padding: 12px 16px;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+        
+        .modern-input:focus {
+            outline: none;
+            border-color: #667eea;
+            background: rgba(255, 255, 255, 1);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.15);
+        }
+        
+        .modern-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            border-radius: 12px;
+            padding: 12px 24px;
+            color: white;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .modern-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .modern-btn:hover::before {
+            left: 100%;
+        }
+        
+        .modern-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+        }
+        
+        .modern-btn:active {
+            transform: translateY(-1px);
+        }
+        
+        .nav-btn {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            padding: 12px 24px;
+            color: white;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .nav-btn.active {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .nav-btn:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-2px);
+        }
+        
+        .opportunity-card {
+            background: linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.7) 100%);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 20px;
+            padding: 24px;
+            margin-bottom: 24px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .opportunity-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 0 4px 4px 0;
+        }
+        
+        .opportunity-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        .skill-input {
+            background: rgba(255, 255, 255, 0.8);
+            border: 1px solid rgba(102, 126, 234, 0.2);
+            border-radius: 8px;
+            padding: 8px 12px;
+            margin: 4px 0;
+            transition: all 0.3s ease;
+        }
+        
+        .skill-input:focus {
+            outline: none;
+            border-color: #667eea;
+            background: rgba(255, 255, 255, 1);
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.1);
+        }
+        
+        .floating-label {
+            position: relative;
+            margin-bottom: 20px;
+        }
+        
+        .floating-label input,
+        .floating-label select,
+        .floating-label textarea {
+            width: 100%;
+            padding: 16px 12px 8px 12px;
+            border: 2px solid rgba(102, 126, 234, 0.2);
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.9);
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+        
+        .floating-label label {
+            position: absolute;
+            top: 16px;
+            right: 12px;
+            font-size: 16px;
+            color: #666;
+            transition: all 0.3s ease;
+            pointer-events: none;
+            background: transparent;
+            padding: 0 4px;
+        }
+        
+        .floating-label input:focus + label,
+        .floating-label input:not(:placeholder-shown) + label,
+        .floating-label select:focus + label,
+        .floating-label select:not([value=""]) + label,
+        .floating-label textarea:focus + label,
+        .floating-label textarea:not(:placeholder-shown) + label {
+            top: -8px;
+            font-size: 12px;
+            color: #667eea;
+            background: rgba(255, 255, 255, 0.9);
+            font-weight: 600;
+        }
+        
+        .floating-label input:focus,
+        .floating-label select:focus,
+        .floating-label textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            background: rgba(255, 255, 255, 1);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.15);
+        }
+        
+        .section-header {
+            background: linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.7) 100%);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 24px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .section-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .stats-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 16px;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .stats-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: pulse 4s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.5; }
+            50% { transform: scale(1.1) rotate(180deg); opacity: 0.8; }
+        }
+        
         .print-section {
             display: none;
         }
+        
         @media print {
             .no-print { display: none !important; }
             .print-section { display: block !important; }
             body { background: white !important; }
         }
-        .skill-input {
-            border: 1px solid #e5e7eb;
-            border-radius: 0.375rem;
-            padding: 0.5rem;
-            margin: 0.25rem 0;
+        
+        .animate-fade-in {
+            animation: fadeIn 0.6s ease-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .animate-slide-in {
+            animation: slideIn 0.8s ease-out;
+        }
+        
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(-30px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 4px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(135deg, #5a6fd8 0%, #6a4190 100%);
         }
     </style>
 </head>
@@ -44,14 +328,17 @@
     </header>
 
     <!-- Navigation -->
-    <nav class="bg-white shadow-md no-print">
-        <div class="container mx-auto px-4">
-            <div class="flex justify-center space-x-4 py-4">
-                <button onclick="showSection('student')" id="studentBtn" class="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
-                    <i class="fas fa-user-graduate ml-2"></i>قسم الطالب
+    <nav class="no-print relative">
+        <div class="absolute inset-0 bg-gradient-to-r from-purple-600/20 to-blue-600/20 backdrop-blur-lg"></div>
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="flex justify-center space-x-6 py-6">
+                <button onclick="showSection('student')" id="studentBtn" class="nav-btn active animate-fade-in">
+                    <i class="fas fa-user-graduate ml-2 text-lg"></i>
+                    <span class="font-bold">قسم الطالب</span>
                 </button>
-                <button onclick="showSection('supervisor')" id="supervisorBtn" class="px-6 py-3 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors">
-                    <i class="fas fa-user-tie ml-2"></i>قسم المشرف
+                <button onclick="showSection('supervisor')" id="supervisorBtn" class="nav-btn animate-fade-in">
+                    <i class="fas fa-user-tie ml-2 text-lg"></i>
+                    <span class="font-bold">قسم المشرف</span>
                 </button>
             </div>
         </div>
@@ -60,19 +347,26 @@
     <!-- Student Section -->
     <div id="studentSection" class="container mx-auto px-4 py-8">
         <!-- Student Login -->
-        <div id="studentLogin" class="max-w-md mx-auto bg-white rounded-lg card-shadow p-6 mb-8">
-            <h2 class="text-2xl font-bold text-center mb-6 text-gray-800">تسجيل دخول الطالب</h2>
-            <form onsubmit="studentLoginSubmit(event)">
-                <div class="mb-4">
-                    <label class="block text-gray-700 text-sm font-bold mb-2">رقم الجوال</label>
-                    <input type="tel" id="studentPhone" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500" required>
+        <div id="studentLogin" class="max-w-md mx-auto glass-card rounded-2xl p-8 mb-8 animate-fade-in">
+            <div class="text-center mb-8">
+                <div class="w-20 h-20 mx-auto mb-4 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
+                    <i class="fas fa-user-graduate text-white text-2xl"></i>
                 </div>
-                <div class="mb-6">
-                    <label class="block text-gray-700 text-sm font-bold mb-2">السجل المدني</label>
-                    <input type="text" id="studentId" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500" required>
+                <h2 class="text-3xl font-bold text-gray-800 mb-2">مرحباً بك</h2>
+                <p class="text-gray-600">سجل دخولك للوصول إلى سجلك المهاري</p>
+            </div>
+            <form onsubmit="studentLoginSubmit(event)" class="space-y-6">
+                <div class="floating-label">
+                    <input type="tel" id="studentPhone" placeholder=" " required>
+                    <label>رقم الجوال</label>
                 </div>
-                <button type="submit" class="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition-colors">
-                    دخول
+                <div class="floating-label">
+                    <input type="text" id="studentId" placeholder=" " required>
+                    <label>السجل المدني</label>
+                </div>
+                <button type="submit" class="w-full modern-btn py-4 text-lg font-bold">
+                    <i class="fas fa-sign-in-alt ml-2"></i>
+                    دخول إلى السجل المهاري
                 </button>
             </form>
         </div>
@@ -80,68 +374,86 @@
         <!-- Student Profile -->
         <div id="studentProfile" class="hidden">
             <!-- Student Information -->
-            <div class="bg-white rounded-lg card-shadow p-6 mb-8">
-                <h2 class="text-2xl font-bold mb-6 text-gray-800 border-b pb-3">معلومات الطالب</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div>
-                        <label class="block text-gray-700 text-sm font-bold mb-2">الاسم الكامل</label>
-                        <input type="text" id="fullName" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500">
+            <div class="section-header animate-slide-in">
+                <div class="flex items-center mb-6">
+                    <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center ml-4">
+                        <i class="fas fa-user text-white text-lg"></i>
                     </div>
                     <div>
-                        <label class="block text-gray-700 text-sm font-bold mb-2">الرقم التعريفي</label>
-                        <input type="text" id="identificationNumber" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500">
-                    </div>
-                    <div>
-                        <label class="block text-gray-700 text-sm font-bold mb-2">المدرسة</label>
-                        <input type="text" id="school" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500">
-                    </div>
-                    <div>
-                        <label class="block text-gray-700 text-sm font-bold mb-2">المرحلة الدراسية</label>
-                        <input type="text" id="grade" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500">
-                    </div>
-                    <div>
-                        <label class="block text-gray-700 text-sm font-bold mb-2">رقم الهوية الوطنية</label>
-                        <input type="text" id="nationalId" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500">
-                    </div>
-                    <div>
-                        <label class="block text-gray-700 text-sm font-bold mb-2">رقم الهاتف</label>
-                        <input type="tel" id="phoneNumber" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500">
-                    </div>
-                    <div>
-                        <label class="block text-gray-700 text-sm font-bold mb-2">البريد الإلكتروني</label>
-                        <input type="email" id="email" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500">
-                    </div>
-                    <div>
-                        <label class="block text-gray-700 text-sm font-bold mb-2">الفصل الدراسي الحالي</label>
-                        <input type="text" id="currentSemester" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500">
-                    </div>
-                    <div class="md:col-span-2">
-                        <label class="block text-gray-700 text-sm font-bold mb-2">الأهداف الشخصية والتعليمية والمهنية</label>
-                        <textarea id="personalGoals" rows="3" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500"></textarea>
-                    </div>
-                    <div>
-                        <label class="block text-gray-700 text-sm font-bold mb-2">الهدف التعليمي الأكاديمي</label>
-                        <textarea id="academicGoal" rows="2" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500"></textarea>
-                    </div>
-                    <div>
-                        <label class="block text-gray-700 text-sm font-bold mb-2">الهدف التعليمي المهاري</label>
-                        <textarea id="skillGoal" rows="2" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500"></textarea>
+                        <h2 class="text-2xl font-bold text-gray-800">معلومات الطالب</h2>
+                        <p class="text-gray-600">أكمل بياناتك الشخصية والأكاديمية</p>
                     </div>
                 </div>
-                <button onclick="saveStudentInfo()" class="mt-4 bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700 transition-colors">
-                    <i class="fas fa-save ml-2"></i>حفظ المعلومات
-                </button>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="floating-label">
+                        <input type="text" id="fullName" placeholder=" ">
+                        <label>الاسم الكامل</label>
+                    </div>
+                    <div class="floating-label">
+                        <input type="text" id="identificationNumber" placeholder=" ">
+                        <label>الرقم التعريفي</label>
+                    </div>
+                    <div class="floating-label">
+                        <input type="text" id="school" placeholder=" ">
+                        <label>المدرسة</label>
+                    </div>
+                    <div class="floating-label">
+                        <input type="text" id="grade" placeholder=" ">
+                        <label>المرحلة الدراسية</label>
+                    </div>
+                    <div class="floating-label">
+                        <input type="text" id="nationalId" placeholder=" ">
+                        <label>رقم الهوية الوطنية</label>
+                    </div>
+                    <div class="floating-label">
+                        <input type="tel" id="phoneNumber" placeholder=" ">
+                        <label>رقم الهاتف</label>
+                    </div>
+                    <div class="floating-label">
+                        <input type="email" id="email" placeholder=" ">
+                        <label>البريد الإلكتروني</label>
+                    </div>
+                    <div class="floating-label">
+                        <input type="text" id="currentSemester" placeholder=" ">
+                        <label>الفصل الدراسي الحالي</label>
+                    </div>
+                    <div class="md:col-span-2 floating-label">
+                        <textarea id="personalGoals" rows="3" placeholder=" "></textarea>
+                        <label>الأهداف الشخصية والتعليمية والمهنية</label>
+                    </div>
+                    <div class="floating-label">
+                        <textarea id="academicGoal" rows="2" placeholder=" "></textarea>
+                        <label>الهدف التعليمي الأكاديمي</label>
+                    </div>
+                    <div class="floating-label">
+                        <textarea id="skillGoal" rows="2" placeholder=" "></textarea>
+                        <label>الهدف التعليمي المهاري</label>
+                    </div>
+                </div>
+                <div class="flex justify-center mt-8">
+                    <button onclick="saveStudentInfo()" class="modern-btn px-8 py-3 text-lg">
+                        <i class="fas fa-save ml-2"></i>حفظ المعلومات
+                    </button>
+                </div>
             </div>
 
             <!-- Volunteer Opportunities -->
-            <div class="bg-white rounded-lg card-shadow p-6">
-                <div class="flex justify-between items-center mb-6 border-b pb-3">
-                    <h2 class="text-2xl font-bold text-gray-800">الأعمال التطوعية للطالب</h2>
-                    <button onclick="addOpportunity()" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
-                        <i class="fas fa-plus ml-2"></i>إضافة فرصة تطوعية
+            <div class="section-header animate-slide-in">
+                <div class="flex justify-between items-center mb-6">
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-gradient-to-br from-green-500 to-blue-600 rounded-xl flex items-center justify-center ml-4">
+                            <i class="fas fa-hands-helping text-white text-lg"></i>
+                        </div>
+                        <div>
+                            <h2 class="text-2xl font-bold text-gray-800">الأعمال التطوعية</h2>
+                            <p class="text-gray-600">سجل فرصك التطوعية ومهاراتك المكتسبة</p>
+                        </div>
+                    </div>
+                    <button onclick="addOpportunity()" class="modern-btn px-6 py-3">
+                        <i class="fas fa-plus ml-2"></i>إضافة فرصة جديدة
                     </button>
                 </div>
-                <div id="opportunitiesList"></div>
+                <div id="opportunitiesList" class="space-y-6"></div>
             </div>
         </div>
     </div>
@@ -149,23 +461,33 @@
     <!-- Supervisor Section -->
     <div id="supervisorSection" class="container mx-auto px-4 py-8 hidden">
         <!-- Supervisor Login -->
-        <div id="supervisorLogin" class="max-w-md mx-auto bg-white rounded-lg card-shadow p-6 mb-8">
-            <h2 class="text-2xl font-bold text-center mb-6 text-gray-800">تسجيل دخول المشرف</h2>
-            <form onsubmit="supervisorLoginSubmit(event)">
-                <div class="mb-4">
-                    <label class="block text-gray-700 text-sm font-bold mb-2">رقم الجوال</label>
-                    <input type="tel" id="supervisorPhone" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500" required>
+        <div id="supervisorLogin" class="max-w-md mx-auto glass-card rounded-2xl p-8 mb-8 animate-fade-in">
+            <div class="text-center mb-8">
+                <div class="w-20 h-20 mx-auto mb-4 bg-gradient-to-br from-purple-500 to-pink-600 rounded-full flex items-center justify-center">
+                    <i class="fas fa-user-tie text-white text-2xl"></i>
                 </div>
-                <div class="mb-6">
-                    <label class="block text-gray-700 text-sm font-bold mb-2">كود التأكيد</label>
-                    <input type="text" id="supervisorCode" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500" required>
+                <h2 class="text-3xl font-bold text-gray-800 mb-2">لوحة المشرف</h2>
+                <p class="text-gray-600">دخول المشرفين المعتمدين</p>
+            </div>
+            <form onsubmit="supervisorLoginSubmit(event)" class="space-y-6">
+                <div class="floating-label">
+                    <input type="tel" id="supervisorPhone" placeholder=" " required>
+                    <label>رقم الجوال</label>
                 </div>
-                <button type="submit" class="w-full bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700 transition-colors">
-                    دخول
+                <div class="floating-label">
+                    <input type="text" id="supervisorCode" placeholder=" " required>
+                    <label>كود التأكيد</label>
+                </div>
+                <button type="submit" class="w-full modern-btn py-4 text-lg font-bold" style="background: linear-gradient(135deg, #a855f7 0%, #ec4899 100%);">
+                    <i class="fas fa-shield-alt ml-2"></i>
+                    دخول لوحة الإدارة
                 </button>
             </form>
-            <div class="mt-4 text-sm text-gray-600">
-                <p class="font-bold">للحصول على بيانات الدخول، يرجى التواصل مع إدارة المدرسة</p>
+            <div class="mt-6 p-4 bg-gradient-to-r from-blue-50 to-purple-50 rounded-xl border border-blue-200">
+                <div class="flex items-center">
+                    <i class="fas fa-info-circle text-blue-500 ml-3"></i>
+                    <p class="text-sm text-blue-700 font-medium">للحصول على بيانات الدخول، يرجى التواصل مع إدارة المدرسة</p>
+                </div>
             </div>
         </div>
 
@@ -261,17 +583,21 @@
             if (section === 'student') {
                 studentSection.classList.remove('hidden');
                 supervisorSection.classList.add('hidden');
-                studentBtn.classList.add('bg-blue-600');
-                studentBtn.classList.remove('bg-gray-600');
-                supervisorBtn.classList.add('bg-gray-600');
-                supervisorBtn.classList.remove('bg-purple-600');
+                studentBtn.classList.add('active');
+                supervisorBtn.classList.remove('active');
+                
+                // Add animation
+                studentSection.classList.add('animate-fade-in');
+                setTimeout(() => studentSection.classList.remove('animate-fade-in'), 600);
             } else {
                 studentSection.classList.add('hidden');
                 supervisorSection.classList.remove('hidden');
-                supervisorBtn.classList.add('bg-purple-600');
-                supervisorBtn.classList.remove('bg-gray-600');
-                studentBtn.classList.add('bg-gray-600');
-                studentBtn.classList.remove('bg-blue-600');
+                supervisorBtn.classList.add('active');
+                studentBtn.classList.remove('active');
+                
+                // Add animation
+                supervisorSection.classList.add('animate-fade-in');
+                setTimeout(() => supervisorSection.classList.remove('animate-fade-in'), 600);
             }
         }
 
@@ -345,48 +671,57 @@
             const opportunityId = 'opportunity_' + opportunityCounter;
             
             const opportunityHtml = `
-                <div class="border rounded-lg p-6 mb-6 bg-gray-50" id="${opportunityId}">
-                    <h3 class="text-xl font-bold mb-4 text-gray-800">الفرصة التطوعية ${opportunityCounter}</h3>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div>
-                            <label class="block text-gray-700 text-sm font-bold mb-2">اسم الفرصة التطوعية</label>
-                            <input type="text" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500" data-field="name">
+                <div class="opportunity-card animate-fade-in" id="${opportunityId}">
+                    <div class="flex items-center justify-between mb-6">
+                        <div class="flex items-center">
+                            <div class="w-10 h-10 bg-gradient-to-br from-orange-500 to-red-600 rounded-lg flex items-center justify-center ml-3">
+                                <i class="fas fa-star text-white"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-800">الفرصة التطوعية ${opportunityCounter}</h3>
                         </div>
-                        <div>
-                            <label class="block text-gray-700 text-sm font-bold mb-2">الجهة المنظمة</label>
-                            <input type="text" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500" data-field="organization">
+                        <div class="flex items-center space-x-2">
+                            <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">جديد</span>
                         </div>
-                        <div class="md:col-span-2">
-                            <label class="block text-gray-700 text-sm font-bold mb-2">وصف الفرصة</label>
-                            <textarea rows="3" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500" data-field="description"></textarea>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="floating-label">
+                            <input type="text" placeholder=" " data-field="name">
+                            <label>اسم الفرصة التطوعية</label>
                         </div>
-                        <div>
-                            <label class="block text-gray-700 text-sm font-bold mb-2">نوع الفرصة</label>
-                            <select class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500" data-field="type">
+                        <div class="floating-label">
+                            <input type="text" placeholder=" " data-field="organization">
+                            <label>الجهة المنظمة</label>
+                        </div>
+                        <div class="md:col-span-2 floating-label">
+                            <textarea rows="3" placeholder=" " data-field="description"></textarea>
+                            <label>وصف الفرصة</label>
+                        </div>
+                        <div class="floating-label">
+                            <select data-field="type">
                                 <option value="">اختر النوع</option>
                                 <option value="ميدانية">ميدانية</option>
                                 <option value="عن بعد">عن بعد</option>
                             </select>
+                            <label>نوع الفرصة</label>
                         </div>
-                        <div>
-                            <label class="block text-gray-700 text-sm font-bold mb-2">الدور والمهام</label>
-                            <textarea rows="2" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500" data-field="role"></textarea>
+                        <div class="floating-label">
+                            <textarea rows="2" placeholder=" " data-field="role"></textarea>
+                            <label>الدور والمهام</label>
                         </div>
-                        <div>
-                            <label class="block text-gray-700 text-sm font-bold mb-2">تاريخ البداية</label>
-                            <input type="date" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500" data-field="startDate">
+                        <div class="floating-label">
+                            <input type="date" data-field="startDate">
+                            <label>تاريخ البداية</label>
                         </div>
-                        <div>
-                            <label class="block text-gray-700 text-sm font-bold mb-2">تاريخ الانتهاء</label>
-                            <input type="date" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500" data-field="endDate">
+                        <div class="floating-label">
+                            <input type="date" data-field="endDate">
+                            <label>تاريخ الانتهاء</label>
                         </div>
-                        <div>
-                            <label class="block text-gray-700 text-sm font-bold mb-2">عدد الساعات</label>
-                            <input type="number" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500" data-field="hours">
+                        <div class="floating-label">
+                            <input type="number" placeholder=" " data-field="hours">
+                            <label>عدد الساعات</label>
                         </div>
-                        <div>
-                            <label class="block text-gray-700 text-sm font-bold mb-2">مستوى صعوبة الفرصة (1 = بالغ السهولة، 5 = بالغ الصعوبة)</label>
-                            <select class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500" data-field="difficulty">
+                        <div class="floating-label">
+                            <select data-field="difficulty">
                                 <option value="">اختر المستوى</option>
                                 <option value="1">1 - بالغ السهولة</option>
                                 <option value="2">2 - سهل</option>
@@ -394,37 +729,47 @@
                                 <option value="4">4 - صعب</option>
                                 <option value="5">5 - بالغ الصعوبة</option>
                             </select>
+                            <label>مستوى صعوبة الفرصة</label>
                         </div>
                         <div class="md:col-span-2">
-                            <label class="block text-gray-700 text-sm font-bold mb-2">المهارات المكتسبة</label>
-                            <div id="skills_${opportunityId}" class="mb-2">
-                                <div class="flex items-center gap-2 mb-2">
-                                    <input type="text" placeholder="اسم المهارة" class="flex-1 skill-input">
-                                    <select class="skill-input">
-                                        <option value="">مستوى المهارة</option>
-                                        <option value="منخفض">منخفض</option>
-                                        <option value="بسيط">بسيط</option>
-                                        <option value="متوسط">متوسط</option>
-                                        <option value="مرتفع">مرتفع</option>
-                                    </select>
-                                    <button type="button" onclick="removeSkill(this)" class="bg-red-500 text-white px-2 py-1 rounded text-sm">حذف</button>
+                            <div class="bg-gradient-to-r from-green-50 to-blue-50 rounded-xl p-4 border border-green-200">
+                                <h4 class="font-bold text-gray-800 mb-3 flex items-center">
+                                    <i class="fas fa-brain text-green-600 ml-2"></i>
+                                    المهارات المكتسبة
+                                </h4>
+                                <div id="skills_${opportunityId}" class="space-y-2">
+                                    <div class="flex items-center gap-2">
+                                        <input type="text" placeholder="اسم المهارة" class="flex-1 skill-input">
+                                        <select class="skill-input">
+                                            <option value="">مستوى المهارة</option>
+                                            <option value="منخفض">منخفض</option>
+                                            <option value="بسيط">بسيط</option>
+                                            <option value="متوسط">متوسط</option>
+                                            <option value="مرتفع">مرتفع</option>
+                                        </select>
+                                        <button type="button" onclick="removeSkill(this)" class="bg-red-500 hover:bg-red-600 text-white px-3 py-2 rounded-lg text-sm transition-colors">
+                                            <i class="fas fa-times"></i>
+                                        </button>
+                                    </div>
                                 </div>
+                                <button type="button" onclick="addSkill('skills_${opportunityId}')" class="mt-3 bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg text-sm transition-colors">
+                                    <i class="fas fa-plus ml-1"></i>إضافة مهارة
+                                </button>
                             </div>
-                            <button type="button" onclick="addSkill('skills_${opportunityId}')" class="bg-green-500 text-white px-3 py-1 rounded text-sm">إضافة مهارة</button>
                         </div>
-                        <div>
-                            <label class="block text-gray-700 text-sm font-bold mb-2">توقيع الجهة</label>
-                            <input type="text" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500" data-field="signature">
+                        <div class="floating-label">
+                            <input type="text" placeholder=" " data-field="signature">
+                            <label>توقيع الجهة</label>
                         </div>
                     </div>
-                    <div class="flex gap-4 mt-6">
-                        <button onclick="saveOpportunity('${opportunityId}')" class="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors">
+                    <div class="flex flex-wrap gap-3 mt-8 pt-6 border-t border-gray-200">
+                        <button onclick="saveOpportunity('${opportunityId}')" class="modern-btn px-6 py-2" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%);">
                             <i class="fas fa-save ml-2"></i>حفظ الفرصة
                         </button>
-                        <button onclick="printOpportunity('${opportunityId}')" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
+                        <button onclick="printOpportunity('${opportunityId}')" class="modern-btn px-6 py-2">
                             <i class="fas fa-print ml-2"></i>طباعة السجل
                         </button>
-                        <button onclick="deleteOpportunity('${opportunityId}')" class="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition-colors">
+                        <button onclick="deleteOpportunity('${opportunityId}')" class="modern-btn px-6 py-2" style="background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);">
                             <i class="fas fa-trash ml-2"></i>حذف الفرصة
                         </button>
                     </div>
@@ -884,5 +1229,5 @@
             showSection('student');
         });
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'98e93d62a1399355',t:'MTc2MDQ2NzU4OS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'98e9af7e95a49355',t:'MTc2MDQ3MjI2NC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
