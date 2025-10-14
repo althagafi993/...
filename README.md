@@ -1,4 +1,4 @@
-
+<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
@@ -704,30 +704,7 @@
                 </p>
             </div>
 
-            <!-- Interactive Features Cards -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-                <div class="feature-card animate-slide-in" style="animation-delay: 0.2s">
-                    <div class="feature-icon">
-                        <i class="fas fa-chart-line text-3xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-2">تتبع التقدم</h3>
-                    <p class="text-sm opacity-90">متابعة مستمرة لإنجازاتك التطوعية</p>
-                </div>
-                <div class="feature-card animate-slide-in" style="animation-delay: 0.4s">
-                    <div class="feature-icon">
-                        <i class="fas fa-certificate text-3xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-2">شهادات معتمدة</h3>
-                    <p class="text-sm opacity-90">احصل على شهادات موثقة لأعمالك</p>
-                </div>
-                <div class="feature-card animate-slide-in" style="animation-delay: 0.6s">
-                    <div class="feature-icon">
-                        <i class="fas fa-users text-3xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-2">مجتمع تفاعلي</h3>
-                    <p class="text-sm opacity-90">انضم لمجتمع الطلاب المتطوعين</p>
-                </div>
-            </div>
+
 
             <!-- Main Navigation Buttons -->
             <div class="flex flex-col md:flex-row justify-center items-center gap-8 mb-12">
@@ -1010,6 +987,11 @@
                         <input type="date" id="evaluationDate" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500">
                     </div>
                 </div>
+                <div class="flex justify-center mt-6">
+                    <button onclick="saveSupervisorInfo()" class="modern-btn px-8 py-3 text-lg" style="background: linear-gradient(135deg, #a855f7 0%, #ec4899 100%);">
+                        <i class="fas fa-save ml-2"></i>حفظ معلومات المشرف
+                    </button>
+                </div>
             </div>
 
             <!-- Certification Section -->
@@ -1018,7 +1000,7 @@
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                     <div>
                         <label class="block text-gray-700 text-sm font-bold mb-2">الجهة المعتمدة</label>
-                        <input type="text" id="certifyingAuthority" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500">
+                        <input type="text" id="certifyingAuthority" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500" value="متوسطة وثانوية ترعة ثقيف">
                     </div>
                     <div>
                         <label class="block text-gray-700 text-sm font-bold mb-2">التوقيع والختم</label>
@@ -1029,17 +1011,64 @@
                         <input type="date" id="issueDate" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500">
                     </div>
                 </div>
+                <div class="flex justify-center mt-6">
+                    <button onclick="saveCertificationInfo()" class="modern-btn px-8 py-3 text-lg" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%);">
+                        <i class="fas fa-stamp ml-2"></i>حفظ معلومات الاعتماد
+                    </button>
+                </div>
             </div>
 
             <!-- Students Management -->
             <div class="bg-white rounded-lg card-shadow p-6">
-                <h2 class="text-2xl font-bold mb-6 text-gray-800 border-b pb-3">إدارة الطلاب والفرص التطوعية</h2>
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-2xl font-bold text-gray-800">إدارة الطلاب والفرص التطوعية</h2>
+                    <div class="flex gap-3">
+                        <button onclick="exportAllData()" class="modern-btn px-4 py-2 text-sm" style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);">
+                            <i class="fas fa-download ml-2"></i>تصدير البيانات
+                        </button>
+                        <button onclick="refreshStudentsList()" class="modern-btn px-4 py-2 text-sm">
+                            <i class="fas fa-sync-alt ml-2"></i>تحديث القائمة
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Students Statistics -->
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+                    <div class="bg-gradient-to-r from-blue-50 to-blue-100 p-4 rounded-lg text-center">
+                        <i class="fas fa-users text-blue-600 text-2xl mb-2"></i>
+                        <div class="text-2xl font-bold text-blue-800" id="totalStudentsCount">0</div>
+                        <div class="text-sm text-blue-600">إجمالي الطلاب</div>
+                    </div>
+                    <div class="bg-gradient-to-r from-green-50 to-green-100 p-4 rounded-lg text-center">
+                        <i class="fas fa-hands-helping text-green-600 text-2xl mb-2"></i>
+                        <div class="text-2xl font-bold text-green-800" id="totalOpportunitiesCount">0</div>
+                        <div class="text-sm text-green-600">إجمالي الفرص</div>
+                    </div>
+                    <div class="bg-gradient-to-r from-purple-50 to-purple-100 p-4 rounded-lg text-center">
+                        <i class="fas fa-clock text-purple-600 text-2xl mb-2"></i>
+                        <div class="text-2xl font-bold text-purple-800" id="totalVolunteerHours">0</div>
+                        <div class="text-sm text-purple-600">إجمالي الساعات</div>
+                    </div>
+                    <div class="bg-gradient-to-r from-orange-50 to-orange-100 p-4 rounded-lg text-center">
+                        <i class="fas fa-brain text-orange-600 text-2xl mb-2"></i>
+                        <div class="text-2xl font-bold text-orange-800" id="totalSkillsCount">0</div>
+                        <div class="text-sm text-orange-600">إجمالي المهارات</div>
+                    </div>
+                </div>
+                
                 <div class="mb-4">
                     <label class="block text-gray-700 text-sm font-bold mb-2">اختيار الطالب</label>
                     <select id="studentSelect" onchange="loadStudentData()" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500">
                         <option value="">اختر طالب...</option>
                     </select>
                 </div>
+                
+                <!-- All Students Overview -->
+                <div id="allStudentsOverview" class="mb-6">
+                    <h3 class="text-lg font-bold mb-4 text-gray-800">نظرة عامة على جميع الطلاب</h3>
+                    <div id="studentsOverviewList" class="space-y-4"></div>
+                </div>
+                
                 <div id="selectedStudentData" class="hidden">
                     <div id="studentDataDisplay"></div>
                     <div id="studentOpportunitiesDisplay"></div>
@@ -1142,6 +1171,15 @@
         function saveStudentInfo() {
             const fields = ['fullName', 'identificationNumber', 'school', 'grade', 'nationalId', 'phoneNumber', 'email', 'currentSemester', 'personalGoals', 'academicGoal', 'skillGoal'];
             
+            if (!studentsData[currentStudent]) {
+                studentsData[currentStudent] = {
+                    phone: currentStudent.split('_')[0],
+                    civilId: currentStudent.split('_')[1],
+                    profile: {},
+                    opportunities: []
+                };
+            }
+            
             studentsData[currentStudent].profile = {};
             fields.forEach(field => {
                 const element = document.getElementById(field);
@@ -1153,9 +1191,11 @@
             // Add metadata
             studentsData[currentStudent].lastUpdated = new Date().toISOString();
             studentsData[currentStudent].school = 'متوسطة وثانوية ترعة ثقيف';
+            studentsData[currentStudent].registrationDate = studentsData[currentStudent].registrationDate || new Date().toISOString();
             
             localStorage.setItem('studentsData', JSON.stringify(studentsData));
             syncAllDataToCloud();
+            updateStatistics();
             
             // Show success message
             showMessage('تم حفظ المعلومات ومزامنتها مع السحابة بنجاح!', 'success');
@@ -1302,6 +1342,11 @@
         // Save opportunity
         function saveOpportunity(opportunityId) {
             const opportunityDiv = document.getElementById(opportunityId);
+            if (!opportunityDiv) {
+                showMessage('خطأ في العثور على الفرصة التطوعية!', 'error');
+                return;
+            }
+            
             const data = {};
             
             // Get basic fields
@@ -1311,23 +1356,38 @@
             
             // Get skills
             const skillsContainer = opportunityDiv.querySelector('[id^="skills_"]');
-            const skillDivs = skillsContainer.querySelectorAll('.flex.items-center');
             data.skills = [];
             
-            skillDivs.forEach(skillDiv => {
-                const inputs = skillDiv.querySelectorAll('input, select');
-                if (inputs.length >= 2 && inputs[0].value.trim()) {
-                    data.skills.push({
-                        name: inputs[0].value,
-                        level: inputs[1].value
-                    });
-                }
-            });
+            if (skillsContainer) {
+                const skillDivs = skillsContainer.querySelectorAll('.flex.items-center');
+                skillDivs.forEach(skillDiv => {
+                    const inputs = skillDiv.querySelectorAll('input, select');
+                    if (inputs.length >= 2 && inputs[0].value.trim()) {
+                        data.skills.push({
+                            name: inputs[0].value,
+                            level: inputs[1].value
+                        });
+                    }
+                });
+            }
             
-            // Save to student data
+            // Ensure student data structure exists
+            if (!studentsData[currentStudent]) {
+                studentsData[currentStudent] = {
+                    phone: currentStudent.split('_')[0],
+                    civilId: currentStudent.split('_')[1],
+                    profile: {},
+                    opportunities: []
+                };
+            }
+            
             if (!studentsData[currentStudent].opportunities) {
                 studentsData[currentStudent].opportunities = [];
             }
+            
+            // Add metadata to opportunity
+            data.createdDate = data.createdDate || new Date().toISOString();
+            data.lastModified = new Date().toISOString();
             
             const existingIndex = studentsData[currentStudent].opportunities.findIndex(opp => opp.id === opportunityId);
             if (existingIndex >= 0) {
@@ -1336,11 +1396,12 @@
                 studentsData[currentStudent].opportunities.push({ id: opportunityId, ...data });
             }
             
-            // Add metadata
+            // Add metadata to student
             studentsData[currentStudent].lastUpdated = new Date().toISOString();
             
             localStorage.setItem('studentsData', JSON.stringify(studentsData));
             syncAllDataToCloud();
+            updateStatistics();
             
             showMessage('تم حفظ الفرصة التطوعية ومزامنتها مع السحابة بنجاح!', 'success');
         }
@@ -1351,7 +1412,7 @@
             const printWindow = window.open('', '_blank');
             
             printWindow.document.write(`
-
+                <!DOCTYPE html>
                 <html lang="ar" dir="rtl">
                 <head>
                     <meta charset="UTF-8">
@@ -1545,8 +1606,27 @@
             document.getElementById('supervisorLogin').classList.add('hidden');
             document.getElementById('supervisorDashboard').classList.remove('hidden');
             document.getElementById('supervisorPhoneDisplay').value = phone;
+            
+            // Load saved supervisor data
+            const savedSupervisorData = JSON.parse(localStorage.getItem('supervisorData') || '{}');
+            if (savedSupervisorData.name) {
+                document.getElementById('supervisorName').value = savedSupervisorData.name;
+                document.getElementById('supervisorSignature').value = savedSupervisorData.signature || '';
+                document.getElementById('evaluationDate').value = savedSupervisorData.evaluationDate || '';
+            }
+            
+            // Load saved certification data
+            const savedCertificationData = JSON.parse(localStorage.getItem('certificationData') || '{}');
+            if (savedCertificationData.signature) {
+                document.getElementById('officialSignature').value = savedCertificationData.signature;
+                document.getElementById('issueDate').value = savedCertificationData.issueDate || '';
+            }
+            
             loadStudentsList();
+            loadAllStudentsOverview();
+            updateSupervisorStatistics();
             showCloudStatus();
+            updateSyncStatus();
             showMessage('تم تسجيل الدخول بنجاح!', 'success');
         }
 
@@ -1638,6 +1718,263 @@
             document.getElementById('studentOpportunitiesDisplay').innerHTML = opportunitiesHtml;
         }
 
+        // Save supervisor info
+        function saveSupervisorInfo() {
+            const supervisorData = {
+                name: document.getElementById('supervisorName').value,
+                phone: document.getElementById('supervisorPhoneDisplay').value,
+                signature: document.getElementById('supervisorSignature').value,
+                evaluationDate: document.getElementById('evaluationDate').value,
+                lastUpdated: new Date().toISOString()
+            };
+            
+            localStorage.setItem('supervisorData', JSON.stringify(supervisorData));
+            syncAllDataToCloud();
+            showMessage('تم حفظ معلومات المشرف بنجاح!', 'success');
+        }
+
+        // Save certification info
+        function saveCertificationInfo() {
+            const certificationData = {
+                authority: document.getElementById('certifyingAuthority').value,
+                signature: document.getElementById('officialSignature').value,
+                issueDate: document.getElementById('issueDate').value,
+                lastUpdated: new Date().toISOString()
+            };
+            
+            localStorage.setItem('certificationData', JSON.stringify(certificationData));
+            syncAllDataToCloud();
+            showMessage('تم حفظ معلومات الاعتماد بنجاح!', 'success');
+        }
+
+        // Export all data
+        function exportAllData() {
+            const allData = {
+                students: studentsData,
+                supervisor: JSON.parse(localStorage.getItem('supervisorData') || '{}'),
+                certification: JSON.parse(localStorage.getItem('certificationData') || '{}'),
+                exportDate: new Date().toISOString(),
+                schoolName: 'متوسطة وثانوية ترعة ثقيف'
+            };
+            
+            const dataStr = JSON.stringify(allData, null, 2);
+            const dataBlob = new Blob([dataStr], {type: 'application/json'});
+            const url = URL.createObjectURL(dataBlob);
+            
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = `school_volunteer_data_${new Date().toISOString().split('T')[0]}.json`;
+            link.click();
+            
+            URL.revokeObjectURL(url);
+            showMessage('تم تصدير البيانات بنجاح!', 'success');
+        }
+
+        // Refresh students list
+        function refreshStudentsList() {
+            loadStudentsList();
+            loadAllStudentsOverview();
+            updateSupervisorStatistics();
+            showMessage('تم تحديث قائمة الطلاب!', 'success');
+        }
+
+        // Load all students overview
+        function loadAllStudentsOverview() {
+            const overviewList = document.getElementById('studentsOverviewList');
+            overviewList.innerHTML = '';
+            
+            if (Object.keys(studentsData).length === 0) {
+                overviewList.innerHTML = '<p class="text-gray-500 text-center py-8">لا يوجد طلاب مسجلين حتى الآن</p>';
+                return;
+            }
+            
+            Object.keys(studentsData).forEach(studentKey => {
+                const student = studentsData[studentKey];
+                const opportunitiesCount = student.opportunities ? student.opportunities.length : 0;
+                const totalHours = student.opportunities ? 
+                    student.opportunities.reduce((sum, opp) => sum + (parseInt(opp.hours) || 0), 0) : 0;
+                const totalSkills = student.opportunities ? 
+                    student.opportunities.reduce((sum, opp) => sum + (opp.skills ? opp.skills.length : 0), 0) : 0;
+                
+                const studentCard = `
+                    <div class="bg-gradient-to-r from-gray-50 to-gray-100 p-4 rounded-lg border border-gray-200 hover:shadow-md transition-shadow">
+                        <div class="flex justify-between items-start">
+                            <div class="flex-1">
+                                <h4 class="font-bold text-gray-800 mb-2">
+                                    <i class="fas fa-user-graduate text-blue-600 ml-2"></i>
+                                    ${student.profile?.fullName || 'طالب غير مسمى'}
+                                </h4>
+                                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
+                                    <div>
+                                        <span class="text-gray-600">الجوال:</span>
+                                        <span class="font-medium">${student.phone}</span>
+                                    </div>
+                                    <div>
+                                        <span class="text-gray-600">المرحلة:</span>
+                                        <span class="font-medium">${student.profile?.grade || 'غير محدد'}</span>
+                                    </div>
+                                    <div>
+                                        <span class="text-gray-600">الفرص:</span>
+                                        <span class="font-bold text-green-600">${opportunitiesCount}</span>
+                                    </div>
+                                    <div>
+                                        <span class="text-gray-600">الساعات:</span>
+                                        <span class="font-bold text-blue-600">${totalHours}</span>
+                                    </div>
+                                </div>
+                                <div class="mt-2 text-sm">
+                                    <span class="text-gray-600">المهارات المكتسبة:</span>
+                                    <span class="font-bold text-purple-600">${totalSkills}</span>
+                                </div>
+                            </div>
+                            <div class="flex gap-2">
+                                <button onclick="viewStudentDetails('${studentKey}')" class="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded text-sm transition-colors">
+                                    <i class="fas fa-eye ml-1"></i>عرض
+                                </button>
+                                <button onclick="printStudentRecord('${studentKey}')" class="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded text-sm transition-colors">
+                                    <i class="fas fa-print ml-1"></i>طباعة
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                overviewList.insertAdjacentHTML('beforeend', studentCard);
+            });
+        }
+
+        // View student details
+        function viewStudentDetails(studentKey) {
+            document.getElementById('studentSelect').value = studentKey;
+            loadStudentData();
+        }
+
+        // Print student record
+        function printStudentRecord(studentKey) {
+            const student = studentsData[studentKey];
+            const supervisorData = JSON.parse(localStorage.getItem('supervisorData') || '{}');
+            const certificationData = JSON.parse(localStorage.getItem('certificationData') || '{}');
+            
+            const printWindow = window.open('', '_blank');
+            
+            let opportunitiesHtml = '';
+            if (student.opportunities && student.opportunities.length > 0) {
+                student.opportunities.forEach((opp, index) => {
+                    let skillsHtml = '';
+                    if (opp.skills && opp.skills.length > 0) {
+                        skillsHtml = opp.skills.map(skill => `${skill.name} (${skill.level})`).join(', ');
+                    }
+                    
+                    opportunitiesHtml += `
+                        <div style="border: 1px solid #ddd; padding: 15px; margin-bottom: 15px; border-radius: 8px;">
+                            <h4 style="color: #333; margin-bottom: 10px;">الفرصة التطوعية ${index + 1}</h4>
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; font-size: 14px;">
+                                <p><strong>اسم الفرصة:</strong> ${opp.name || 'غير محدد'}</p>
+                                <p><strong>الجهة المنظمة:</strong> ${opp.organization || 'غير محدد'}</p>
+                                <p><strong>النوع:</strong> ${opp.type || 'غير محدد'}</p>
+                                <p><strong>عدد الساعات:</strong> ${opp.hours || 'غير محدد'}</p>
+                                <p><strong>تاريخ البداية:</strong> ${opp.startDate || 'غير محدد'}</p>
+                                <p><strong>تاريخ الانتهاء:</strong> ${opp.endDate || 'غير محدد'}</p>
+                            </div>
+                            <p style="margin-top: 10px;"><strong>الوصف:</strong> ${opp.description || 'غير محدد'}</p>
+                            <p><strong>المهارات المكتسبة:</strong> ${skillsHtml || 'لا توجد مهارات مسجلة'}</p>
+                        </div>
+                    `;
+                });
+            }
+            
+            printWindow.document.write(`
+                <!DOCTYPE html>
+                <html lang="ar" dir="rtl">
+                <head>
+                    <meta charset="UTF-8">
+                    <title>السجل المهاري التطوعي - ${student.profile?.fullName || 'طالب'}</title>
+                    <style>
+                        body { font-family: Arial, sans-serif; margin: 20px; line-height: 1.6; }
+                        .header { text-align: center; margin-bottom: 30px; border-bottom: 2px solid #333; padding-bottom: 20px; }
+                        .section { margin-bottom: 25px; }
+                        .student-info { background: #f9f9f9; padding: 15px; border-radius: 8px; margin-bottom: 20px; }
+                        .signature-section { margin-top: 40px; display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+                        .signature-box { border: 1px solid #ddd; padding: 20px; text-align: center; border-radius: 8px; }
+                        @media print { body { margin: 0; } }
+                    </style>
+                </head>
+                <body>
+                    <div class="header">
+                        <h1>متوسطة وثانوية ترعة ثقيف</h1>
+                        <h2>السجل المهاري التطوعي</h2>
+                        <p>تاريخ الطباعة: ${new Date().toLocaleDateString('ar-SA')}</p>
+                    </div>
+                    
+                    <div class="student-info">
+                        <h3>معلومات الطالب</h3>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                            <p><strong>الاسم الكامل:</strong> ${student.profile?.fullName || 'غير محدد'}</p>
+                            <p><strong>رقم الجوال:</strong> ${student.phone}</p>
+                            <p><strong>المرحلة الدراسية:</strong> ${student.profile?.grade || 'غير محدد'}</p>
+                            <p><strong>رقم الهوية:</strong> ${student.profile?.nationalId || 'غير محدد'}</p>
+                        </div>
+                    </div>
+                    
+                    <div class="section">
+                        <h3>الفرص التطوعية</h3>
+                        ${opportunitiesHtml || '<p>لا توجد فرص تطوعية مسجلة</p>'}
+                    </div>
+                    
+                    <div class="signature-section">
+                        <div class="signature-box">
+                            <h4>توصية المشرف الأكاديمي</h4>
+                            <p><strong>اسم المشرف:</strong> ${supervisorData.name || '_______________'}</p>
+                            <p><strong>التوقيع:</strong> ${supervisorData.signature || '_______________'}</p>
+                            <p><strong>التاريخ:</strong> ${supervisorData.evaluationDate || '_______________'}</p>
+                        </div>
+                        <div class="signature-box">
+                            <h4>ختم واعتماد المدرسة</h4>
+                            <p><strong>الجهة المعتمدة:</strong> ${certificationData.authority || 'متوسطة وثانوية ترعة ثقيف'}</p>
+                            <p><strong>التوقيع والختم:</strong> ${certificationData.signature || '_______________'}</p>
+                            <p><strong>تاريخ الإصدار:</strong> ${certificationData.issueDate || '_______________'}</p>
+                        </div>
+                    </div>
+                </body>
+                </html>
+            `);
+            
+            printWindow.document.close();
+            printWindow.print();
+        }
+
+        // Update supervisor statistics
+        function updateSupervisorStatistics() {
+            const students = Object.keys(studentsData).length;
+            let totalOpportunities = 0;
+            let totalHours = 0;
+            let totalSkills = 0;
+
+            Object.values(studentsData).forEach(student => {
+                if (student.opportunities) {
+                    totalOpportunities += student.opportunities.length;
+                    student.opportunities.forEach(opp => {
+                        if (opp.hours) {
+                            totalHours += parseInt(opp.hours) || 0;
+                        }
+                        if (opp.skills) {
+                            totalSkills += opp.skills.length;
+                        }
+                    });
+                }
+            });
+
+            // Update supervisor dashboard statistics
+            const totalStudentsElement = document.getElementById('totalStudentsCount');
+            const totalOpportunitiesElement = document.getElementById('totalOpportunitiesCount');
+            const totalVolunteerHoursElement = document.getElementById('totalVolunteerHours');
+            const totalSkillsElement = document.getElementById('totalSkillsCount');
+
+            if (totalStudentsElement) totalStudentsElement.textContent = students;
+            if (totalOpportunitiesElement) totalOpportunitiesElement.textContent = totalOpportunities;
+            if (totalVolunteerHoursElement) totalVolunteerHoursElement.textContent = totalHours;
+            if (totalSkillsElement) totalSkillsElement.textContent = totalSkills;
+        }
+
         // Edit opportunity as supervisor
         function editOpportunityAsSupervisor(studentKey, oppIndex) {
             showMessage('ميزة التعديل متاحة للمشرف - يمكن تطويرها حسب الحاجة', 'info');
@@ -1691,16 +2028,53 @@
         // Enhanced cloud sync for all data operations
         function syncAllDataToCloud() {
             if (localStorage.getItem('cloudSetupCompleted')) {
+                const supervisorData = JSON.parse(localStorage.getItem('supervisorData') || '{}');
+                const certificationData = JSON.parse(localStorage.getItem('certificationData') || '{}');
+                
                 const allData = {
                     students: studentsData,
+                    supervisor: supervisorData,
+                    certification: certificationData,
                     lastUpdate: new Date().toISOString(),
                     schoolName: 'متوسطة وثانوية ترعة ثقيف',
-                    systemVersion: '1.0'
+                    systemVersion: '2.0',
+                    cloudAccount: 'terahschool2@gmail.com'
                 };
                 
-                // In real implementation, save to Google Drive
-                console.log('مزامنة جميع البيانات:', allData);
-                syncWithCloud();
+                // Simulate Google Drive API sync
+                console.log('مزامنة جميع البيانات مع السحابة:', allData);
+                
+                // Show sync status
+                showSyncIndicator();
+                
+                // Simulate API call
+                setTimeout(() => {
+                    localStorage.setItem('lastSyncTime', new Date().toISOString());
+                    localStorage.setItem('syncedDataHash', btoa(JSON.stringify(allData)));
+                    hideSyncIndicator();
+                    
+                    // Update sync status in UI
+                    updateSyncStatus();
+                }, 1500);
+            } else {
+                console.log('السحابة غير متصلة - البيانات محفوظة محلياً فقط');
+            }
+        }
+
+        // Update sync status in UI
+        function updateSyncStatus() {
+            const lastSyncTime = localStorage.getItem('lastSyncTime');
+            if (lastSyncTime) {
+                const syncDate = new Date(lastSyncTime);
+                const syncStatusElements = document.querySelectorAll('.sync-status');
+                syncStatusElements.forEach(element => {
+                    element.innerHTML = `
+                        <div class="flex items-center text-sm text-green-600">
+                            <i class="fas fa-check-circle ml-2"></i>
+                            آخر مزامنة: ${syncDate.toLocaleString('ar-SA')}
+                        </div>
+                    `;
+                });
             }
         }
 
@@ -1977,5 +2351,5 @@
             });
         });
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'98e9de94265b9350',t:'MTc2MDQ3NDE5Mi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'98ea242ca11c9355',t:'MTc2MDQ3NzA0Mi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
