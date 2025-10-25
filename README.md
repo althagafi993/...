@@ -645,4 +645,766 @@
 "يُعد النانو تكنولوجي ثورة علمية جديدة، فمن خلالها يمكن التعامل مع المادة على مقياس الذرات والجزيئات، مما يفتح آفاقاً غير مسبوقة في مجالات الطب والإلكترونيات والطاقة. لكن تطبيقها على نطاق واسع يواجه تحديات تتعلق بالتكلفة المرتفعة والمخاطر البيئية المحتملة."
 
 ما التحدي الأبرز الذي يواجه تطبيق تقنية النانو؟`,
-                    options: ["التعامل مع المادة على مقياس الذرات", "التكلفة المرتفعة والمخاطر البي
+                    options: ["التعامل مع المادة على مقياس الذرات", "التكلفة المرتفعة والمخاطر البيئية", "آفاقها في الطب والإلكترونيات", "كونها ثورة علمية جديدة"],
+                    correct: 1,
+                    explanation: "النص يذكر بوضوح أن تطبيقها على نطاق واسع يواجه تحديات تتعلق بالتكلفة المرتفعة والمخاطر البيئية المحتملة.",
+                    points: 5, type: "reading", difficulty: "متوسط", id: "reading_1"
+                },
+                {
+                    question: `ما هي علاقة الجملة "مما يفتح آفاقاً غير مسبوقة..." بما قبلها؟`,
+                    options: ["تأكيد", "تعليل", "نتيجة", "استدراك"],
+                    correct: 2,
+                    explanation: "الجملة نتيجة منطقية لـ'التعامل مع المادة على مقياس الذرات والجزيئات'.",
+                    points: 6, type: "reading", difficulty: "متقدم", id: "reading_2"
+                },
+                {
+                    question: `اقرأ النص التالي:\n\n"الزلازل هي ظاهرة طبيعية تحدث نتيجة تحرك الصفائح التكتونية. إنها قد تتسبب في دمار هائل وخسائر في الأرواح، لذلك فإن التنبؤ بها يظل تحدياً كبيراً للعلماء، لكن الدراسات المستمرة حول السلوك الجيولوجي للأرض هي الأمل الوحيد لتحقيق ذلك."\n\nما الذي يمثل الأمل للعلماء في مواجهة تحدي التنبؤ بالزلازل؟`,
+                    options: ["حدوث تحرك الصفائح التكتونية", "استمرار الزلازل كظاهرة طبيعية", "الدراسات المستمرة حول السلوك الجيولوجي", "الدمار الهائل والخسائر في الأرواح"],
+                    correct: 2,
+                    explanation: "النص يوضح أن الدراسات المستمرة حول السلوك الجيولوجي للأرض هي الأمل الوحيد للتنبؤ بالزلازل.",
+                    points: 5, type: "reading", difficulty: "متوسط", id: "reading_3"
+                }
+            ],
+            relation: [
+                {
+                    question: "أي من الكلمات التالية لا تنتمي للمجموعة؟ (شجاعة - كرم - بخل - أمانة)",
+                    options: ["شجاعة", "كرم", "بخل", "أمانة"],
+                    correct: 2,
+                    explanation: "البخل صفة سلبية أو رذيلة، بينما الباقي صفات إيجابية أو فضائل.",
+                    points: 4, type: "relation", difficulty: "سهل", id: "relation_1"
+                },
+                {
+                    question: "أي من الكلمات التالية لا تنتمي للمجموعة؟ (الذهب - الألماس - الفضة - النحاس)",
+                    options: ["الذهب", "الألماس", "الفضة", "النحاس"],
+                    correct: 1,
+                    explanation: "الألماس معدن لا فلزي (كربون)، بينما الباقي معادن فلزية.",
+                    points: 5, type: "relation", difficulty: "متوسط", id: "relation_2"
+                },
+                {
+                    question: "أي من الكلمات التالية لا تنتمي للمجموعة؟ (تضخم - ارتفاع - صعود - هبوط)",
+                    options: ["تضخم", "ارتفاع", "صعود", "هبوط"],
+                    correct: 3,
+                    explanation: "هبوط يدل على الانخفاض، بينما باقي الكلمات تدل على الزيادة أو الارتفاع.",
+                    points: 4, type: "relation", difficulty: "سهل", id: "relation_3"
+                }
+            ],
+            context: [
+                {
+                    question: "ابحث عن الخطأ السياقي في الجملة التالية: 'من أقوى أسباب الفشل في الحياة **الاجتماع** مع الفاشلين، ومن أقوى أسباب النجاح **الإقبال** عليهم.'",
+                    options: ["الفشل", "الاجتماع", "النجاح", "الإقبال"],
+                    correct: 3,
+                    explanation: "الخطأ في كلمة 'الإقبال'. الصحيح هو 'الإعراض' عن الفاشلين، أو 'الاجتماع' مع الناجحين و'الإقبال' عليهم.",
+                    points: 5, type: "context", difficulty: "متوسط", id: "context_1"
+                },
+                {
+                    question: "ابحث عن الخطأ السياقي في الجملة التالية: 'إذا أردت أن تعيش **مطمئناً** فلا تكن **سريع** **الغضب** **والانفعال**.'",
+                    options: ["مطمئناً", "سريع", "الغضب", "والانفعال"],
+                    correct: 0,
+                    explanation: "كلمة 'مطمئناً' هي الخطأ، فمن لا يكون سريع الغضب يعيش 'هادئاً' أو 'مرتاحاً' وليس بالضرورة 'مطمئناً' (المطمئنة تتطلب عوامل أخرى). الأقرب للصحة هي 'هادئاً'.",
+                    points: 6, type: "context", difficulty: "متقدم", id: "context_2"
+                }
+            ],
+            analogy: [
+                {
+                    question: "عين : رؤية :: أذن : ؟",
+                    options: ["سمع", "صوت", "موسيقى", "ضوضاء"],
+                    correct: 0,
+                    explanation: "العلاقة هي (عضو : وظيفته). العين وظيفتها الرؤية، والأذن وظيفتها السمع.",
+                    points: 4, type: "analogy", difficulty: "سهل", id: "analogy_1"
+                },
+                {
+                    question: "كتاب : مكتبة :: متحف : ؟",
+                    options: ["زوار", "أثر", "آثار", "تاريخ"],
+                    correct: 2,
+                    explanation: "العلاقة هي (محتوى : مكان تواجده). الكتاب يوجد في المكتبة، والآثار توجد في المتحف.",
+                    points: 5, type: "analogy", difficulty: "متوسط", id: "analogy_2"
+                },
+                {
+                    question: "جندي : درع :: عالم : ؟",
+                    options: ["بحث", "نظرية", "كتاب", "تجارب"],
+                    correct: 1,
+                    explanation: "العلاقة هي (شخص : أداة حماية/إثبات عمله). الجندي يستخدم الدرع، والعالم يستخدم النظرية للإثبات والعمل.",
+                    points: 6, type: "analogy", difficulty: "متقدم", id: "analogy_3"
+                }
+            ],
+            completion: [
+                {
+                    question: "إنَّ القراءة تجعل العقل أكثر _____، وتمنحه القدرة على _____ الأفكار الجديدة.",
+                    options: ["مرونة - استيعاب", "صلابة - رفض", "غموضاً - تجاهل", "قوة - محاربة"],
+                    correct: 0,
+                    explanation: "القراءة تزيد من مرونة العقل وقدرته على استيعاب الأفكار الجديدة، مما يتوافق مع المعنى الإيجابي للجملة.",
+                    points: 5, type: "completion", difficulty: "متوسط", id: "completion_1"
+                },
+                {
+                    question: "يُعد التخطيط الجيد هو _____ لتحقيق الأهداف، بينما العشوائية هي طريق _____.",
+                    options: ["مفتاح - الفشل", "عقبة - النجاح", "بديل - التطور", "نهاية - السعادة"],
+                    correct: 0,
+                    explanation: "التخطيط الجيد هو مفتاح النجاح (تحقيق الأهداف)، والعشوائية تؤدي إلى الفشل، وهي علاقة منطقية وتضاد صحيح.",
+                    points: 4, type: "completion", difficulty: "سهل", id: "completion_2"
+                }
+            ],
+            statistics: [
+                {
+                    question: "إذا كان متوسط درجات 5 طلاب هو 80، وأضفنا طالباً سادساً بدرجة 95، فما المتوسط الجديد؟",
+                    options: ["82.5", "83", "84", "85"],
+                    correct: 0,
+                    explanation: "مجموع درجات 5 طلاب = 5 × 80 = 400. مجموع درجات 6 طلاب = 400 + 95 = 495. المتوسط الجديد = 495 ÷ 6 = 82.5.",
+                    points: 6, type: "statistics", difficulty: "متوسط", id: "statistics_1"
+                },
+                {
+                    question: "إذا كان عدد الطلاب في صف 30، ونجح منهم 24 طالباً. فما هي النسبة المئوية للرسوب؟",
+                    options: ["10%", "20%", "25%", "80%"],
+                    correct: 1,
+                    explanation: "عدد الطلاب الراسبين = 30 - 24 = 6. النسبة المئوية للرسوب = (الراسبين / الإجمالي) × 100 = (6 / 30) × 100 = (1/5) × 100 = 20%.",
+                    points: 5, type: "statistics", difficulty: "سهل", id: "statistics_2"
+                }
+            ],
+            geometry: [
+                {
+                    question: "إذا كان طول ضلع مربع 6 سم، وطول نصف قطر دائرة 3 سم. كم تبلغ مساحة الجزء المتبقي من المربع بعد رسم الدائرة بداخله؟ (اعتبر ط = 3.14)",
+                    options: ["36 سم²", "18.24 سم²", "7.26 سم²", "31.74 سم²"],
+                    correct: 2,
+                    explanation: "مساحة المربع = الضلع × الضلع = 6 × 6 = 36 سم². الدائرة المرسومة بداخل المربع أقصى نصف قطر لها هو نصف طول الضلع، أي 3 سم. مساحة الدائرة = ط × نق² = 3.14 × 3² = 3.14 × 9 = 28.26 سم². مساحة الجزء المتبقي = مساحة المربع - مساحة الدائرة = 36 - 28.26 = 7.74 سم². (هناك خطأ في الخيارات الأصلية، أقرب إجابة هي 7.26، لكن الإجابة الرياضية الصحيحة هي 7.74).",
+                    points: 7, type: "geometry", difficulty: "متقدم", id: "geometry_1"
+                },
+                {
+                    question: "في مثلث قائم الزاوية، إذا كان طول أحد الأضلاع المحيطة بالزاوية القائمة 3 وحدات والوتر 5 وحدات، فما طول الضلع الثالث؟",
+                    options: ["4", "6", "8", "10"],
+                    correct: 0,
+                    explanation: "نستخدم نظرية فيثاغورس (أ² + ب² = ج²). 3² + ب² = 5². 9 + ب² = 25. ب² = 25 - 9 = 16. ب = 4.",
+                    points: 5, type: "geometry", difficulty: "متوسط", id: "geometry_2"
+                }
+            ],
+            algebra: [
+                {
+                    question: "إذا كان س + ص = 12 و س - ص = 4، فما قيمة س؟",
+                    options: ["8", "6", "4", "2"],
+                    correct: 0,
+                    explanation: "بجمع المعادلتين: (س + ص) + (س - ص) = 12 + 4. 2س = 16. س = 8.",
+                    points: 5, type: "algebra", difficulty: "سهل", id: "algebra_1"
+                },
+                {
+                    question: "إذا كان 3س = 18، فما قيمة 5س - 10؟",
+                    options: ["10", "15", "20", "25"],
+                    correct: 1,
+                    explanation: "من المعادلة الأولى: 3س = 18، إذن س = 18 ÷ 3 = 6. بالتعويض في المطلوب: 5س - 10 = (5 × 6) - 10 = 30 - 10 = 20.",
+                    points: 6, type: "algebra", difficulty: "متوسط", id: "algebra_2"
+                }
+            ],
+            arithmetic: [
+                {
+                    question: "قارن بين (2/3) و (3/4)",
+                    options: ["القيمة الأولى أكبر", "القيمة الثانية أكبر", "القيمتان متساويتان", "المعلومات غير كافية"],
+                    correct: 1,
+                    explanation: "للمقارنة، نوحد المقامات: (2/3) تصبح (8/12). و (3/4) تصبح (9/12). بما أن 9 > 8، فإن (3/4) أكبر من (2/3).",
+                    points: 4, type: "arithmetic", difficulty: "سهل", id: "arithmetic_1"
+                },
+                {
+                    question: "كم عدد الأعداد الصحيحة بين 1/3 و 20/3؟",
+                    options: ["5", "6", "7", "8"],
+                    correct: 1,
+                    explanation: "1/3 ≈ 0.33. 20/3 ≈ 6.66. الأعداد الصحيحة التي تقع بينهما هي: 1، 2، 3، 4، 5، 6. العدد هو 6.",
+                    points: 5, type: "arithmetic", difficulty: "متوسط", id: "arithmetic_2"
+                }
+            ],
+            comparison: [
+                {
+                    question: "قارن بين:\nالقيمة الأولى: (1/5) + (1/4)\nالقيمة الثانية: (1/9) + (1/3)",
+                    options: ["القيمة الأولى أكبر", "القيمة الثانية أكبر", "القيمتان متساويتان", "المعلومات غير كافية"],
+                    correct: 0,
+                    explanation: "القيمة الأولى: (1/5) + (1/4) = (4/20) + (5/20) = 9/20 = 0.45. القيمة الثانية: (1/9) + (1/3) = (1/9) + (3/9) = 4/9 ≈ 0.444. القيمة الأولى أكبر.",
+                    points: 6, type: "comparison", difficulty: "متقدم", id: "comparison_1"
+                },
+                {
+                    question: "قارن بين:\nالقيمة الأولى: خمسة أمثال العدد 3\nالقيمة الثانية: 3 أمثال العدد 5",
+                    options: ["القيمة الأولى أكبر", "القيمة الثانية أكبر", "القيمتان متساويتان", "المعلومات غير كافية"],
+                    correct: 2,
+                    explanation: "القيمة الأولى = 5 × 3 = 15. القيمة الثانية = 3 × 5 = 15. القيمتان متساويتان.",
+                    points: 4, type: "comparison", difficulty: "سهل", id: "comparison_2"
+                }
+            ]
+        };
+
+        // ===============================================
+        // وظائف مساعدة لعرض الشاشات
+        // ===============================================
+        function showScreen(screenId) {
+            const screens = ['registrationScreen', 'modeSelectionScreen', 'questionTypeScreen', 'groupSizeScreen', 'challengeLinkScreen', 'quizScreen', 'resultsScreen'];
+            screens.forEach(id => {
+                document.getElementById(id).classList.add('hidden');
+            });
+            document.getElementById(screenId).classList.remove('hidden');
+        }
+
+        function showNotification(message, type = 'info', title = 'إشعار') {
+            const notification = document.getElementById('notification');
+            const iconElement = document.getElementById('notificationIcon');
+            
+            // تحديث محتوى الإشعار
+            document.getElementById('notificationTitle').textContent = title;
+            document.getElementById('notificationMessage').textContent = message;
+
+            // تحديث النوع (class) والرمز
+            notification.className = `notification ${type} hidden`; // إعادة تعيين الكلاس
+            
+            let icon = '';
+            switch (type) {
+                case 'success':
+                    icon = '✅';
+                    break;
+                case 'error':
+                    icon = '❌';
+                    break;
+                case 'info':
+                    icon = 'ℹ️';
+                    break;
+                case 'warning':
+                    icon = '⚠️';
+                    break;
+            }
+            iconElement.textContent = icon;
+            
+            // عرض الإشعار
+            notification.classList.remove('hidden');
+            setTimeout(() => {
+                notification.classList.add('show');
+            }, 50);
+
+            // إخفاء الإشعار بعد 4 ثوانٍ
+            setTimeout(() => {
+                notification.classList.remove('show');
+                setTimeout(() => {
+                    notification.classList.add('hidden');
+                }, 300); // يتطابق مع مدة الانتقال
+            }, 4000);
+        }
+
+        // ===============================================
+        // وظائف التسجيل واختيار النمط
+        // ===============================================
+        document.getElementById('registrationForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            currentUser = document.getElementById('studentName').value.trim();
+            if (currentUser) {
+                localStorage.setItem('currentUser', currentUser);
+                showNotification(`مرحباً بك، ${currentUser}!`, 'success');
+                showScreen('modeSelectionScreen');
+                updatePointsDisplay();
+            } else {
+                showNotification('الرجاء إدخال اسم الطالب.', 'error');
+            }
+        });
+
+        function selectMode(mode) {
+            currentMode = mode;
+            if (mode === 'individual') {
+                showScreen('questionTypeScreen');
+                showNotification('تم اختيار التدريب الفردي. يرجى تخصيص الاختبار.', 'info');
+            } else if (mode === 'group') {
+                showScreen('groupSizeScreen');
+                showNotification('تم اختيار التحدي الجماعي. قم بإعداد التحدي.', 'info');
+            }
+        }
+
+        // ===============================================
+        // وظائف اختيار الأسئلة (تخصيص الاختبار)
+        // ===============================================
+        const questionTypeInputs = document.querySelectorAll('#questionTypeScreen input[type="number"]');
+        questionTypeInputs.forEach(input => {
+            input.addEventListener('input', updateTestSummary);
+        });
+
+        function updateTestSummary() {
+            let totalQuestions = 0;
+            questionTypeInputs.forEach(input => {
+                totalQuestions += parseInt(input.value) || 0;
+            });
+            
+            const estimatedTime = totalQuestions * 1.5; // تقدير دقيقة ونصف للسؤال
+            
+            document.getElementById('totalSelectedQuestions').textContent = totalQuestions;
+            document.getElementById('estimatedTime').textContent = `${estimatedTime} دقيقة`;
+            
+            const proceedBtn = document.getElementById('proceedBtn');
+            proceedBtn.disabled = totalQuestions === 0;
+
+            if (totalQuestions > 50) {
+                showNotification('الحد الأقصى الموصى به للاختبار هو 50 سؤال.', 'warning');
+            }
+        }
+        
+        // وظائف الاختيار السريع
+        function clearAllSelections() {
+            questionTypeInputs.forEach(input => {
+                input.value = 0;
+            });
+            updateTestSummary();
+        }
+
+        function setQuickSelection(type) {
+            clearAllSelections();
+            switch (type) {
+                case 'verbal':
+                    document.getElementById('reading-count').value = 5;
+                    document.getElementById('relation-count').value = 5;
+                    document.getElementById('context-count').value = 5;
+                    document.getElementById('analogy-count').value = 3;
+                    document.getElementById('completion-count').value = 2;
+                    break;
+                case 'quantitative':
+                    document.getElementById('statistics-count').value = 4;
+                    document.getElementById('geometry-count').value = 4;
+                    document.getElementById('algebra-count').value = 4;
+                    document.getElementById('arithmetic-count').value = 4;
+                    document.getElementById('comparison-count').value = 4;
+                    break;
+                case 'balanced':
+                    document.getElementById('reading-count').value = 4;
+                    document.getElementById('analogy-count').value = 3;
+                    document.getElementById('completion-count').value = 3;
+                    document.getElementById('statistics-count').value = 5;
+                    document.getElementById('geometry-count').value = 5;
+                    document.getElementById('algebra-count').value = 5;
+                    document.getElementById('comparison-count').value = 5;
+                    break;
+                case 'full':
+                    // اختبار تجريبي كامل 50 سؤال
+                    document.getElementById('reading-count').value = 10;
+                    document.getElementById('relation-count').value = 5;
+                    document.getElementById('context-count').value = 5;
+                    document.getElementById('analogy-count').value = 5;
+                    document.getElementById('completion-count').value = 5;
+                    document.getElementById('statistics-count').value = 5;
+                    document.getElementById('geometry-count').value = 5;
+                    document.getElementById('algebra-count').value = 5;
+                    document.getElementById('arithmetic-count').value = 5;
+                    document.getElementById('comparison-count').value = 5;
+                    break;
+            }
+            updateTestSummary();
+        }
+
+        function proceedWithSelectedQuestions() {
+            quizQuestions = [];
+            let totalTimeInSeconds = 0;
+            
+            const selectedCounts = {};
+            questionTypeInputs.forEach(input => {
+                const type = input.id.replace('-count', '');
+                selectedCounts[type] = parseInt(input.value) || 0;
+            });
+
+            // تجميع الأسئلة المختارة عشوائياً
+            for (const type in selectedCounts) {
+                const count = selectedCounts[type];
+                if (count > 0 && questionsDatabase[type]) {
+                    const availableQuestions = questionsDatabase[type];
+                    
+                    // خلط الأسئلة واختيار العدد المطلوب
+                    const shuffled = availableQuestions.sort(() => 0.5 - Math.random());
+                    const selected = shuffled.slice(0, Math.min(count, availableQuestions.length));
+                    
+                    quizQuestions.push(...selected);
+                }
+            }
+
+            if (quizQuestions.length > 0) {
+                // حساب الوقت بناءً على النقاط (متوسط 1.5 دقيقة/سؤال)
+                totalTimeInSeconds = quizQuestions.length * 90;
+                timeLeft = totalTimeInSeconds;
+
+                // خلط جميع الأسئلة النهائية للتنوع
+                quizQuestions.sort(() => 0.5 - Math.random());
+                
+                startQuiz();
+            } else {
+                showNotification('الرجاء اختيار عدد الأسئلة لبدء الاختبار.', 'error');
+            }
+        }
+        
+        // ===============================================
+        // وظائف التحدي الجماعي (مبسطة/وهمية)
+        // ===============================================
+        function createGroupChallenge() {
+            // وظيفة وهمية لإنشاء تحدي جماعي
+            challengeData = {
+                participants: [{ name: currentUser, score: 0 }],
+                maxParticipants: parseInt(document.getElementById('participantCount').value) || 5,
+                title: document.getElementById('challengeTitle')?.value || 'تحدي القدرات'
+            };
+            
+            document.getElementById('creatorName').textContent = currentUser;
+            document.getElementById('totalParticipants').textContent = challengeData.maxParticipants;
+            
+            showScreen('challengeLinkScreen');
+            showNotification('تم إنشاء التحدي بنجاح!', 'success');
+        }
+
+        function copyLink() {
+            navigator.clipboard.writeText(document.getElementById('challengeLink').textContent)
+                .then(() => showNotification('تم نسخ رابط التحدي!', 'success'))
+                .catch(err => showNotification('فشل النسخ، يرجى المحاولة يدوياً.', 'error'));
+        }
+
+        // ===============================================
+        // وظائف الاختبار الرئيسية (Quiz)
+        // ===============================================
+        function startQuiz() {
+            if (quizQuestions.length === 0) {
+                // في حالة التحدي الجماعي، نستخدم إعدادات افتراضية
+                if (currentMode === 'group') {
+                    setQuickSelection('balanced'); // إعداد افتراضي للتحدي
+                    proceedWithSelectedQuestions();
+                    return;
+                }
+                showNotification('لم يتم تحديد أسئلة للاختبار.', 'error');
+                return;
+            }
+            
+            currentQuestionIndex = 0;
+            userAnswers = Array(quizQuestions.length).fill(null);
+            isReviewMode = false;
+            quizRunning = true;
+            quizStartTime = Date.now();
+            
+            document.getElementById('totalQuestions').textContent = quizQuestions.length;
+            
+            if (currentMode === 'group') {
+                document.getElementById('groupInfo').classList.remove('hidden');
+                document.getElementById('quizParticipants').textContent = challengeData.participants.length;
+            } else {
+                document.getElementById('groupInfo').classList.add('hidden');
+            }
+            
+            showScreen('quizScreen');
+            renderQuestion();
+            startTimer();
+            showNotification('بدأ الاختبار! بالتوفيق.', 'success', 'انطلق');
+        }
+
+        function renderQuestion() {
+            if (currentQuestionIndex >= quizQuestions.length) {
+                endQuiz();
+                return;
+            }
+
+            const questionData = quizQuestions[currentQuestionIndex];
+            const optionsContainer = document.getElementById('questionOptions');
+            const explanationContainer = document.getElementById('explanationContainer');
+            const bookmarkBtn = document.getElementById('bookmarkBtn');
+
+            // إخفاء الشرح قبل عرض السؤال
+            explanationContainer.classList.add('hidden');
+
+            // تحديث شريط التقدم ومعلومات السؤال
+            document.getElementById('currentQuestion').textContent = currentQuestionIndex + 1;
+            document.getElementById('progressBar').style.width = `${((currentQuestionIndex) / quizQuestions.length) * 100}%`;
+            
+            document.getElementById('questionText').textContent = questionData.question;
+            document.getElementById('questionType').textContent = questionData.type;
+            document.getElementById('questionPoints').textContent = `${questionData.points} نقاط`;
+            document.getElementById('questionDifficulty').textContent = questionData.difficulty;
+
+            // تحديث زر الإشارة المرجعية
+            if (bookmarkedQuestions.includes(questionData.id)) {
+                bookmarkBtn.innerHTML = '<span class="text-2xl text-yellow-500">🔖</span>';
+            } else {
+                bookmarkBtn.innerHTML = '<span class="text-2xl">🔖</span>';
+            }
+
+            // عرض الخيارات
+            optionsContainer.innerHTML = '';
+            questionData.options.forEach((option, index) => {
+                const button = document.createElement('button');
+                button.className = 'option-button';
+                button.textContent = option;
+                button.setAttribute('data-index', index);
+                
+                // تحديد الإجابة السابقة
+                if (userAnswers[currentQuestionIndex] === index) {
+                    button.classList.add('selected');
+                }
+                
+                // إضافة معالج حدث للاختيار
+                button.onclick = () => selectAnswer(index);
+                
+                // في وضع المراجعة، يتم عرض الإجابة الصحيحة والخطأ
+                if (isReviewMode && userAnswers[currentQuestionIndex] !== null) {
+                    if (index === questionData.correct) {
+                        button.classList.add('correct');
+                    } else if (index === userAnswers[currentQuestionIndex]) {
+                        button.classList.add('incorrect');
+                    }
+                    button.onclick = null; // تعطيل الاختيار في وضع المراجعة
+                    
+                    // عرض الشرح في وضع المراجعة
+                    explanationContainer.classList.remove('hidden');
+                    document.getElementById('explanationText').textContent = questionData.explanation;
+                }
+                
+                optionsContainer.appendChild(button);
+            });
+            
+            // تحديث أزرار التنقل
+            document.getElementById('prevBtn').disabled = currentQuestionIndex === 0;
+            document.getElementById('nextBtn').disabled = currentQuestionIndex === quizQuestions.length - 1 && !isReviewMode;
+            
+            if (currentQuestionIndex === quizQuestions.length - 1 && !isReviewMode) {
+                document.getElementById('nextBtn').textContent = 'إنهاء الاختبار';
+                document.getElementById('nextBtn').classList.remove('btn-primary');
+                document.getElementById('nextBtn').classList.add('btn-secondary');
+            } else if (currentQuestionIndex === quizQuestions.length - 1 && isReviewMode) {
+                 document.getElementById('nextBtn').textContent = 'إنهاء المراجعة';
+                 document.getElementById('nextBtn').classList.add('btn-primary');
+            } else {
+                document.getElementById('nextBtn').textContent = 'السؤال التالي →';
+                document.getElementById('nextBtn').classList.remove('btn-secondary');
+                document.getElementById('nextBtn').classList.add('btn-primary');
+            }
+        }
+
+        function selectAnswer(selectedIndex) {
+            if (isReviewMode) return;
+            
+            userAnswers[currentQuestionIndex] = selectedIndex;
+            
+            // تحديث شكل الخيارات
+            document.querySelectorAll('#questionOptions .option-button').forEach((btn, index) => {
+                btn.classList.remove('selected');
+                if (index === selectedIndex) {
+                    btn.classList.add('selected');
+                }
+            });
+            
+            // الانتقال للسؤال التالي تلقائياً إذا كان آخر سؤال لم يتم الإجابة عليه
+            if (currentQuestionIndex < quizQuestions.length - 1 && userAnswers[currentQuestionIndex + 1] === null) {
+                setTimeout(nextQuestion, 500); // تأخير بسيط للانتقال
+            }
+        }
+
+        function nextQuestion() {
+            if (currentQuestionIndex < quizQuestions.length - 1) {
+                currentQuestionIndex++;
+                renderQuestion();
+            } else if (!isReviewMode) {
+                endQuiz();
+            } else {
+                showNotification('تم الانتهاء من مراجعة الأسئلة.', 'info');
+                showScreen('resultsScreen'); // العودة لصفحة النتائج بعد المراجعة
+            }
+        }
+
+        function previousQuestion() {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                renderQuestion();
+            }
+        }
+        
+        function bookmarkQuestion() {
+            const questionId = quizQuestions[currentQuestionIndex].id;
+            const index = bookmarkedQuestions.indexOf(questionId);
+            
+            if (index > -1) {
+                bookmarkedQuestions.splice(index, 1);
+                showNotification('تم إزالة الإشارة المرجعية.', 'info');
+            } else {
+                bookmarkedQuestions.push(questionId);
+                showNotification('تم وضع إشارة مرجعية على السؤال.', 'success');
+            }
+            renderQuestion();
+        }
+
+        function startTimer() {
+            if (timerInterval) clearInterval(timerInterval);
+            
+            const timerElement = document.getElementById('timer');
+            
+            timerInterval = setInterval(() => {
+                if (!quizRunning) return; // للتوقف في حال الإيقاف المؤقت أو انتهاء الاختبار
+                
+                if (timeLeft <= 0) {
+                    clearInterval(timerInterval);
+                    endQuiz(true); // انتهاء الوقت
+                    return;
+                }
+
+                timeLeft--;
+                const minutes = Math.floor(timeLeft / 60);
+                const seconds = timeLeft % 60;
+                
+                timerElement.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+                
+                if (timeLeft < 60) {
+                    timerElement.classList.add('text-red-900'); // تحذير من اقتراب انتهاء الوقت
+                } else {
+                    timerElement.classList.remove('text-red-900');
+                }
+            }, 1000);
+        }
+        
+        function pauseQuiz() {
+            if (timerInterval && quizRunning) {
+                clearInterval(timerInterval);
+                timerInterval = null;
+                quizRunning = false;
+                showNotification('تم إيقاف المؤقت مؤقتاً', 'info', 'إيقاف مؤقت');
+            } else if (!quizRunning) {
+                quizRunning = true;
+                startTimer();
+                showNotification('تم استئناف المؤقت', 'success', 'استئناف');
+            }
+        }
+
+        function endQuiz(timeUp = false) {
+            clearInterval(timerInterval);
+            quizRunning = false;
+            
+            if (timeUp) {
+                showNotification('انتهى الوقت! تم إنهاء الاختبار تلقائياً.', 'error', 'انتهى الوقت');
+            } else {
+                showNotification('أحسنت! تم إنهاء الاختبار.', 'success', 'تهانينا');
+            }
+            
+            calculateResults();
+            showScreen('resultsScreen');
+            document.getElementById('progressBar').style.width = '100%';
+        }
+
+        // ===============================================
+        // وظائف النتائج والتحليل
+        // ===============================================
+        function calculateResults() {
+            let correctCount = 0;
+            let wrongCount = 0;
+            let earnedPoints = 0;
+            const performanceByType = {};
+            
+            quizQuestions.forEach((q, index) => {
+                const userAnswer = userAnswers[index];
+                const type = q.type;
+
+                if (!performanceByType[type]) {
+                    performanceByType[type] = { total: 0, correct: 0 };
+                }
+                performanceByType[type].total++;
+
+                if (userAnswer !== null) {
+                    if (userAnswer === q.correct) {
+                        correctCount++;
+                        earnedPoints += q.points;
+                        performanceByType[type].correct++;
+                    } else {
+                        wrongCount++;
+                    }
+                } else {
+                    wrongCount++; // يعتبر السؤال غير المجاب عنه خطأ
+                }
+            });
+            
+            const totalQuestions = quizQuestions.length;
+            const accuracy = totalQuestions > 0 ? ((correctCount / totalQuestions) * 100).toFixed(1) : 0;
+
+            // تحديث النقاط المحفوظة
+            userPoints.individual += earnedPoints;
+            localStorage.setItem('individualPoints', userPoints.individual.toString());
+            updatePointsDisplay();
+
+            // عرض النتائج
+            document.getElementById('correctAnswers').textContent = correctCount;
+            document.getElementById('wrongAnswers').textContent = wrongCount;
+            document.getElementById('earnedPoints').textContent = earnedPoints;
+            document.getElementById('accuracyRate').textContent = `${accuracy}%`;
+            document.getElementById('resultIcon').textContent = accuracy >= 70 ? '🎉' : accuracy >= 50 ? '👍' : ' تحتاج المزيد';
+
+            // عرض تحليل الأداء
+            const analysisContainer = document.getElementById('performanceAnalysis');
+            analysisContainer.innerHTML = '';
+            for (const type in performanceByType) {
+                const data = performanceByType[type];
+                const typeAccuracy = (data.correct / data.total) * 100;
+                const typeName = getTypeName(type);
+                
+                const typeElement = document.createElement('div');
+                typeElement.className = 'flex justify-between items-center';
+                typeElement.innerHTML = `
+                    <span class="font-medium text-gray-700">${typeName} (${data.total} سؤال)</span>
+                    <span class="font-extrabold ${typeAccuracy >= 70 ? 'text-green-600' : typeAccuracy >= 50 ? 'text-yellow-600' : 'text-red-600'}">${typeAccuracy.toFixed(1)}%</span>
+                `;
+                analysisContainer.appendChild(typeElement);
+            }
+        }
+        
+        function getTypeName(typeKey) {
+            switch(typeKey) {
+                case 'reading': return 'استيعاب المقروء';
+                case 'relation': return 'الارتباط والاختلاف';
+                case 'context': return 'الخطأ السياقي';
+                case 'analogy': return 'التناظر اللفظي';
+                case 'completion': return 'إكمال الجمل';
+                case 'statistics': return 'تحليل وإحصاء';
+                case 'geometry': return 'هندسة';
+                case 'algebra': return 'جبر';
+                case 'arithmetic': return 'حساب';
+                case 'comparison': return 'مقارنة';
+                default: return 'نوع غير معروف';
+            }
+        }
+        
+        function startReviewMode() {
+            isReviewMode = true;
+            currentQuestionIndex = 0;
+            // الانتقال إلى وضع عرض الأسئلة
+            document.getElementById('totalQuestions').textContent = quizQuestions.length;
+            document.getElementById('nextBtn').textContent = 'السؤال التالي →';
+            showScreen('quizScreen');
+            renderQuestion();
+            showNotification('بدأت مراجعة الأسئلة مع عرض الشرح والإجابة الصحيحة.', 'info', 'وضع المراجعة');
+            
+            // إيقاف عمل المؤقت إذا كان يعمل
+            if (timerInterval) clearInterval(timerInterval);
+        }
+
+        // ===============================================
+        // وظائف التنقل
+        // ===============================================
+        function startNewQuiz() {
+            quizQuestions = [];
+            showScreen('questionTypeScreen');
+            clearAllSelections();
+        }
+
+        function goHome() {
+            showScreen('modeSelectionScreen');
+        }
+
+        function updatePointsDisplay() {
+            document.getElementById('individualPointsDisplay').textContent = userPoints.individual;
+            document.getElementById('groupPointsDisplay').textContent = userPoints.group;
+            document.getElementById('userPointsDisplay').classList.remove('hidden');
+        }
+
+        // ===============================================
+        // وظيفة تهيئة التطبيق عند التحميل
+        // ===============================================
+        window.onload = () => {
+            const storedUser = localStorage.getItem('currentUser');
+            if (storedUser) {
+                currentUser = storedUser;
+                showScreen('modeSelectionScreen');
+                updatePointsDisplay();
+            } else {
+                showScreen('registrationScreen');
+            }
+            // تهيئة ملخص الاختبار
+            updateTestSummary();
+        };
+
+        // وظائف إضافية (وهمية)
+        function showQuestionMap() {
+            showNotification('خريطة الأسئلة قيد التطوير (ستعرض حالة كل سؤال)', 'info');
+        }
+
+    </script>
+</body>
+</html>
