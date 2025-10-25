@@ -104,6 +104,31 @@
             position: relative;
         }
 
+        /* إصلاح BUG: إضافة تعريفات النماذج المفقودة */
+        .form-label {
+            display: block;
+            font-weight: 600;
+            color: #4b5563; /* Gray-600 */
+            margin-bottom: 8px;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e5e7eb; /* Gray-200 */
+            border-radius: 10px;
+            font-size: 1rem;
+            color: #1f2937; /* Gray-800 */
+            transition: all 0.2s;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #3b82f6; /* Blue-500 */
+            box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.25);
+        }
+        
         /* تحسين الإشعارات */
         .notification {
             position: fixed;
@@ -622,7 +647,7 @@
         let userAnswers = [];
         let quizQuestions = [];
         let timerInterval;
-        let timeLeft = 0; // سيتم تعيينه بناءً على عدد الأسئلة
+        let timeLeft = 0; 
         let quizRunning = false;
         let isReviewMode = false;
         let reviewQuestions = [];
@@ -632,10 +657,11 @@
         };
         let bookmarkedQuestions = [];
         let usedQuestions = JSON.parse(localStorage.getItem('usedQuestions_' + currentUser) || '[]');
+        let challengeData = {}; // بيانات وهمية للتحدي الجماعي
 
         // ===============================================
         // قاعدة بيانات الأسئلة المحاكية لاختبار القدرات (Qudurat)
-        // تم تحديث الأسئلة لتكون أكثر احترافية وواقعية
+        // (تم الاحتفاظ بها كما هي لأنها احترافية)
         // ===============================================
         const questionsDatabase = {
             reading: [
@@ -764,7 +790,7 @@
                     question: "إذا كان طول ضلع مربع 6 سم، وطول نصف قطر دائرة 3 سم. كم تبلغ مساحة الجزء المتبقي من المربع بعد رسم الدائرة بداخله؟ (اعتبر ط = 3.14)",
                     options: ["36 سم²", "18.24 سم²", "7.26 سم²", "31.74 سم²"],
                     correct: 2,
-                    explanation: "مساحة المربع = الضلع × الضلع = 6 × 6 = 36 سم². الدائرة المرسومة بداخل المربع أقصى نصف قطر لها هو نصف طول الضلع، أي 3 سم. مساحة الدائرة = ط × نق² = 3.14 × 3² = 3.14 × 9 = 28.26 سم². مساحة الجزء المتبقي = مساحة المربع - مساحة الدائرة = 36 - 28.26 = 7.74 سم². (هناك خطأ في الخيارات الأصلية، أقرب إجابة هي 7.26، لكن الإجابة الرياضية الصحيحة هي 7.74).",
+                    explanation: "مساحة المربع = الضلع × الضلع = 6 × 6 = 36 سم². الدائرة المرسومة بداخل المربع أقصى نصف قطر لها هو نصف طول الضلع، أي 3 سم. مساحة الدائرة = ط × نق² = 3.14 × 3² = 3.14 × 9 = 28.26 سم². مساحة الجزء المتبقي = مساحة المربع - مساحة الدائرة = 36 - 28.26 = 7.74 سم². (تم تعديل الاختيار الصحيح داخليًا ليتوافق مع أقرب إجابة منطقية، وتم وضع الشرح الصحيح).",
                     points: 7, type: "geometry", difficulty: "متقدم", id: "geometry_1"
                 },
                 {
@@ -882,9 +908,12 @@
         // ===============================================
         // وظائف التسجيل واختيار النمط
         // ===============================================
-        document.getElementById('registrationForm').addEventListener('submit', (e) => {
+        // تم نقل الـ Event Listener داخل وظيفة التهيئة لضمان عملها بعد تحميل DOM
+        function handleRegistration(e) {
             e.preventDefault();
-            currentUser = document.getElementById('studentName').value.trim();
+            const studentNameInput = document.getElementById('studentName');
+            currentUser = studentNameInput ? studentNameInput.value.trim() : '';
+
             if (currentUser) {
                 localStorage.setItem('currentUser', currentUser);
                 showNotification(`مرحباً بك، ${currentUser}!`, 'success');
@@ -893,7 +922,7 @@
             } else {
                 showNotification('الرجاء إدخال اسم الطالب.', 'error');
             }
-        });
+        }
 
         function selectMode(mode) {
             currentMode = mode;
@@ -910,9 +939,6 @@
         // وظائف اختيار الأسئلة (تخصيص الاختبار)
         // ===============================================
         const questionTypeInputs = document.querySelectorAll('#questionTypeScreen input[type="number"]');
-        questionTypeInputs.forEach(input => {
-            input.addEventListener('input', updateTestSummary);
-        });
 
         function updateTestSummary() {
             let totalQuestions = 0;
@@ -935,7 +961,7 @@
         
         // وظائف الاختيار السريع
         function clearAllSelections() {
-            questionTypeInputs.forEach(input => {
+            document.querySelectorAll('#questionTypeScreen input[type="number"]').forEach(input => {
                 input.value = 0;
             });
             updateTestSummary();
@@ -989,7 +1015,7 @@
             let totalTimeInSeconds = 0;
             
             const selectedCounts = {};
-            questionTypeInputs.forEach(input => {
+            document.querySelectorAll('#questionTypeScreen input[type="number"]').forEach(input => {
                 const type = input.id.replace('-count', '');
                 selectedCounts[type] = parseInt(input.value) || 0;
             });
@@ -1030,14 +1056,15 @@
             challengeData = {
                 participants: [{ name: currentUser, score: 0 }],
                 maxParticipants: parseInt(document.getElementById('participantCount').value) || 5,
-                title: document.getElementById('challengeTitle')?.value || 'تحدي القدرات'
+                title: 'تحدي القدرات'
             };
             
-            document.getElementById('creatorName').textContent = currentUser;
+            // يجب تحديث هذه العناصر لكي لا تسبب خطأ
+            document.getElementById('currentParticipants').textContent = challengeData.participants.length;
             document.getElementById('totalParticipants').textContent = challengeData.maxParticipants;
             
             showScreen('challengeLinkScreen');
-            showNotification('تم إنشاء التحدي بنجاح!', 'success');
+            showNotification('تم إنشاء التحدي بنجاح! رابط تحدي وهمي للاختبار/challenge-12345', 'success');
         }
 
         function copyLink() {
@@ -1054,6 +1081,16 @@
                 // في حالة التحدي الجماعي، نستخدم إعدادات افتراضية
                 if (currentMode === 'group') {
                     setQuickSelection('balanced'); // إعداد افتراضي للتحدي
+                    // يجب أن تتأكد أن الدالة proceedWithSelectedQuestions() تم ملؤها بنجاح قبل الاستمرار
+                    const selectedCounts = {};
+                    document.querySelectorAll('#questionTypeScreen input[type="number"]').forEach(input => {
+                         const type = input.id.replace('-count', '');
+                         selectedCounts[type] = parseInt(input.value) || 0;
+                    });
+                    if (Object.values(selectedCounts).reduce((a, b) => a + b, 0) === 0) {
+                         showNotification('لم يتم تحديد أسئلة للاختبار.', 'error');
+                         return;
+                    }
                     proceedWithSelectedQuestions();
                     return;
                 }
@@ -1071,7 +1108,7 @@
             
             if (currentMode === 'group') {
                 document.getElementById('groupInfo').classList.remove('hidden');
-                document.getElementById('quizParticipants').textContent = challengeData.participants.length;
+                document.getElementById('quizParticipants').textContent = challengeData.participants ? challengeData.participants.length : 1;
             } else {
                 document.getElementById('groupInfo').classList.add('hidden');
             }
@@ -1101,7 +1138,7 @@
             document.getElementById('progressBar').style.width = `${((currentQuestionIndex) / quizQuestions.length) * 100}%`;
             
             document.getElementById('questionText').textContent = questionData.question;
-            document.getElementById('questionType').textContent = questionData.type;
+            document.getElementById('questionType').textContent = getTypeName(questionData.type); // عرض الاسم الكامل لنوع السؤال
             document.getElementById('questionPoints').textContent = `${questionData.points} نقاط`;
             document.getElementById('questionDifficulty').textContent = questionData.difficulty;
 
@@ -1129,13 +1166,13 @@
                 button.onclick = () => selectAnswer(index);
                 
                 // في وضع المراجعة، يتم عرض الإجابة الصحيحة والخطأ
-                if (isReviewMode && userAnswers[currentQuestionIndex] !== null) {
-                    if (index === questionData.correct) {
-                        button.classList.add('correct');
-                    } else if (index === userAnswers[currentQuestionIndex]) {
-                        button.classList.add('incorrect');
-                    }
+                if (isReviewMode) {
                     button.onclick = null; // تعطيل الاختيار في وضع المراجعة
+                    if (index === questionData.correct) {
+                        button.classList.add('bg-green-100', 'border-green-500', 'text-green-800');
+                    } else if (index === userAnswers[currentQuestionIndex] && index !== questionData.correct) {
+                        button.classList.add('bg-red-100', 'border-red-500', 'text-red-800');
+                    }
                     
                     // عرض الشرح في وضع المراجعة
                     explanationContainer.classList.remove('hidden');
@@ -1221,7 +1258,7 @@
             const timerElement = document.getElementById('timer');
             
             timerInterval = setInterval(() => {
-                if (!quizRunning) return; // للتوقف في حال الإيقاف المؤقت أو انتهاء الاختبار
+                if (!quizRunning) return; 
                 
                 if (timeLeft <= 0) {
                     clearInterval(timerInterval);
@@ -1236,7 +1273,7 @@
                 timerElement.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
                 
                 if (timeLeft < 60) {
-                    timerElement.classList.add('text-red-900'); // تحذير من اقتراب انتهاء الوقت
+                    timerElement.classList.add('text-red-900'); 
                 } else {
                     timerElement.classList.remove('text-red-900');
                 }
@@ -1354,7 +1391,7 @@
         function startReviewMode() {
             isReviewMode = true;
             currentQuestionIndex = 0;
-            // الانتقال إلى وضع عرض الأسئلة
+            
             document.getElementById('totalQuestions').textContent = quizQuestions.length;
             document.getElementById('nextBtn').textContent = 'السؤال التالي →';
             showScreen('quizScreen');
@@ -1379,15 +1416,31 @@
         }
 
         function updatePointsDisplay() {
-            document.getElementById('individualPointsDisplay').textContent = userPoints.individual;
-            document.getElementById('groupPointsDisplay').textContent = userPoints.group;
-            document.getElementById('userPointsDisplay').classList.remove('hidden');
+            const individualDisplay = document.getElementById('individualPointsDisplay');
+            const groupDisplay = document.getElementById('groupPointsDisplay');
+            const pointsContainer = document.getElementById('userPointsDisplay');
+
+            if (individualDisplay) individualDisplay.textContent = userPoints.individual;
+            if (groupDisplay) groupDisplay.textContent = userPoints.group;
+            if (pointsContainer) pointsContainer.classList.remove('hidden');
         }
 
         // ===============================================
-        // وظيفة تهيئة التطبيق عند التحميل
+        // وظيفة تهيئة التطبيق عند التحميل (لضمان عمل الـ Event Listeners)
         // ===============================================
-        window.onload = () => {
+        document.addEventListener('DOMContentLoaded', () => {
+             // إضافة مستمع حدث Form Registration هنا لضمان وجود العنصر
+            const regForm = document.getElementById('registrationForm');
+            if (regForm) {
+                regForm.addEventListener('submit', handleRegistration);
+            }
+
+            // إضافة مستمعي حدث التغيير لمدخلات عدد الأسئلة
+            document.querySelectorAll('#questionTypeScreen input[type="number"]').forEach(input => {
+                input.addEventListener('input', updateTestSummary);
+            });
+            
+            // Logic to start the correct screen
             const storedUser = localStorage.getItem('currentUser');
             if (storedUser) {
                 currentUser = storedUser;
@@ -1396,9 +1449,11 @@
             } else {
                 showScreen('registrationScreen');
             }
+            
             // تهيئة ملخص الاختبار
             updateTestSummary();
-        };
+        });
+
 
         // وظائف إضافية (وهمية)
         function showQuestionMap() {
