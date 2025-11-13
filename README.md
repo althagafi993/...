@@ -1,1465 +1,1759 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl" class="h-full">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>منصة تدريب القدرات المتقدمة - الإصدار 13</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-    
-    <style>
-        /* تحسينات التصميم الاحترافي وتطبيق ملء الشاشة */
+<!doctype html>
+<html lang="ar" dir="rtl">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>تعليم القراءة للأطفال</title>
+  <script src="/_sdk/data_sdk.js"></script>
+  <script src="/_sdk/element_sdk.js"></script>
+  <style>
         body {
             box-sizing: border-box;
-            font-family: 'Cairo', sans-serif;
-            background: linear-gradient(135deg, #0f172a 0%, #1e293b 25%, #334155 50%, #475569 75%, #64748b 100%);
-            /* ضمان أن الجسم يشغل كامل ارتفاع الشاشة */
-            min-height: 100vh;
-        }
-        
-        /* بطاقة المحتوى الزجاجية (Glassmorphism) */
-        .professional-card {
-            background: rgba(255, 255, 255, 0.95); /* شفافية طفيفة */
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-        }
-        
-        .professional-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
-        }
-        
-        /* نظام الأزرار المحسن (Modern Gradients) */
-        .btn-primary {
-            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
-            color: white;
-            padding: 14px 28px;
-            border-radius: 12px;
-            font-weight: 700;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-            box-shadow: 0 6px 16px rgba(37, 99, 235, 0.4);
-        }
-        
-        .btn-primary:hover {
-            background: linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%);
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(37, 99, 235, 0.5);
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #ffeef8 0%, #f8d7da 50%, #ffc1cc 100%);
+            min-height: 100%;
+            overflow-x: hidden;
         }
 
-        .btn-secondary {
-            background: white;
-            color: #374151;
-            border: 2px solid #e5e7eb;
-            padding: 14px 28px;
-            border-radius: 12px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        html {
+            height: 100%;
         }
-        
-        .btn-secondary:hover {
-            background: #f8fafc;
-            border-color: #3b82f6;
-            color: #2563eb;
-            box-shadow: 0 6px 16px rgba(59, 130, 246, 0.1);
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            min-height: 100%;
         }
-        
-        /* خيار الإجابة (Option Button) */
-        .option-button {
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            background: linear-gradient(45deg, #ff69b4, #ff1493);
+            color: white;
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0 8px 25px rgba(255, 20, 147, 0.3);
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .welcome-text {
+            font-size: 1.2rem;
+            margin-top: 10px;
+            opacity: 0.9;
+        }
+
+        /* نموذج تسجيل الاسم */
+        .name-registration {
             background: white;
-            border: 2px solid #e5e7eb;
-            border-radius: 12px;
-            padding: 18px 20px;
-            text-align: right;
-            width: 100%;
-            margin-bottom: 12px;
-            transition: all 0.3s ease;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(255, 105, 180, 0.2);
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .name-input {
+            font-size: 1.5rem;
+            padding: 15px 25px;
+            border: 3px solid #ff69b4;
+            border-radius: 25px;
+            text-align: center;
+            margin: 20px 0;
+            width: 300px;
+            max-width: 90%;
+        }
+
+        .name-input:focus {
+            outline: none;
+            border-color: #ff1493;
+            box-shadow: 0 0 15px rgba(255, 20, 147, 0.3);
+        }
+
+        .start-btn {
+            background: linear-gradient(45deg, #ff69b4, #ff1493);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 25px;
+            font-size: 1.3rem;
             cursor: pointer;
-            font-weight: 600;
-            color: #374151;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-            /* تصميم حديث ومحسن للخيارات */
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 20, 147, 0.3);
+        }
+
+        .start-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 20, 147, 0.4);
+        }
+
+        .game-area {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(255, 105, 180, 0.2);
+            margin-bottom: 20px;
+        }
+
+        .level-selector {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .level-btn {
+            background: linear-gradient(45deg, #ff69b4, #ff1493);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 20, 147, 0.3);
+        }
+
+        .level-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 20, 147, 0.4);
+        }
+
+        .level-btn.active {
+            background: linear-gradient(45deg, #ff1493, #dc143c);
+            transform: scale(1.05);
+        }
+
+        .word-display {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .current-word {
+            font-size: 3rem;
+            color: #ff1493;
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(255, 20, 147, 0.3);
+        }
+
+        .word-meaning {
+            font-size: 1.3rem;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .controls {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .control-btn {
+            background: linear-gradient(45deg, #ff69b4, #ff1493);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 20, 147, 0.3);
             display: flex;
             align-items: center;
-            justify-content: flex-end; /* لضمان محاذاة النص لليمين */
-        }
-        
-        .option-button:hover {
-            border-color: #3b82f6;
-            background: #eff6ff;
-            color: #1d4ed8;
-            box-shadow: 0 4px 8px rgba(37, 99, 235, 0.15);
-        }
-        
-        .option-button.selected {
-            border-color: #2563eb;
-            background: #dbeafe;
-            color: #1e40af;
-            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
-            position: relative;
+            gap: 10px;
         }
 
-        /* إصلاح BUG: إضافة تعريفات النماذج المفقودة */
-        .form-label {
-            display: block;
-            font-weight: 600;
-            color: #4b5563; /* Gray-600 */
-            margin-bottom: 8px;
+        .control-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 20, 147, 0.4);
         }
 
-        .form-input {
-            width: 100%;
-            padding: 12px 16px;
-            border: 2px solid #e5e7eb; /* Gray-200 */
-            border-radius: 10px;
-            font-size: 1rem;
-            color: #1f2937; /* Gray-800 */
-            transition: all 0.2s;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+        .control-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
         }
 
-        .form-input:focus {
-            outline: none;
-            border-color: #3b82f6; /* Blue-500 */
-            box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.25);
+        .mic-btn {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a52);
+            font-size: 1.2rem;
+            animation: pulse 2s infinite;
         }
-        
-        /* تحسين الإشعارات */
-        .notification {
-            position: fixed;
-            top: 20px;
-            right: 20px;
+
+        .mic-btn.recording {
+            background: linear-gradient(45deg, #ff4757, #ff3838);
+            animation: recording 1s infinite;
+        }
+
+        .mic-btn.processing {
+            background: linear-gradient(45deg, #ffa502, #ff6348);
+            animation: processing 1s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes recording {
+            0% { box-shadow: 0 0 0 0 rgba(255, 71, 87, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(255, 71, 87, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 71, 87, 0); }
+        }
+
+        @keyframes processing {
+            0% { transform: scale(1) rotate(0deg); }
+            50% { transform: scale(1.1) rotate(180deg); }
+            100% { transform: scale(1) rotate(360deg); }
+        }
+
+        .drag-drop-area {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .letter-box, .word-box {
+            background: linear-gradient(45deg, #ffc1cc, #ffb3ba);
+            border: 3px dashed #ff69b4;
+            border-radius: 15px;
+            padding: 15px 20px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #ff1493;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            min-width: 60px;
+            text-align: center;
+            user-select: none;
+        }
+
+        .letter-box:hover, .word-box:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 105, 180, 0.4);
+        }
+
+        .letter-box.dragging, .word-box.dragging {
+            opacity: 0.5;
+            transform: rotate(5deg);
+        }
+
+        .drop-zone {
             background: white;
-            border-radius: 12px;
-            padding: 16px 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-            transform: translateX(400px);
-            transition: transform 0.3s ease;
-            z-index: 1000;
-            max-width: 350px;
+            border: 3px dashed #ff69b4;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 10px;
+            min-height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
         }
-        
-        /* تحسينات الأجهزة المحمولة */
+
+        .drop-zone.drag-over {
+            background: linear-gradient(45deg, #ffeef8, #f8d7da);
+            border-color: #ff1493;
+            transform: scale(1.05);
+        }
+
+        .multiple-choice {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .choice-btn {
+            background: linear-gradient(45deg, #ffc1cc, #ffb3ba);
+            border: 3px solid #ff69b4;
+            border-radius: 15px;
+            padding: 20px;
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #ff1493;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .choice-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 105, 180, 0.4);
+            background: linear-gradient(45deg, #ff69b4, #ff1493);
+            color: white;
+        }
+
+        .feedback {
+            text-align: center;
+            margin: 20px 0;
+            font-size: 1.5rem;
+            font-weight: bold;
+            min-height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .success {
+            color: #28a745;
+            animation: bounce 0.6s ease-in-out;
+        }
+
+        .error {
+            color: #dc3545;
+            animation: shake 0.6s ease-in-out;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 53%, 80%, 100% { transform: translate3d(0,0,0); }
+            40%, 43% { transform: translate3d(0,-30px,0); }
+            70% { transform: translate3d(0,-15px,0); }
+            90% { transform: translate3d(0,-4px,0); }
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            10%, 30%, 50%, 70%, 90% { transform: translateX(-10px); }
+            20%, 40%, 60%, 80% { transform: translateX(10px); }
+        }
+
+        .celebration {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1000;
+        }
+
+        .bubble {
+            position: absolute;
+            background: radial-gradient(circle, #ff69b4, #ff1493);
+            border-radius: 50%;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(100vh) scale(0); opacity: 1; }
+            50% { opacity: 1; }
+            100% { transform: translateY(-100px) scale(1); opacity: 0; }
+        }
+
+        .progress-bar {
+            background: #f0f0f0;
+            border-radius: 25px;
+            padding: 3px;
+            margin: 20px 0;
+        }
+
+        .progress-fill {
+            background: linear-gradient(45deg, #ff69b4, #ff1493);
+            height: 20px;
+            border-radius: 25px;
+            transition: width 0.5s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        .school-illustration {
+            text-align: center;
+            margin: 20px 0;
+            font-size: 4rem;
+        }
+
+        .student-avatar {
+            display: inline-block;
+            font-size: 3rem;
+            margin: 0 10px;
+            animation: wave 2s ease-in-out infinite;
+        }
+
+        @keyframes wave {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(-10deg); }
+            75% { transform: rotate(10deg); }
+        }
+
+        .score-display {
+            background: linear-gradient(45deg, #28a745, #20c997);
+            color: white;
+            padding: 15px;
+            border-radius: 15px;
+            text-align: center;
+            margin: 20px 0;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        /* شهادة التفوق */
+        .certificate {
+            background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);
+            border: 5px solid #ffd700;
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            margin: 30px 0;
+            box-shadow: 0 15px 35px rgba(255, 215, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .certificate::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 215, 0, 0.1), transparent);
+            animation: shine 3s infinite;
+        }
+
+        @keyframes shine {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+
+        .certificate-title {
+            font-size: 2.5rem;
+            color: #ffd700;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .certificate-content {
+            font-size: 1.3rem;
+            color: #333;
+            line-height: 1.8;
+            margin: 20px 0;
+        }
+
+        .student-name-cert {
+            font-size: 2rem;
+            color: #ff1493;
+            font-weight: bold;
+            margin: 20px 0;
+            text-decoration: underline;
+            text-decoration-color: #ffd700;
+        }
+
+        .certificate-footer {
+            margin-top: 30px;
+            font-size: 1.1rem;
+            color: #666;
+        }
+
+        .certificate-stars {
+            font-size: 3rem;
+            color: #ffd700;
+            margin: 20px 0;
+            animation: twinkle 2s infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.7; transform: scale(1.1); }
+        }
+
+        /* توقيع لمى */
+        .signature {
+            text-align: center;
+            margin: 40px 0 20px 0;
+            padding: 20px;
+            background: linear-gradient(45deg, #1a1a2e, #16213e);
+            border-radius: 15px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .signature::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #ffeaa7, #dda0dd);
+            border-radius: 15px;
+            z-index: -1;
+            animation: rainbow 3s linear infinite;
+        }
+
+        @keyframes rainbow {
+            0% { filter: hue-rotate(0deg); }
+            100% { filter: hue-rotate(360deg); }
+        }
+
+        .signature-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .gem {
+            font-size: 2rem;
+            animation: sparkle 2s ease-in-out infinite;
+        }
+
+        .gem:nth-child(1) {
+            animation-delay: 0s;
+        }
+
+        .gem:nth-child(3) {
+            animation-delay: 1s;
+        }
+
+        @keyframes sparkle {
+            0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.8; }
+            50% { transform: scale(1.2) rotate(180deg); opacity: 1; }
+        }
+
+        .signature-name {
+            font-size: 2.5rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradient-flow 3s ease infinite, glow 2s ease-in-out infinite alternate;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+        }
+
+        @keyframes gradient-flow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes glow {
+            from { filter: drop-shadow(0 0 10px rgba(255, 107, 107, 0.7)); }
+            to { filter: drop-shadow(0 0 20px rgba(78, 205, 196, 0.7)); }
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        /* تحسين الاستجابة */
         @media (max-width: 768px) {
             .container {
-                padding-left: 1rem;
-                padding-right: 1rem;
+                padding: 10px;
             }
-            .professional-card {
-                margin: 0;
-                border-radius: 0; /* ملء كامل للشاشة على الموبايل */
-                box-shadow: none;
+            
+            .header h1 {
+                font-size: 2rem;
             }
-            main {
-                padding-left: 0;
-                padding-right: 0;
+            
+            .current-word {
+                font-size: 2rem;
             }
-            .notification {
-                top: 0;
-                right: 0;
-                left: 0;
-                max-width: 100%;
-                border-radius: 0;
-                transform: translateY(-100%);
+            
+            .controls {
+                flex-direction: column;
+                align-items: center;
             }
-            .notification.show {
-                transform: translateY(0);
+            
+            .drag-drop-area {
+                flex-direction: column;
+                align-items: center;
             }
-            .btn-primary, .btn-secondary {
-                padding: 12px 20px;
-                font-size: 1rem;
+
+            .name-input {
+                width: 250px;
             }
-            .option-button {
-                padding: 16px;
-                font-size: 15px;
+
+            .certificate-title {
+                font-size: 2rem;
+            }
+
+            .signature-name {
+                font-size: 2rem;
             }
         }
+
+        /* تحسين التعرف على الصوت */
+        .voice-feedback {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            padding: 15px;
+            margin: 15px 0;
+            text-align: center;
+            font-size: 1.1rem;
+            border: 2px solid #ff69b4;
+        }
+
+        .voice-confidence {
+            background: linear-gradient(45deg, #28a745, #20c997);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-top: 10px;
+            display: inline-block;
+        }
     </style>
-</head>
-<body class="min-h-screen flex flex-col">
-    <header class="bg-white/10 backdrop-blur-md border-b border-white/20 sticky top-0 z-40">
-        <div class="container mx-auto px-4 py-4">
-            <div class="flex justify-between items-center">
-                <div class="flex-1 text-center">
-                    <h1 class="text-2xl font-extrabold text-white sm:text-3xl">منصة تدريب القدرات</h1>
-                    <p class="text-blue-100 text-sm mt-1 hidden sm:block">الإصدار 13 - نظام متطور للتدريب</p>
-                </div>
-                <div id="userPointsDisplay" class="hidden points-display">
-                    <div class="flex items-center space-x-4 space-x-reverse text-sm">
-                        <div class="flex items-center space-x-2 space-x-reverse">
-                            <span>⚡</span>
-                            <span id="individualPointsDisplay" class="points-number">0</span>
-                        </div>
-                        <div class="flex items-center space-x-2 space-x-reverse">
-                            <span>🎯</span>
-                            <span id="groupPointsDisplay" class="points-number">0</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>
-
-    <main class="flex-grow container mx-auto px-4 py-8">
-        <div id="registrationScreen" class="max-w-md mx-auto">
-            <div class="professional-card rounded-xl p-8">
-                <div class="text-center mb-8">
-                    <div class="text-5xl mb-4">🎓</div>
-                    <h2 class="text-2xl font-bold text-gray-800 mb-2">مرحباً بك في منصة القدرات</h2>
-                    <p class="text-gray-600">ابدأ رحلتك في تطوير مهاراتك وقدراتك</p>
-                </div>
-                
-                <form id="registrationForm" class="space-y-6">
-                    <div>
-                        <label for="studentName" class="form-label">اسم الطالب</label>
-                        <input type="text" id="studentName" class="form-input" 
-                               placeholder="أدخل اسمك الكامل" required>
-                    </div>
-                    
-
-                    
-                    <button type="submit" class="btn-primary w-full">
-                        بدء التدريب
-                    </button>
-                </form>
-            </div>
-        </div>
-
-        <div id="modeSelectionScreen" class="hidden max-w-4xl mx-auto">
-            <div class="text-center mb-8">
-                <h2 class="text-3xl font-bold text-white mb-4">اختر نمط التدريب</h2>
-                <p class="text-blue-100">حدد الطريقة المناسبة لك للتدرب وتطوير مهاراتك</p>
-            </div>
-            
-            <div class="grid md:grid-cols-2 gap-8">
-                <div class="professional-card rounded-xl p-8 cursor-pointer hover:shadow-2xl hover:border-blue-500 transition duration-300" onclick="selectMode('individual')">
-                    <div class="text-center">
-                        <div class="text-6xl mb-6">👤</div>
-                        <h3 class="text-xl font-extrabold text-gray-800 mb-4">تدريب فردي</h3>
-                        <p class="text-gray-600 mb-6">تدرب بمفردك وركز على نقاط ضعفك</p>
-                        
-                        <div class="space-y-3 text-sm text-gray-700">
-                            <div class="flex items-center justify-center space-x-2 space-x-reverse">
-                                <span class="text-green-500">✓</span>
-                                <span>تركيز شخصي مكثف</span>
-                            </div>
-                            <div class="flex items-center justify-center space-x-2 space-x-reverse">
-                                <span class="text-green-500">✓</span>
-                                <span>تحليل مفصل للأداء</span>
-                            </div>
-                            <div class="flex items-center justify-center space-x-2 space-x-reverse">
-                                <span class="text-green-500">✓</span>
-                                <span>مرونة في الوقت</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="professional-card rounded-xl p-8 cursor-pointer hover:shadow-2xl hover:border-red-500 transition duration-300" onclick="selectMode('group')">
-                    <div class="text-center">
-                        <div class="text-6xl mb-6">👥</div>
-                        <h3 class="text-xl font-extrabold text-gray-800 mb-4">تحدي جماعي</h3>
-                        <p class="text-gray-600 mb-6">تنافس مع زملائك واكسب نقاط إضافية</p>
-                        
-                        <div class="space-y-3 text-sm text-gray-700">
-                            <div class="flex items-center justify-center space-x-2 space-x-reverse">
-                                <span class="text-blue-500">✓</span>
-                                <span>تنافس مثير مع الأصدقاء</span>
-                            </div>
-                            <div class="flex items-center justify-center space-x-2 space-x-reverse">
-                                <span class="text-blue-500">✓</span>
-                                <span>نقاط مضاعفة للفائزين</span>
-                            </div>
-                            <div class="flex items-center justify-center space-x-2 space-x-reverse">
-                                <span class="text-blue-500">✓</span>
-                                <span>حتى 50 مشارك</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div id="questionTypeScreen" class="hidden max-w-6xl mx-auto">
-            <div class="text-center mb-8">
-                <h2 class="text-3xl font-bold text-white mb-4">تخصيص الاختبار</h2>
-                <p class="text-blue-100">اختر أنواع الأسئلة وعدد كل نوع حسب احتياجاتك</p>
-            </div>
-            
-            <div class="professional-card rounded-xl p-6 mb-6">
-                <div class="flex items-center mb-6 border-b pb-4 border-gray-200">
-                    <div class="text-3xl ml-4">📝</div>
-                    <div>
-                        <h3 class="text-xl font-extrabold text-gray-800">القسم اللفظي</h3>
-                        <p class="text-gray-600 text-sm">تطوير مهارات اللغة والفهم والتحليل</p>
-                    </div>
-                </div>
-                
-                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
-                    <div class="bg-blue-50 rounded-lg p-4 text-center border border-blue-200">
-                        <div class="text-2xl mb-2">📖</div>
-                        <h4 class="font-medium text-gray-800 mb-2 text-sm">استيعاب المقروء</h4>
-                        <input type="number" id="reading-count" min="0" max="20" value="0" 
-                               class="w-full px-2 py-1 border border-gray-300 rounded text-center form-input">
-                    </div>
-                    
-                    <div class="bg-green-50 rounded-lg p-4 text-center border border-green-200">
-                        <div class="text-2xl mb-2">🔗</div>
-                        <h4 class="font-medium text-gray-800 mb-2 text-sm">الارتباط والاختلاف</h4>
-                        <input type="number" id="relation-count" min="0" max="20" value="0" 
-                               class="w-full px-2 py-1 border border-gray-300 rounded text-center form-input">
-                    </div>
-                    
-                    <div class="bg-yellow-50 rounded-lg p-4 text-center border border-yellow-200">
-                        <div class="text-2xl mb-2">❌</div>
-                        <h4 class="font-medium text-gray-800 mb-2 text-sm">الخطأ السياقي</h4>
-                        <input type="number" id="context-count" min="0" max="20" value="0" 
-                               class="w-full px-2 py-1 border border-gray-300 rounded text-center form-input">
-                    </div>
-                    
-                    <div class="bg-purple-50 rounded-lg p-4 text-center border border-purple-200">
-                        <div class="text-2xl mb-2">⚖️</div>
-                        <h4 class="font-medium text-gray-800 mb-2 text-sm">التناظر اللفظي</h4>
-                        <input type="number" id="analogy-count" min="0" max="20" value="0" 
-                               class="w-full px-2 py-1 border border-gray-300 rounded text-center form-input">
-                    </div>
-                    
-                    <div class="bg-red-50 rounded-lg p-4 text-center border border-red-200">
-                        <div class="text-2xl mb-2">✏️</div>
-                        <h4 class="font-medium text-gray-800 mb-2 text-sm">إكمال الجمل</h4>
-                        <input type="number" id="completion-count" min="0" max="20" value="0" 
-                               class="w-full px-2 py-1 border border-gray-300 rounded text-center form-input">
-                    </div>
-                </div>
-            </div>
-            
-            <div class="professional-card rounded-xl p-6 mb-6">
-                <div class="flex items-center mb-6 border-b pb-4 border-gray-200">
-                    <div class="text-3xl ml-4">🔢</div>
-                    <div>
-                        <h3 class="text-xl font-extrabold text-gray-800">القسم الكمي</h3>
-                        <p class="text-gray-600 text-sm">تطوير مهارات الرياضيات والتفكير المنطقي</p>
-                    </div>
-                </div>
-                
-                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
-                    <div class="bg-indigo-50 rounded-lg p-4 text-center border border-indigo-200">
-                        <div class="text-2xl mb-2">📊</div>
-                        <h4 class="font-medium text-gray-800 mb-2 text-sm">تحليل وإحصاء</h4>
-                        <input type="number" id="statistics-count" min="0" max="20" value="0" 
-                               class="w-full px-2 py-1 border border-gray-300 rounded text-center form-input">
-                    </div>
-                    
-                    <div class="bg-teal-50 rounded-lg p-4 text-center border border-teal-200">
-                        <div class="text-2xl mb-2">📐</div>
-                        <h4 class="font-medium text-gray-800 mb-2 text-sm">هندسة</h4>
-                        <input type="number" id="geometry-count" min="0" max="20" value="0" 
-                               class="w-full px-2 py-1 border border-gray-300 rounded text-center form-input">
-                    </div>
-                    
-                    <div class="bg-orange-50 rounded-lg p-4 text-center border border-orange-200">
-                        <div class="text-2xl mb-2">🧮</div>
-                        <h4 class="font-medium text-gray-800 mb-2 text-sm">جبر</h4>
-                        <input type="number" id="algebra-count" min="0" max="20" value="0" 
-                               class="w-full px-2 py-1 border border-gray-300 rounded text-center form-input">
-                    </div>
-                    
-                    <div class="bg-pink-50 rounded-lg p-4 text-center border border-pink-200">
-                        <div class="text-2xl mb-2">🔢</div>
-                        <h4 class="font-medium text-gray-800 mb-2 text-sm">حساب</h4>
-                        <input type="number" id="arithmetic-count" min="0" max="20" value="0" 
-                               class="w-full px-2 py-1 border border-gray-300 rounded text-center form-input">
-                    </div>
-                    
-                    <div class="bg-cyan-50 rounded-lg p-4 text-center border border-cyan-200">
-                        <div class="text-2xl mb-2">⚖️</div>
-                        <h4 class="font-medium text-gray-800 mb-2 text-sm">مقارنة</h4>
-                        <input type="number" id="comparison-count" min="0" max="20" value="0" 
-                               class="w-full px-2 py-1 border border-gray-300 rounded text-center form-input">
-                    </div>
-                </div>
-            </div>
-            
-            <div class="professional-card rounded-xl p-6 mb-6">
-                <h4 class="text-lg font-bold text-gray-800 mb-4">اختيارات سريعة:</h4>
-                <div class="grid grid-cols-2 md:grid-cols-5 gap-3">
-                    <button onclick="setQuickSelection('verbal')" class="btn-secondary text-sm sm:text-base">
-                        لفظي فقط (20 سؤال)
-                    </button>
-                    <button onclick="setQuickSelection('quantitative')" class="btn-secondary text-sm sm:text-base">
-                        كمي فقط (20 سؤال)
-                    </button>
-                    <button onclick="setQuickSelection('balanced')" class="btn-secondary text-sm sm:text-base">
-                        متوازن (30 سؤال)
-                    </button>
-                    <button onclick="setQuickSelection('full')" class="btn-primary text-sm sm:text-base">
-                        اختبار كامل (50 سؤال)
-                    </button>
-                    <button onclick="clearAllSelections()" class="btn-secondary text-sm sm:text-base">
-                        مسح الكل
-                    </button>
-                </div>
-            </div>
-            
-            <div class="text-center">
-                <div class="professional-card rounded-lg p-6 inline-block mb-6">
-                    <div class="flex flex-col sm:flex-row items-center space-y-4 sm:space-y-0 sm:space-x-8 sm:space-x-reverse">
-                        <div class="text-center">
-                            <span class="text-lg font-medium text-gray-700">إجمالي الأسئلة:</span>
-                            <span id="totalSelectedQuestions" class="text-4xl font-extrabold text-blue-600 block">0</span>
-                        </div>
-                        <div class="text-center">
-                            <span class="text-lg font-medium text-gray-700">الوقت المقدر:</span>
-                            <span id="estimatedTime" class="text-4xl font-extrabold text-green-600 block">0 دقيقة</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div>
-                    <button onclick="proceedWithSelectedQuestions()" 
-                            class="btn-primary py-4 px-12 text-xl disabled:opacity-50 disabled:cursor-not-allowed"
-                            id="proceedBtn" disabled>
-                        بدء الاختبار
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <div id="groupSizeScreen" class="hidden max-w-2xl mx-auto">
-            <div class="professional-card rounded-xl p-8">
-                <div class="text-center mb-8">
-                    <div class="text-5xl mb-4">👥</div>
-                    <h2 class="text-2xl font-bold text-gray-800 mb-4">إعداد التحدي الجماعي</h2>
-                    <p class="text-gray-600">حدد عدد المشاركين وأنشئ رابط التحدي (ميزة تجريبية)</p>
-                </div>
-                
-                <div class="space-y-6">
-                    <div>
-                        <label for="participantCount" class="form-label">عدد المشاركين (2-50)</label>
-                        <input type="number" id="participantCount" min="2" max="50" value="5"
-                               class="form-input text-center text-xl">
-                    </div>
-                    
-                    <button onclick="createGroupChallenge()" class="btn-primary w-full py-4">
-                        إنشاء التحدي
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <div id="challengeLinkScreen" class="hidden max-w-2xl mx-auto">
-            <div class="professional-card rounded-xl p-8">
-                <div class="text-center mb-8">
-                    <div class="text-5xl mb-4">🔗</div>
-                    <h2 class="text-2xl font-bold text-gray-800 mb-4">رابط التحدي جاهز!</h2>
-                    <p class="text-gray-600">شارك هذا الرابط مع المشاركين</p>
-                </div>
-                
-                <div class="bg-gray-50 rounded-lg p-4 mb-6 border border-gray-200">
-                    <div class="flex items-center justify-between">
-                        <span id="challengeLink" class="text-sm text-gray-700 flex-1 ml-3 break-all">رابط تحدي وهمي للاختبار/challenge-12345</span>
-                        <button onclick="copyLink()" class="btn-primary px-4 py-2 text-sm">
-                            نسخ
-                        </button>
-                    </div>
-                </div>
-                
-                <div class="text-center mb-6">
-                    <div class="stats-card inline-block">
-                        <span class="stats-number" id="currentParticipants">1</span>
-                        <span class="stats-label">من <span id="totalParticipants">5</span> مشاركين (وهمي)</span>
-                    </div>
-                </div>
-                
-                <button id="startChallengeBtn" onclick="startQuiz()" 
-                        class="btn-primary w-full py-4">
-                    بدء الاختبار
-                </button>
-            </div>
-        </div>
-
-        <div id="quizScreen" class="hidden max-w-4xl mx-auto">
-            <div class="professional-card rounded-xl p-6 mb-6">
-                <div class="flex justify-between items-center mb-4">
-                    <div class="timer-container">
-                        <div class="text-sm text-red-700 mb-1 font-medium">الوقت المتبقي</div>
-                        <div id="timer" class="timer-text font-extrabold">15:00</div>
-                    </div>
-                    
-                    <div class="text-center">
-                        <div class="text-sm text-gray-600 mb-1 font-medium">السؤال</div>
-                        <div class="text-xl font-bold text-gray-800">
-                            <span id="currentQuestion">1</span> من <span id="totalQuestions">10</span>
-                        </div>
-                    </div>
-                    
-                    <div id="groupInfo" class="hidden text-center">
-                        <div class="text-sm text-gray-600 mb-1 font-medium">المشاركون</div>
-                        <div class="text-xl font-bold text-blue-600">
-                            <span id="quizParticipants">5</span> مشارك
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="progress-container">
-                    <div id="progressBar" class="progress-bar" style="width: 0%"></div>
-                </div>
-            </div>
-
-            <div class="question-container mb-6">
-                <div class="mb-6">
-                    <div class="flex items-center justify-between mb-4">
-                        <div class="flex items-center space-x-3 space-x-reverse">
-                            <span id="questionType" class="badge badge-primary">نوع السؤال</span>
-                            <span id="questionPoints" class="badge badge-success">نقاط</span>
-                            <span id="questionDifficulty" class="badge badge-warning">المستوى</span>
-                        </div>
-                        <button onclick="bookmarkQuestion()" id="bookmarkBtn" 
-                                class="text-gray-400 hover:text-yellow-500 transition-colors focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 rounded-full p-1"
-                                aria-label="وضع علامة على السؤال">
-                            <span class="text-2xl">🔖</span>
-                        </button>
-                    </div>
-                    
-                    <h3 id="questionText" class="text-xl font-extrabold text-gray-800 leading-relaxed whitespace-pre-wrap">
-                        نص السؤال سيظهر هنا...
-                    </h3>
-                </div>
-                
-                <div id="questionOptions" class="space-y-3">
-                    </div>
-                
-                <div id="explanationContainer" class="hidden mt-6 p-4 bg-yellow-50 border-r-4 border-yellow-500 rounded-lg shadow-inner">
-                    <h4 class="font-bold text-yellow-800 mb-2">💡 الشرح التفصيلي</h4>
-                    <p id="explanationText" class="text-yellow-700 text-base leading-relaxed"></p>
-                </div>
-            </div>
-
-            <div class="flex justify-between items-center flex-wrap gap-3">
-                <button id="prevBtn" onclick="previousQuestion()" disabled
-                        class="btn-secondary disabled:opacity-50 disabled:cursor-not-allowed px-6 py-3 text-sm sm:text-base">
-                    ← السؤال السابق
-                </button>
-                
-                <div class="flex space-x-3 space-x-reverse">
-                    <button onclick="showQuestionMap()" class="btn-secondary px-4 py-3 text-sm sm:text-base">
-                        خريطة الأسئلة
-                    </button>
-                    <button onclick="pauseQuiz()" class="btn-secondary px-4 py-3 text-sm sm:text-base">
-                        إيقاف مؤقت
-                    </button>
-                </div>
-                
-                <button id="nextBtn" onclick="nextQuestion()" 
-                        class="btn-primary disabled:opacity-50 disabled:cursor-not-allowed px-6 py-3 text-sm sm:text-base">
-                    السؤال التالي →
-                </button>
-            </div>
-        </div>
-
-        <div id="resultsScreen" class="hidden max-w-4xl mx-auto">
-            <div class="professional-card rounded-xl p-8">
-                <div class="text-center mb-8">
-                    <div id="resultIcon" class="text-6xl mb-4">🎉</div>
-                    <h2 class="text-3xl font-extrabold text-gray-800 mb-2">تم إنهاء الاختبار!</h2>
-                    <p class="text-gray-600 text-lg">إليك تحليل مفصل لأدائك</p>
-                </div>
-
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-8">
-                    <div class="stats-card">
-                        <span class="stats-number text-green-600" id="correctAnswers">0</span>
-                        <span class="stats-label">إجابات صحيحة</span>
-                    </div>
-                    <div class="stats-card">
-                        <span class="stats-number text-red-600" id="wrongAnswers">0</span>
-                        <span class="stats-label">إجابات خاطئة</span>
-                    </div>
-                    <div class="stats-card">
-                        <span class="stats-number text-blue-600" id="earnedPoints">0</span>
-                        <span class="stats-label">النقاط المكتسبة</span>
-                    </div>
-                    <div class="stats-card">
-                        <span class="stats-number text-purple-600" id="accuracyRate">0%</span>
-                        <span class="stats-label">معدل الدقة</span>
-                    </div>
-                </div>
-
-                <div class="professional-card rounded-lg p-6 mb-8">
-                    <h3 class="text-xl font-extrabold text-gray-800 mb-4 border-b pb-2">تحليل الأداء حسب نوع السؤال</h3>
-                    <div id="performanceAnalysis" class="space-y-4">
-                        <p class="text-center text-gray-500">جاري تحميل التحليل...</p>
-                    </div>
-                </div>
-
-                <div class="flex flex-wrap gap-4 justify-center">
-                    <button onclick="startReviewMode()" class="btn-secondary px-6 py-3">
-                        🔍 مراجعة الأسئلة
-                    </button>
-                    <button onclick="startNewQuiz()" class="btn-primary px-6 py-3">
-                        🔄 اختبار جديد
-                    </button>
-                    <button onclick="goHome()" class="btn-secondary px-6 py-3">
-                        🏠 الصفحة الرئيسية
-                    </button>
-                </div>
-            </div>
-        </div>
-    </main>
-
-    <footer id="mainFooter" class="bg-white/5 backdrop-blur-md border-t border-white/10 text-white py-6 mt-8">
-        <div class="container mx-auto px-4">
-            <div class="text-center">
-                <div class="flex justify-center items-center space-x-4 space-x-reverse mb-3">
-                    <span class="text-sm font-medium">تصميم وتطوير: أ.عبدالرحمن الثقفي</span>
-                    <div class="flex space-x-2 space-x-reverse">
-                        <a href="https://t.me/althagafi993" target="_blank" rel="noopener noreferrer" 
-                           class="text-blue-300 hover:text-blue-100 transition-colors">تليجرام</a>
-                        <a href="https://x.com/a_a_althagafi" target="_blank" rel="noopener noreferrer" 
-                           class="text-blue-300 hover:text-blue-100 transition-colors">تويتر</a>
-                    </div>
-                </div>
-                <p class="text-xs text-blue-200">© 2025 منصة تدريب القدرات - الإصدار 13</p>
-            </div>
-        </div>
-    </footer>
-
-    <div id="notification" class="notification info hidden" role="alert">
-        <div class="flex items-center space-x-3 space-x-reverse">
-            <span id="notificationIcon" class="text-xl"></span>
-            <div>
-                <h5 id="notificationTitle" class="font-bold text-gray-800"></h5>
-                <p id="notificationMessage" class="text-sm text-gray-600"></p>
-            </div>
-        </div>
+  <style>@view-transition { navigation: auto; }</style>
+  <script src="https://cdn.tailwindcss.com" type="text/javascript"></script>
+ </head>
+ <body>
+  <div class="container">
+   <header class="header">
+    <h1 id="app-title">تعليم القراءة للأطفال</h1>
+    <p class="welcome-text" id="welcome-message">مرحباً بك في رحلة تعلم القراءة!</p>
+    <div class="school-illustration">
+     🏫 <span class="student-avatar">👧</span> <span class="student-avatar">👦</span> 📚
     </div>
-
-
-    <script>
-        // المتغيرات العامة
-        let currentUser = '';
-        let currentMode = '';
-        let currentQuestionIndex = 0;
-        let userAnswers = [];
-        let quizQuestions = [];
-        let timerInterval;
-        let timeLeft = 0; 
-        let quizRunning = false;
-        let isReviewMode = false;
-        let reviewQuestions = [];
-        let userPoints = {
-            individual: parseInt(localStorage.getItem('individualPoints') || '0'),
-            group: parseInt(localStorage.getItem('groupPoints') || '0')
+   </header><!-- نموذج تسجيل الاسم -->
+   <div id="name-registration" class="name-registration">
+    <h2>مرحباً بك! ما اسمك؟</h2>
+    <p>سجلي اسمك لتحصلي على شهادة تفوق عند إنجاز 70% من الأسئلة</p><input type="text" id="student-name-input" class="name-input" placeholder="اكتبي اسمك هنا..." maxlength="20"> <br><button id="start-learning" class="start-btn">ابدأ التعلم 🌟</button>
+   </div>
+   <main id="main-game" class="game-area hidden">
+    <div class="level-selector"><button class="level-btn active" data-level="1">المستوى الأول - نطق الكلمات</button> <button class="level-btn" data-level="2">المستوى الثاني - ترتيب الأحرف</button> <button class="level-btn" data-level="3">المستوى الثالث - ترتيب الكلمات</button> <button class="level-btn" data-level="4">المستوى الرابع - إكمال الكلمات</button>
+    </div>
+    <div class="progress-bar">
+     <div class="progress-fill" id="progress-fill" style="width: 0%">
+      0%
+     </div>
+    </div>
+    <div class="score-display">
+     الطالبة: <span id="student-name-display">غير محدد</span> | النقاط: <span id="score">0</span> | الإجابات الصحيحة: <span id="correct-answers">0</span>/<span id="total-questions">0</span> (<span id="success-percentage">0</span>%)
+    </div><!-- المستوى الأول: نطق الكلمات -->
+    <div id="level-1" class="level-content">
+     <div class="word-display">
+      <div class="current-word" id="current-word">
+       قرأ
+      </div>
+      <div class="word-meaning" id="word-meaning">
+       فعل يعني النظر في الكتاب وفهم معناه
+      </div>
+     </div>
+     <div class="controls"><button class="control-btn" id="play-word"> 🔊 استمع للكلمة </button> <button class="control-btn mic-btn" id="record-btn"> 🎤 انطق الكلمة </button> <button class="control-btn" id="next-word"> ➡️ الكلمة التالية </button>
+     </div>
+     <div id="voice-feedback" class="voice-feedback hidden">
+      <div id="recognized-text"></div>
+      <div id="confidence-score" class="voice-confidence"></div>
+     </div>
+    </div><!-- المستوى الثاني: ترتيب الأحرف -->
+    <div id="level-2" class="level-content hidden">
+     <div class="word-display">
+      <div class="current-word" id="target-word">
+       قرأ
+      </div>
+      <div class="word-meaning">
+       رتب الأحرف لتكوين الكلمة
+      </div>
+     </div>
+     <div class="drag-drop-area" id="letters-container"><!-- سيتم إضافة الأحرف هنا -->
+     </div>
+     <div class="drag-drop-area" id="word-builder"><!-- منطقة بناء الكلمة -->
+     </div>
+     <div class="controls"><button class="control-btn" id="check-word">✅ تحقق من الكلمة</button> <button class="control-btn" id="reset-letters">🔄 إعادة ترتيب</button>
+     </div>
+    </div><!-- المستوى الثالث: ترتيب الكلمات -->
+    <div id="level-3" class="level-content hidden">
+     <div class="word-display">
+      <div class="current-word">
+       كون جملة مفيدة
+      </div>
+      <div class="word-meaning">
+       اسحب الكلمات لتكوين جملة صحيحة
+      </div>
+     </div>
+     <div class="drag-drop-area" id="words-container"><!-- سيتم إضافة الكلمات هنا -->
+     </div>
+     <div class="drag-drop-area" id="sentence-builder"><!-- منطقة بناء الجملة -->
+     </div>
+     <div class="controls"><button class="control-btn" id="check-sentence">✅ تحقق من الجملة</button> <button class="control-btn" id="reset-words">🔄 إعادة ترتيب</button>
+     </div>
+    </div><!-- المستوى الرابع: إكمال الكلمات -->
+    <div id="level-4" class="level-content hidden">
+     <div class="word-display">
+      <div class="current-word" id="incomplete-word">
+       مدر_ة
+      </div>
+      <div class="word-meaning">
+       اختر الحرف المناسب لإكمال الكلمة
+      </div>
+     </div>
+     <div class="multiple-choice" id="choices-container"><!-- سيتم إضافة الخيارات هنا -->
+     </div>
+    </div>
+    <div class="feedback" id="feedback"></div>
+   </main><!-- شهادة التفوق -->
+   <div id="certificate" class="certificate hidden">
+    <div class="certificate-stars">
+     ⭐ 🌟 ⭐
+    </div>
+    <h2 class="certificate-title" id="certificate-title">شهادة تفوق في القراءة</h2>
+    <div class="certificate-content">
+     نشهد بأن الطالبة المتميزة 
+     <div class="student-name-cert" id="student-name-cert"></div> قد أتمت بنجاح برنامج تعليم القراءة والإملاء <br>
+      وحصلت على نسبة نجاح <span id="final-percentage">0</span>% <br>
+      في <span id="certificate-date"></span>
+    </div>
+    <div class="certificate-stars">
+     🏆 👑 🏆
+    </div>
+    <div class="certificate-footer">
+     تهانينا على هذا الإنجاز الرائع!
+    </div>
+   </div>
+   <div class="celebration" id="celebration"></div><!-- توقيع لمى -->
+   <div class="signature">
+    <div class="signature-content">
+     <div class="gem">
+      💎
+     </div>
+     <div class="signature-name">
+      لمى
+     </div>
+     <div class="gem">
+      💎
+     </div>
+    </div>
+   </div>
+  </div>
+  <script>
+        // إعداد البيانات والمتغيرات
+        const defaultConfig = {
+            app_title: "تعليم القراءة للأطفال",
+            welcome_message: "مرحباً بك في رحلة تعلم القراءة!",
+            success_message: "أحسنت! إجابة صحيحة",
+            retry_message: "حاولي مرة أخرى",
+            certificate_title: "شهادة تفوق في القراءة",
+            background_color: "#ffeef8",
+            surface_color: "#ffffff",
+            text_color: "#ff1493",
+            primary_action_color: "#ff69b4",
+            secondary_action_color: "#ffc1cc"
         };
-        let bookmarkedQuestions = [];
-        let usedQuestions = JSON.parse(localStorage.getItem('usedQuestions_' + currentUser) || '[]');
-        let challengeData = {}; // بيانات وهمية للتحدي الجماعي
 
-        // ===============================================
-        // قاعدة بيانات الأسئلة المحاكية لاختبار القدرات (Qudurat)
-        // (تم الاحتفاظ بها كما هي لأنها احترافية)
-        // ===============================================
-        const questionsDatabase = {
-            reading: [
-                {
-                    question: `اقرأ النص التالي ثم أجب:
+        let currentLevel = 1;
+        let currentWordIndex = 0;
+        let score = 0;
+        let correctAnswers = 0;
+        let totalQuestions = 0;
+        let isRecording = false;
+        let recognition = null;
+        let currentData = [];
+        let studentName = "";
+        let certificateEarned = false;
 
-"يُعد النانو تكنولوجي ثورة علمية جديدة، فمن خلالها يمكن التعامل مع المادة على مقياس الذرات والجزيئات، مما يفتح آفاقاً غير مسبوقة في مجالات الطب والإلكترونيات والطاقة. لكن تطبيقها على نطاق واسع يواجه تحديات تتعلق بالتكلفة المرتفعة والمخاطر البيئية المحتملة."
-
-ما التحدي الأبرز الذي يواجه تطبيق تقنية النانو؟`,
-                    options: ["التعامل مع المادة على مقياس الذرات", "التكلفة المرتفعة والمخاطر البيئية", "آفاقها في الطب والإلكترونيات", "كونها ثورة علمية جديدة"],
-                    correct: 1,
-                    explanation: "النص يذكر بوضوح أن تطبيقها على نطاق واسع يواجه تحديات تتعلق بالتكلفة المرتفعة والمخاطر البيئية المحتملة.",
-                    points: 5, type: "reading", difficulty: "متوسط", id: "reading_1"
-                },
-                {
-                    question: `ما هي علاقة الجملة "مما يفتح آفاقاً غير مسبوقة..." بما قبلها؟`,
-                    options: ["تأكيد", "تعليل", "نتيجة", "استدراك"],
-                    correct: 2,
-                    explanation: "الجملة نتيجة منطقية لـ'التعامل مع المادة على مقياس الذرات والجزيئات'.",
-                    points: 6, type: "reading", difficulty: "متقدم", id: "reading_2"
-                },
-                {
-                    question: `اقرأ النص التالي:\n\n"الزلازل هي ظاهرة طبيعية تحدث نتيجة تحرك الصفائح التكتونية. إنها قد تتسبب في دمار هائل وخسائر في الأرواح، لذلك فإن التنبؤ بها يظل تحدياً كبيراً للعلماء، لكن الدراسات المستمرة حول السلوك الجيولوجي للأرض هي الأمل الوحيد لتحقيق ذلك."\n\nما الذي يمثل الأمل للعلماء في مواجهة تحدي التنبؤ بالزلازل؟`,
-                    options: ["حدوث تحرك الصفائح التكتونية", "استمرار الزلازل كظاهرة طبيعية", "الدراسات المستمرة حول السلوك الجيولوجي", "الدمار الهائل والخسائر في الأرواح"],
-                    correct: 2,
-                    explanation: "النص يوضح أن الدراسات المستمرة حول السلوك الجيولوجي للأرض هي الأمل الوحيد للتنبؤ بالزلازل.",
-                    points: 5, type: "reading", difficulty: "متوسط", id: "reading_3"
-                }
+        // بيانات موسعة للكلمات والجمل
+        const wordsData = {
+            level1: [
+                { word: "قرأ", meaning: "فعل يعني النظر في الكتاب وفهم معناه" },
+                { word: "كتب", meaning: "فعل يعني الكتابة بالقلم" },
+                { word: "زرع", meaning: "فعل يعني وضع البذور في الأرض" },
+                { word: "حصد", meaning: "فعل يعني قطف الثمار" },
+                { word: "مدرسة", meaning: "مكان التعلم والدراسة" },
+                { word: "طالب", meaning: "الشخص الذي يتعلم" },
+                { word: "معلم", meaning: "الشخص الذي يعلم الآخرين" },
+                { word: "كتاب", meaning: "مجموعة من الصفحات للقراءة" },
+                { word: "قلم", meaning: "أداة للكتابة" },
+                { word: "دفتر", meaning: "مجموعة أوراق للكتابة" },
+                { word: "حقيبة", meaning: "وعاء لحمل الأشياء" },
+                { word: "نافذة", meaning: "فتحة في الجدار للنظر خارجاً" },
+                { word: "باب", meaning: "مدخل للغرفة أو المنزل" },
+                { word: "شمس", meaning: "النجم الذي ينير الأرض" },
+                { word: "قمر", meaning: "القمر الذي ينير الليل" },
+                { word: "نجم", meaning: "جسم مضيء في السماء" },
+                { word: "بحر", meaning: "مساحة كبيرة من الماء المالح" },
+                { word: "جبل", meaning: "ارتفاع كبير من الأرض" },
+                { word: "شجرة", meaning: "نبات كبير له جذع وأوراق" },
+                { word: "زهرة", meaning: "جزء جميل وملون من النبات" },
+                { word: "طائر", meaning: "حيوان يطير في السماء" },
+                { word: "سمك", meaning: "حيوان يعيش في الماء" },
+                { word: "قطة", meaning: "حيوان أليف صغير" },
+                { word: "كلب", meaning: "حيوان أليف وفي" },
+                { word: "حصان", meaning: "حيوان كبير للركوب" }
             ],
-            relation: [
-                {
-                    question: "أي من الكلمات التالية لا تنتمي للمجموعة؟ (شجاعة - كرم - بخل - أمانة)",
-                    options: ["شجاعة", "كرم", "بخل", "أمانة"],
-                    correct: 2,
-                    explanation: "البخل صفة سلبية أو رذيلة، بينما الباقي صفات إيجابية أو فضائل.",
-                    points: 4, type: "relation", difficulty: "سهل", id: "relation_1"
-                },
-                {
-                    question: "أي من الكلمات التالية لا تنتمي للمجموعة؟ (الذهب - الألماس - الفضة - النحاس)",
-                    options: ["الذهب", "الألماس", "الفضة", "النحاس"],
-                    correct: 1,
-                    explanation: "الألماس معدن لا فلزي (كربون)، بينما الباقي معادن فلزية.",
-                    points: 5, type: "relation", difficulty: "متوسط", id: "relation_2"
-                },
-                {
-                    question: "أي من الكلمات التالية لا تنتمي للمجموعة؟ (تضخم - ارتفاع - صعود - هبوط)",
-                    options: ["تضخم", "ارتفاع", "صعود", "هبوط"],
-                    correct: 3,
-                    explanation: "هبوط يدل على الانخفاض، بينما باقي الكلمات تدل على الزيادة أو الارتفاع.",
-                    points: 4, type: "relation", difficulty: "سهل", id: "relation_3"
-                }
+            level2: [
+                { word: "قرأ", letters: ["ق", "ر", "أ"] },
+                { word: "كتب", letters: ["ك", "ت", "ب"] },
+                { word: "زرع", letters: ["ز", "ر", "ع"] },
+                { word: "حصد", letters: ["ح", "ص", "د"] },
+                { word: "مدرسة", letters: ["م", "د", "ر", "س", "ة"] },
+                { word: "طالب", letters: ["ط", "ا", "ل", "ب"] },
+                { word: "معلم", letters: ["م", "ع", "ل", "م"] },
+                { word: "كتاب", letters: ["ك", "ت", "ا", "ب"] },
+                { word: "قلم", letters: ["ق", "ل", "م"] },
+                { word: "دفتر", letters: ["د", "ف", "ت", "ر"] },
+                { word: "حقيبة", letters: ["ح", "ق", "ي", "ب", "ة"] },
+                { word: "نافذة", letters: ["ن", "ا", "ف", "ذ", "ة"] },
+                { word: "باب", letters: ["ب", "ا", "ب"] },
+                { word: "شمس", letters: ["ش", "م", "س"] },
+                { word: "قمر", letters: ["ق", "م", "ر"] },
+                { word: "بحر", letters: ["ب", "ح", "ر"] },
+                { word: "جبل", letters: ["ج", "ب", "ل"] },
+                { word: "شجرة", letters: ["ش", "ج", "ر", "ة"] },
+                { word: "زهرة", letters: ["ز", "ه", "ر", "ة"] },
+                { word: "طائر", letters: ["ط", "ا", "ئ", "ر"] }
             ],
-            context: [
-                {
-                    question: "ابحث عن الخطأ السياقي في الجملة التالية: 'من أقوى أسباب الفشل في الحياة **الاجتماع** مع الفاشلين، ومن أقوى أسباب النجاح **الإقبال** عليهم.'",
-                    options: ["الفشل", "الاجتماع", "النجاح", "الإقبال"],
-                    correct: 3,
-                    explanation: "الخطأ في كلمة 'الإقبال'. الصحيح هو 'الإعراض' عن الفاشلين، أو 'الاجتماع' مع الناجحين و'الإقبال' عليهم.",
-                    points: 5, type: "context", difficulty: "متوسط", id: "context_1"
-                },
-                {
-                    question: "ابحث عن الخطأ السياقي في الجملة التالية: 'إذا أردت أن تعيش **مطمئناً** فلا تكن **سريع** **الغضب** **والانفعال**.'",
-                    options: ["مطمئناً", "سريع", "الغضب", "والانفعال"],
-                    correct: 0,
-                    explanation: "كلمة 'مطمئناً' هي الخطأ، فمن لا يكون سريع الغضب يعيش 'هادئاً' أو 'مرتاحاً' وليس بالضرورة 'مطمئناً' (المطمئنة تتطلب عوامل أخرى). الأقرب للصحة هي 'هادئاً'.",
-                    points: 6, type: "context", difficulty: "متقدم", id: "context_2"
-                }
+            level3: [
+                { sentence: "الطالب يقرأ الكتاب", words: ["الطالب", "يقرأ", "الكتاب"] },
+                { sentence: "المعلم يكتب على السبورة", words: ["المعلم", "يكتب", "على", "السبورة"] },
+                { sentence: "الفلاح يزرع القمح", words: ["الفلاح", "يزرع", "القمح"] },
+                { sentence: "الطفل يذهب إلى المدرسة", words: ["الطفل", "يذهب", "إلى", "المدرسة"] },
+                { sentence: "الشمس تشرق في الصباح", words: ["الشمس", "تشرق", "في", "الصباح"] },
+                { sentence: "القمر ينير في الليل", words: ["القمر", "ينير", "في", "الليل"] },
+                { sentence: "الطائر يطير في السماء", words: ["الطائر", "يطير", "في", "السماء"] },
+                { sentence: "السمك يسبح في البحر", words: ["السمك", "يسبح", "في", "البحر"] },
+                { sentence: "الزهرة تنمو في الحديقة", words: ["الزهرة", "تنمو", "في", "الحديقة"] },
+                { sentence: "الطالبة تحل الواجب", words: ["الطالبة", "تحل", "الواجب"] },
+                { sentence: "الأم تطبخ الطعام", words: ["الأم", "تطبخ", "الطعام"] },
+                { sentence: "الأب يقود السيارة", words: ["الأب", "يقود", "السيارة"] },
+                { sentence: "الطفلة تلعب بالكرة", words: ["الطفلة", "تلعب", "بالكرة"] },
+                { sentence: "الكتاب موجود على الطاولة", words: ["الكتاب", "موجود", "على", "الطاولة"] },
+                { sentence: "القطة تنام تحت الشجرة", words: ["القطة", "تنام", "تحت", "الشجرة"] }
             ],
-            analogy: [
-                {
-                    question: "عين : رؤية :: أذن : ؟",
-                    options: ["سمع", "صوت", "موسيقى", "ضوضاء"],
-                    correct: 0,
-                    explanation: "العلاقة هي (عضو : وظيفته). العين وظيفتها الرؤية، والأذن وظيفتها السمع.",
-                    points: 4, type: "analogy", difficulty: "سهل", id: "analogy_1"
-                },
-                {
-                    question: "كتاب : مكتبة :: متحف : ؟",
-                    options: ["زوار", "أثر", "آثار", "تاريخ"],
-                    correct: 2,
-                    explanation: "العلاقة هي (محتوى : مكان تواجده). الكتاب يوجد في المكتبة، والآثار توجد في المتحف.",
-                    points: 5, type: "analogy", difficulty: "متوسط", id: "analogy_2"
-                },
-                {
-                    question: "جندي : درع :: عالم : ؟",
-                    options: ["بحث", "نظرية", "كتاب", "تجارب"],
-                    correct: 1,
-                    explanation: "العلاقة هي (شخص : أداة حماية/إثبات عمله). الجندي يستخدم الدرع، والعالم يستخدم النظرية للإثبات والعمل.",
-                    points: 6, type: "analogy", difficulty: "متقدم", id: "analogy_3"
-                }
-            ],
-            completion: [
-                {
-                    question: "إنَّ القراءة تجعل العقل أكثر _____، وتمنحه القدرة على _____ الأفكار الجديدة.",
-                    options: ["مرونة - استيعاب", "صلابة - رفض", "غموضاً - تجاهل", "قوة - محاربة"],
-                    correct: 0,
-                    explanation: "القراءة تزيد من مرونة العقل وقدرته على استيعاب الأفكار الجديدة، مما يتوافق مع المعنى الإيجابي للجملة.",
-                    points: 5, type: "completion", difficulty: "متوسط", id: "completion_1"
-                },
-                {
-                    question: "يُعد التخطيط الجيد هو _____ لتحقيق الأهداف، بينما العشوائية هي طريق _____.",
-                    options: ["مفتاح - الفشل", "عقبة - النجاح", "بديل - التطور", "نهاية - السعادة"],
-                    correct: 0,
-                    explanation: "التخطيط الجيد هو مفتاح النجاح (تحقيق الأهداف)، والعشوائية تؤدي إلى الفشل، وهي علاقة منطقية وتضاد صحيح.",
-                    points: 4, type: "completion", difficulty: "سهل", id: "completion_2"
-                }
-            ],
-            statistics: [
-                {
-                    question: "إذا كان متوسط درجات 5 طلاب هو 80، وأضفنا طالباً سادساً بدرجة 95، فما المتوسط الجديد؟",
-                    options: ["82.5", "83", "84", "85"],
-                    correct: 0,
-                    explanation: "مجموع درجات 5 طلاب = 5 × 80 = 400. مجموع درجات 6 طلاب = 400 + 95 = 495. المتوسط الجديد = 495 ÷ 6 = 82.5.",
-                    points: 6, type: "statistics", difficulty: "متوسط", id: "statistics_1"
-                },
-                {
-                    question: "إذا كان عدد الطلاب في صف 30، ونجح منهم 24 طالباً. فما هي النسبة المئوية للرسوب؟",
-                    options: ["10%", "20%", "25%", "80%"],
-                    correct: 1,
-                    explanation: "عدد الطلاب الراسبين = 30 - 24 = 6. النسبة المئوية للرسوب = (الراسبين / الإجمالي) × 100 = (6 / 30) × 100 = (1/5) × 100 = 20%.",
-                    points: 5, type: "statistics", difficulty: "سهل", id: "statistics_2"
-                }
-            ],
-            geometry: [
-                {
-                    question: "إذا كان طول ضلع مربع 6 سم، وطول نصف قطر دائرة 3 سم. كم تبلغ مساحة الجزء المتبقي من المربع بعد رسم الدائرة بداخله؟ (اعتبر ط = 3.14)",
-                    options: ["36 سم²", "18.24 سم²", "7.26 سم²", "31.74 سم²"],
-                    correct: 2,
-                    explanation: "مساحة المربع = الضلع × الضلع = 6 × 6 = 36 سم². الدائرة المرسومة بداخل المربع أقصى نصف قطر لها هو نصف طول الضلع، أي 3 سم. مساحة الدائرة = ط × نق² = 3.14 × 3² = 3.14 × 9 = 28.26 سم². مساحة الجزء المتبقي = مساحة المربع - مساحة الدائرة = 36 - 28.26 = 7.74 سم². (تم تعديل الاختيار الصحيح داخليًا ليتوافق مع أقرب إجابة منطقية، وتم وضع الشرح الصحيح).",
-                    points: 7, type: "geometry", difficulty: "متقدم", id: "geometry_1"
-                },
-                {
-                    question: "في مثلث قائم الزاوية، إذا كان طول أحد الأضلاع المحيطة بالزاوية القائمة 3 وحدات والوتر 5 وحدات، فما طول الضلع الثالث؟",
-                    options: ["4", "6", "8", "10"],
-                    correct: 0,
-                    explanation: "نستخدم نظرية فيثاغورس (أ² + ب² = ج²). 3² + ب² = 5². 9 + ب² = 25. ب² = 25 - 9 = 16. ب = 4.",
-                    points: 5, type: "geometry", difficulty: "متوسط", id: "geometry_2"
-                }
-            ],
-            algebra: [
-                {
-                    question: "إذا كان س + ص = 12 و س - ص = 4، فما قيمة س؟",
-                    options: ["8", "6", "4", "2"],
-                    correct: 0,
-                    explanation: "بجمع المعادلتين: (س + ص) + (س - ص) = 12 + 4. 2س = 16. س = 8.",
-                    points: 5, type: "algebra", difficulty: "سهل", id: "algebra_1"
-                },
-                {
-                    question: "إذا كان 3س = 18، فما قيمة 5س - 10؟",
-                    options: ["10", "15", "20", "25"],
-                    correct: 1,
-                    explanation: "من المعادلة الأولى: 3س = 18، إذن س = 18 ÷ 3 = 6. بالتعويض في المطلوب: 5س - 10 = (5 × 6) - 10 = 30 - 10 = 20.",
-                    points: 6, type: "algebra", difficulty: "متوسط", id: "algebra_2"
-                }
-            ],
-            arithmetic: [
-                {
-                    question: "قارن بين (2/3) و (3/4)",
-                    options: ["القيمة الأولى أكبر", "القيمة الثانية أكبر", "القيمتان متساويتان", "المعلومات غير كافية"],
-                    correct: 1,
-                    explanation: "للمقارنة، نوحد المقامات: (2/3) تصبح (8/12). و (3/4) تصبح (9/12). بما أن 9 > 8، فإن (3/4) أكبر من (2/3).",
-                    points: 4, type: "arithmetic", difficulty: "سهل", id: "arithmetic_1"
-                },
-                {
-                    question: "كم عدد الأعداد الصحيحة بين 1/3 و 20/3؟",
-                    options: ["5", "6", "7", "8"],
-                    correct: 1,
-                    explanation: "1/3 ≈ 0.33. 20/3 ≈ 6.66. الأعداد الصحيحة التي تقع بينهما هي: 1، 2، 3، 4، 5، 6. العدد هو 6.",
-                    points: 5, type: "arithmetic", difficulty: "متوسط", id: "arithmetic_2"
-                }
-            ],
-            comparison: [
-                {
-                    question: "قارن بين:\nالقيمة الأولى: (1/5) + (1/4)\nالقيمة الثانية: (1/9) + (1/3)",
-                    options: ["القيمة الأولى أكبر", "القيمة الثانية أكبر", "القيمتان متساويتان", "المعلومات غير كافية"],
-                    correct: 0,
-                    explanation: "القيمة الأولى: (1/5) + (1/4) = (4/20) + (5/20) = 9/20 = 0.45. القيمة الثانية: (1/9) + (1/3) = (1/9) + (3/9) = 4/9 ≈ 0.444. القيمة الأولى أكبر.",
-                    points: 6, type: "comparison", difficulty: "متقدم", id: "comparison_1"
-                },
-                {
-                    question: "قارن بين:\nالقيمة الأولى: خمسة أمثال العدد 3\nالقيمة الثانية: 3 أمثال العدد 5",
-                    options: ["القيمة الأولى أكبر", "القيمة الثانية أكبر", "القيمتان متساويتان", "المعلومات غير كافية"],
-                    correct: 2,
-                    explanation: "القيمة الأولى = 5 × 3 = 15. القيمة الثانية = 3 × 5 = 15. القيمتان متساويتان.",
-                    points: 4, type: "comparison", difficulty: "سهل", id: "comparison_2"
-                }
+            level4: [
+                { word: "مدرسة", incomplete: "مدر_ة", choices: ["س", "ص", "ض", "ط"], correct: "س" },
+                { word: "كتاب", incomplete: "كت_ب", choices: ["ا", "و", "ي", "ة"], correct: "ا" },
+                { word: "طالب", incomplete: "طا_ب", choices: ["ل", "ر", "ن", "م"], correct: "ل" },
+                { word: "معلم", incomplete: "مع_م", choices: ["ل", "ر", "ن", "د"], correct: "ل" },
+                { word: "حديقة", incomplete: "حد_قة", choices: ["ي", "و", "ا", "ة"], correct: "ي" },
+                { word: "نافذة", incomplete: "نا_ذة", choices: ["ف", "ق", "ك", "ت"], correct: "ف" },
+                { word: "طائر", incomplete: "طا_ر", choices: ["ئ", "ي", "و", "ا"], correct: "ئ" },
+                { word: "شجرة", incomplete: "ش_رة", choices: ["ج", "ح", "خ", "غ"], correct: "ج" },
+                { word: "زهرة", incomplete: "ز_رة", choices: ["ه", "ح", "خ", "غ"], correct: "ه" },
+                { word: "حقيبة", incomplete: "حق_بة", choices: ["ي", "و", "ا", "ة"], correct: "ي" },
+                { word: "سيارة", incomplete: "س_ارة", choices: ["ي", "و", "ا", "ة"], correct: "ي" },
+                { word: "طاولة", incomplete: "طا_لة", choices: ["و", "ي", "ا", "ة"], correct: "و" },
+                { word: "مكتبة", incomplete: "مكت_ة", choices: ["ب", "ت", "ث", "ن"], correct: "ب" },
+                { word: "حاسوب", incomplete: "حا_وب", choices: ["س", "ص", "ض", "ط"], correct: "س" },
+                { word: "تلفاز", incomplete: "تل_از", choices: ["ف", "ق", "ك", "ت"], correct: "ف" }
             ]
         };
 
-        // ===============================================
-        // وظائف مساعدة لعرض الشاشات
-        // ===============================================
-        function showScreen(screenId) {
-            const screens = ['registrationScreen', 'modeSelectionScreen', 'questionTypeScreen', 'groupSizeScreen', 'challengeLinkScreen', 'quizScreen', 'resultsScreen'];
-            screens.forEach(id => {
-                document.getElementById(id).classList.add('hidden');
-            });
-            document.getElementById(screenId).classList.remove('hidden');
-        }
-
-        function showNotification(message, type = 'info', title = 'إشعار') {
-            const notification = document.getElementById('notification');
-            const iconElement = document.getElementById('notificationIcon');
-            
-            // تحديث محتوى الإشعار
-            document.getElementById('notificationTitle').textContent = title;
-            document.getElementById('notificationMessage').textContent = message;
-
-            // تحديث النوع (class) والرمز
-            notification.className = `notification ${type} hidden`; // إعادة تعيين الكلاس
-            
-            let icon = '';
-            switch (type) {
-                case 'success':
-                    icon = '✅';
-                    break;
-                case 'error':
-                    icon = '❌';
-                    break;
-                case 'info':
-                    icon = 'ℹ️';
-                    break;
-                case 'warning':
-                    icon = '⚠️';
-                    break;
+        // إعداد SDK للبيانات
+        const dataHandler = {
+            onDataChanged(data) {
+                currentData = data;
+                updateProgressDisplay();
             }
-            iconElement.textContent = icon;
+        };
+
+        // إعداد SDK للعناصر
+        async function onConfigChange(config) {
+            const appTitle = config.app_title || defaultConfig.app_title;
+            const welcomeMessage = config.welcome_message || defaultConfig.welcome_message;
+            const certificateTitle = config.certificate_title || defaultConfig.certificate_title;
             
-            // عرض الإشعار
-            notification.classList.remove('hidden');
-            setTimeout(() => {
-                notification.classList.add('show');
-            }, 50);
-
-            // إخفاء الإشعار بعد 4 ثوانٍ
-            setTimeout(() => {
-                notification.classList.remove('show');
-                setTimeout(() => {
-                    notification.classList.add('hidden');
-                }, 300); // يتطابق مع مدة الانتقال
-            }, 4000);
-        }
-
-        // ===============================================
-        // وظائف التسجيل واختيار النمط
-        // ===============================================
-        // تم نقل الـ Event Listener داخل وظيفة التهيئة لضمان عملها بعد تحميل DOM
-        function handleRegistration(e) {
-            e.preventDefault();
-            const studentNameInput = document.getElementById('studentName');
-            currentUser = studentNameInput ? studentNameInput.value.trim() : '';
-
-            if (currentUser) {
-                localStorage.setItem('currentUser', currentUser);
-                showNotification(`مرحباً بك، ${currentUser}!`, 'success');
-                showScreen('modeSelectionScreen');
-                updatePointsDisplay();
-            } else {
-                showNotification('الرجاء إدخال اسم الطالب.', 'error');
-            }
-        }
-
-        function selectMode(mode) {
-            currentMode = mode;
-            if (mode === 'individual') {
-                showScreen('questionTypeScreen');
-                showNotification('تم اختيار التدريب الفردي. يرجى تخصيص الاختبار.', 'info');
-            } else if (mode === 'group') {
-                showScreen('groupSizeScreen');
-                showNotification('تم اختيار التحدي الجماعي. قم بإعداد التحدي.', 'info');
-            }
-        }
-
-        // ===============================================
-        // وظائف اختيار الأسئلة (تخصيص الاختبار)
-        // ===============================================
-        const questionTypeInputs = document.querySelectorAll('#questionTypeScreen input[type="number"]');
-
-        function updateTestSummary() {
-            let totalQuestions = 0;
-            questionTypeInputs.forEach(input => {
-                totalQuestions += parseInt(input.value) || 0;
-            });
+            document.getElementById('app-title').textContent = appTitle;
+            document.getElementById('welcome-message').textContent = welcomeMessage;
+            document.getElementById('certificate-title').textContent = certificateTitle;
             
-            const estimatedTime = totalQuestions * 1.5; // تقدير دقيقة ونصف للسؤال
+            // تطبيق الألوان
+            const backgroundColor = config.background_color || defaultConfig.background_color;
+            const surfaceColor = config.surface_color || defaultConfig.surface_color;
+            const textColor = config.text_color || defaultConfig.text_color;
+            const primaryActionColor = config.primary_action_color || defaultConfig.primary_action_color;
+            const secondaryActionColor = config.secondary_action_color || defaultConfig.secondary_action_color;
             
-            document.getElementById('totalSelectedQuestions').textContent = totalQuestions;
-            document.getElementById('estimatedTime').textContent = `${estimatedTime} دقيقة`;
-            
-            const proceedBtn = document.getElementById('proceedBtn');
-            proceedBtn.disabled = totalQuestions === 0;
-
-            if (totalQuestions > 50) {
-                showNotification('الحد الأقصى الموصى به للاختبار هو 50 سؤال.', 'warning');
-            }
-        }
-        
-        // وظائف الاختيار السريع
-        function clearAllSelections() {
-            document.querySelectorAll('#questionTypeScreen input[type="number"]').forEach(input => {
-                input.value = 0;
-            });
-            updateTestSummary();
+            document.body.style.background = `linear-gradient(135deg, ${backgroundColor} 0%, ${secondaryActionColor} 50%, ${primaryActionColor} 100%)`;
+            document.querySelector('.game-area').style.backgroundColor = surfaceColor;
+            document.querySelector('.name-registration').style.backgroundColor = surfaceColor;
+            document.querySelector('.current-word').style.color = textColor;
         }
 
-        function setQuickSelection(type) {
-            clearAllSelections();
-            switch (type) {
-                case 'verbal':
-                    document.getElementById('reading-count').value = 5;
-                    document.getElementById('relation-count').value = 5;
-                    document.getElementById('context-count').value = 5;
-                    document.getElementById('analogy-count').value = 3;
-                    document.getElementById('completion-count').value = 2;
-                    break;
-                case 'quantitative':
-                    document.getElementById('statistics-count').value = 4;
-                    document.getElementById('geometry-count').value = 4;
-                    document.getElementById('algebra-count').value = 4;
-                    document.getElementById('arithmetic-count').value = 4;
-                    document.getElementById('comparison-count').value = 4;
-                    break;
-                case 'balanced':
-                    document.getElementById('reading-count').value = 4;
-                    document.getElementById('analogy-count').value = 3;
-                    document.getElementById('completion-count').value = 3;
-                    document.getElementById('statistics-count').value = 5;
-                    document.getElementById('geometry-count').value = 5;
-                    document.getElementById('algebra-count').value = 5;
-                    document.getElementById('comparison-count').value = 5;
-                    break;
-                case 'full':
-                    // اختبار تجريبي كامل 50 سؤال
-                    document.getElementById('reading-count').value = 10;
-                    document.getElementById('relation-count').value = 5;
-                    document.getElementById('context-count').value = 5;
-                    document.getElementById('analogy-count').value = 5;
-                    document.getElementById('completion-count').value = 5;
-                    document.getElementById('statistics-count').value = 5;
-                    document.getElementById('geometry-count').value = 5;
-                    document.getElementById('algebra-count').value = 5;
-                    document.getElementById('arithmetic-count').value = 5;
-                    document.getElementById('comparison-count').value = 5;
-                    break;
-            }
-            updateTestSummary();
-        }
-
-        function proceedWithSelectedQuestions() {
-            quizQuestions = [];
-            let totalTimeInSeconds = 0;
-            
-            const selectedCounts = {};
-            document.querySelectorAll('#questionTypeScreen input[type="number"]').forEach(input => {
-                const type = input.id.replace('-count', '');
-                selectedCounts[type] = parseInt(input.value) || 0;
-            });
-
-            // تجميع الأسئلة المختارة عشوائياً
-            for (const type in selectedCounts) {
-                const count = selectedCounts[type];
-                if (count > 0 && questionsDatabase[type]) {
-                    const availableQuestions = questionsDatabase[type];
-                    
-                    // خلط الأسئلة واختيار العدد المطلوب
-                    const shuffled = availableQuestions.sort(() => 0.5 - Math.random());
-                    const selected = shuffled.slice(0, Math.min(count, availableQuestions.length));
-                    
-                    quizQuestions.push(...selected);
-                }
-            }
-
-            if (quizQuestions.length > 0) {
-                // حساب الوقت بناءً على النقاط (متوسط 1.5 دقيقة/سؤال)
-                totalTimeInSeconds = quizQuestions.length * 90;
-                timeLeft = totalTimeInSeconds;
-
-                // خلط جميع الأسئلة النهائية للتنوع
-                quizQuestions.sort(() => 0.5 - Math.random());
-                
-                startQuiz();
-            } else {
-                showNotification('الرجاء اختيار عدد الأسئلة لبدء الاختبار.', 'error');
-            }
-        }
-        
-        // ===============================================
-        // وظائف التحدي الجماعي (مبسطة/وهمية)
-        // ===============================================
-        function createGroupChallenge() {
-            // وظيفة وهمية لإنشاء تحدي جماعي
-            challengeData = {
-                participants: [{ name: currentUser, score: 0 }],
-                maxParticipants: parseInt(document.getElementById('participantCount').value) || 5,
-                title: 'تحدي القدرات'
+        function mapToCapabilities(config) {
+            return {
+                recolorables: [
+                    {
+                        get: () => config.background_color || defaultConfig.background_color,
+                        set: (value) => {
+                            if (window.elementSdk) {
+                                window.elementSdk.setConfig({ background_color: value });
+                            }
+                        }
+                    },
+                    {
+                        get: () => config.surface_color || defaultConfig.surface_color,
+                        set: (value) => {
+                            if (window.elementSdk) {
+                                window.elementSdk.setConfig({ surface_color: value });
+                            }
+                        }
+                    },
+                    {
+                        get: () => config.text_color || defaultConfig.text_color,
+                        set: (value) => {
+                            if (window.elementSdk) {
+                                window.elementSdk.setConfig({ text_color: value });
+                            }
+                        }
+                    },
+                    {
+                        get: () => config.primary_action_color || defaultConfig.primary_action_color,
+                        set: (value) => {
+                            if (window.elementSdk) {
+                                window.elementSdk.setConfig({ primary_action_color: value });
+                            }
+                        }
+                    },
+                    {
+                        get: () => config.secondary_action_color || defaultConfig.secondary_action_color,
+                        set: (value) => {
+                            if (window.elementSdk) {
+                                window.elementSdk.setConfig({ secondary_action_color: value });
+                            }
+                        }
+                    }
+                ],
+                borderables: [],
+                fontEditable: undefined,
+                fontSizeable: undefined
             };
-            
-            // يجب تحديث هذه العناصر لكي لا تسبب خطأ
-            document.getElementById('currentParticipants').textContent = challengeData.participants.length;
-            document.getElementById('totalParticipants').textContent = challengeData.maxParticipants;
-            
-            showScreen('challengeLinkScreen');
-            showNotification('تم إنشاء التحدي بنجاح! رابط تحدي وهمي للاختبار/challenge-12345', 'success');
         }
 
-        function copyLink() {
-            navigator.clipboard.writeText(document.getElementById('challengeLink').textContent)
-                .then(() => showNotification('تم نسخ رابط التحدي!', 'success'))
-                .catch(err => showNotification('فشل النسخ، يرجى المحاولة يدوياً.', 'error'));
+        function mapToEditPanelValues(config) {
+            return new Map([
+                ["app_title", config.app_title || defaultConfig.app_title],
+                ["welcome_message", config.welcome_message || defaultConfig.welcome_message],
+                ["success_message", config.success_message || defaultConfig.success_message],
+                ["retry_message", config.retry_message || defaultConfig.retry_message],
+                ["certificate_title", config.certificate_title || defaultConfig.certificate_title]
+            ]);
         }
 
-        // ===============================================
-        // وظائف الاختبار الرئيسية (Quiz)
-        // ===============================================
-        function startQuiz() {
-            if (quizQuestions.length === 0) {
-                // في حالة التحدي الجماعي، نستخدم إعدادات افتراضية
-                if (currentMode === 'group') {
-                    setQuickSelection('balanced'); // إعداد افتراضي للتحدي
-                    // يجب أن تتأكد أن الدالة proceedWithSelectedQuestions() تم ملؤها بنجاح قبل الاستمرار
-                    const selectedCounts = {};
-                    document.querySelectorAll('#questionTypeScreen input[type="number"]').forEach(input => {
-                         const type = input.id.replace('-count', '');
-                         selectedCounts[type] = parseInt(input.value) || 0;
+        // تهيئة التطبيق
+        async function initApp() {
+            try {
+                // تهيئة SDK البيانات
+                if (window.dataSdk) {
+                    const initResult = await window.dataSdk.init(dataHandler);
+                    if (!initResult.isOk) {
+                        console.error("فشل في تهيئة SDK البيانات");
+                    }
+                }
+
+                // تهيئة SDK العناصر
+                if (window.elementSdk) {
+                    await window.elementSdk.init({
+                        defaultConfig,
+                        onConfigChange,
+                        mapToCapabilities,
+                        mapToEditPanelValues
                     });
-                    if (Object.values(selectedCounts).reduce((a, b) => a + b, 0) === 0) {
-                         showNotification('لم يتم تحديد أسئلة للاختبار.', 'error');
-                         return;
-                    }
-                    proceedWithSelectedQuestions();
-                    return;
                 }
-                showNotification('لم يتم تحديد أسئلة للاختبار.', 'error');
-                return;
+
+                initSpeechRecognition();
+                setupEventListeners();
+            } catch (error) {
+                console.error("خطأ في تهيئة التطبيق:", error);
             }
-            
-            currentQuestionIndex = 0;
-            userAnswers = Array(quizQuestions.length).fill(null);
-            isReviewMode = false;
-            quizRunning = true;
-            quizStartTime = Date.now();
-            
-            document.getElementById('totalQuestions').textContent = quizQuestions.length;
-            
-            if (currentMode === 'group') {
-                document.getElementById('groupInfo').classList.remove('hidden');
-                document.getElementById('quizParticipants').textContent = challengeData.participants ? challengeData.participants.length : 1;
-            } else {
-                document.getElementById('groupInfo').classList.add('hidden');
-            }
-            
-            showScreen('quizScreen');
-            renderQuestion();
-            startTimer();
-            showNotification('بدأ الاختبار! بالتوفيق.', 'success', 'انطلق');
         }
 
-        function renderQuestion() {
-            if (currentQuestionIndex >= quizQuestions.length) {
-                endQuiz();
-                return;
-            }
-
-            const questionData = quizQuestions[currentQuestionIndex];
-            const optionsContainer = document.getElementById('questionOptions');
-            const explanationContainer = document.getElementById('explanationContainer');
-            const bookmarkBtn = document.getElementById('bookmarkBtn');
-
-            // إخفاء الشرح قبل عرض السؤال
-            explanationContainer.classList.add('hidden');
-
-            // تحديث شريط التقدم ومعلومات السؤال
-            document.getElementById('currentQuestion').textContent = currentQuestionIndex + 1;
-            document.getElementById('progressBar').style.width = `${((currentQuestionIndex) / quizQuestions.length) * 100}%`;
-            
-            document.getElementById('questionText').textContent = questionData.question;
-            document.getElementById('questionType').textContent = getTypeName(questionData.type); // عرض الاسم الكامل لنوع السؤال
-            document.getElementById('questionPoints').textContent = `${questionData.points} نقاط`;
-            document.getElementById('questionDifficulty').textContent = questionData.difficulty;
-
-            // تحديث زر الإشارة المرجعية
-            if (bookmarkedQuestions.includes(questionData.id)) {
-                bookmarkBtn.innerHTML = '<span class="text-2xl text-yellow-500">🔖</span>';
-            } else {
-                bookmarkBtn.innerHTML = '<span class="text-2xl">🔖</span>';
-            }
-
-            // عرض الخيارات
-            optionsContainer.innerHTML = '';
-            questionData.options.forEach((option, index) => {
-                const button = document.createElement('button');
-                button.className = 'option-button';
-                button.textContent = option;
-                button.setAttribute('data-index', index);
+        // إعداد التعرف على الصوت المحسن
+        function initSpeechRecognition() {
+            if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
+                const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+                recognition = new SpeechRecognition();
                 
-                // تحديد الإجابة السابقة
-                if (userAnswers[currentQuestionIndex] === index) {
-                    button.classList.add('selected');
-                }
+                // إعدادات محسنة للتعرف على الصوت
+                recognition.lang = 'ar-SA';
+                recognition.continuous = false;
+                recognition.interimResults = true;
+                recognition.maxAlternatives = 5;
                 
-                // إضافة معالج حدث للاختيار
-                button.onclick = () => selectAnswer(index);
-                
-                // في وضع المراجعة، يتم عرض الإجابة الصحيحة والخطأ
-                if (isReviewMode) {
-                    button.onclick = null; // تعطيل الاختيار في وضع المراجعة
-                    if (index === questionData.correct) {
-                        button.classList.add('bg-green-100', 'border-green-500', 'text-green-800');
-                    } else if (index === userAnswers[currentQuestionIndex] && index !== questionData.correct) {
-                        button.classList.add('bg-red-100', 'border-red-500', 'text-red-800');
-                    }
+                recognition.onstart = function() {
+                    showVoiceFeedback("جاري الاستماع...", 0);
+                };
+
+                recognition.onresult = function(event) {
+                    let finalTranscript = '';
+                    let interimTranscript = '';
                     
-                    // عرض الشرح في وضع المراجعة
-                    explanationContainer.classList.remove('hidden');
-                    document.getElementById('explanationText').textContent = questionData.explanation;
+                    for (let i = event.resultIndex; i < event.results.length; i++) {
+                        const transcript = event.results[i][0].transcript;
+                        const confidence = event.results[i][0].confidence;
+                        
+                        if (event.results[i].isFinal) {
+                            finalTranscript += transcript;
+                            showVoiceFeedback(`سمعت: "${transcript}"`, confidence);
+                            checkPronunciation(transcript, confidence);
+                        } else {
+                            interimTranscript += transcript;
+                            showVoiceFeedback(`أستمع: "${interimTranscript}"`, 0);
+                        }
+                    }
+                };
+
+                recognition.onerror = function(event) {
+                    let errorMessage = "حدث خطأ في التسجيل";
+                    switch(event.error) {
+                        case 'no-speech':
+                            errorMessage = "لم أسمع صوتك، حاولي مرة أخرى";
+                            break;
+                        case 'audio-capture':
+                            errorMessage = "تأكدي من تشغيل المايك";
+                            break;
+                        case 'not-allowed':
+                            errorMessage = "يرجى السماح باستخدام المايك";
+                            break;
+                        case 'network':
+                            errorMessage = "تحققي من الاتصال بالإنترنت";
+                            break;
+                    }
+                    showFeedback(errorMessage, false);
+                    hideVoiceFeedback();
+                    stopRecording();
+                };
+
+                recognition.onend = function() {
+                    stopRecording();
+                    setTimeout(hideVoiceFeedback, 3000);
+                };
+            }
+        }
+
+        // إعداد مستمعي الأحداث
+        function setupEventListeners() {
+            // تسجيل الاسم
+            document.getElementById('start-learning').addEventListener('click', startLearning);
+            document.getElementById('student-name-input').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    startLearning();
                 }
-                
-                optionsContainer.appendChild(button);
+            });
+
+            // أزرار المستويات
+            document.querySelectorAll('.level-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const level = parseInt(e.target.dataset.level);
+                    loadLevel(level);
+                });
+            });
+
+            // أزرار التحكم
+            document.getElementById('play-word').addEventListener('click', playCurrentWord);
+            document.getElementById('record-btn').addEventListener('click', toggleRecording);
+            document.getElementById('next-word').addEventListener('click', nextWord);
+            document.getElementById('check-word').addEventListener('click', checkWordBuilding);
+            document.getElementById('reset-letters').addEventListener('click', resetLetters);
+            document.getElementById('check-sentence').addEventListener('click', checkSentenceBuilding);
+            document.getElementById('reset-words').addEventListener('click', resetWords);
+        }
+
+        // بدء التعلم
+        function startLearning() {
+            const nameInput = document.getElementById('student-name-input');
+            studentName = nameInput.value.trim();
+            
+            if (!studentName) {
+                nameInput.style.borderColor = '#dc3545';
+                nameInput.placeholder = 'يرجى كتابة اسمك أولاً';
+                return;
+            }
+
+            document.getElementById('student-name-display').textContent = studentName;
+            document.getElementById('name-registration').classList.add('hidden');
+            document.getElementById('main-game').classList.remove('hidden');
+            
+            loadLevel(1);
+        }
+
+        // عرض تغذية راجعة للصوت
+        function showVoiceFeedback(text, confidence) {
+            const feedback = document.getElementById('voice-feedback');
+            const recognizedText = document.getElementById('recognized-text');
+            const confidenceScore = document.getElementById('confidence-score');
+            
+            recognizedText.textContent = text;
+            
+            if (confidence > 0) {
+                const percentage = Math.round(confidence * 100);
+                confidenceScore.textContent = `دقة التعرف: ${percentage}%`;
+                confidenceScore.style.background = percentage > 70 ? 
+                    'linear-gradient(45deg, #28a745, #20c997)' : 
+                    'linear-gradient(45deg, #ffc107, #fd7e14)';
+            } else {
+                confidenceScore.textContent = '';
+            }
+            
+            feedback.classList.remove('hidden');
+        }
+
+        function hideVoiceFeedback() {
+            document.getElementById('voice-feedback').classList.add('hidden');
+        }
+
+        // تحميل المستوى
+        function loadLevel(level) {
+            currentLevel = level;
+            currentWordIndex = 0;
+            
+            // إخفاء جميع المستويات
+            document.querySelectorAll('.level-content').forEach(content => {
+                content.classList.add('hidden');
             });
             
-            // تحديث أزرار التنقل
-            document.getElementById('prevBtn').disabled = currentQuestionIndex === 0;
-            document.getElementById('nextBtn').disabled = currentQuestionIndex === quizQuestions.length - 1 && !isReviewMode;
+            // إظهار المستوى المحدد
+            document.getElementById(`level-${level}`).classList.remove('hidden');
             
-            if (currentQuestionIndex === quizQuestions.length - 1 && !isReviewMode) {
-                document.getElementById('nextBtn').textContent = 'إنهاء الاختبار';
-                document.getElementById('nextBtn').classList.remove('btn-primary');
-                document.getElementById('nextBtn').classList.add('btn-secondary');
-            } else if (currentQuestionIndex === quizQuestions.length - 1 && isReviewMode) {
-                 document.getElementById('nextBtn').textContent = 'إنهاء المراجعة';
-                 document.getElementById('nextBtn').classList.add('btn-primary');
-            } else {
-                document.getElementById('nextBtn').textContent = 'السؤال التالي →';
-                document.getElementById('nextBtn').classList.remove('btn-secondary');
-                document.getElementById('nextBtn').classList.add('btn-primary');
-            }
-        }
-
-        function selectAnswer(selectedIndex) {
-            if (isReviewMode) return;
-            
-            userAnswers[currentQuestionIndex] = selectedIndex;
-            
-            // تحديث شكل الخيارات
-            document.querySelectorAll('#questionOptions .option-button').forEach((btn, index) => {
-                btn.classList.remove('selected');
-                if (index === selectedIndex) {
-                    btn.classList.add('selected');
+            // تحديث أزرار المستويات
+            document.querySelectorAll('.level-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (parseInt(btn.dataset.level) === level) {
+                    btn.classList.add('active');
                 }
             });
-            
-            // الانتقال للسؤال التالي تلقائياً إذا كان آخر سؤال لم يتم الإجابة عليه
-            if (currentQuestionIndex < quizQuestions.length - 1 && userAnswers[currentQuestionIndex + 1] === null) {
-                setTimeout(nextQuestion, 500); // تأخير بسيط للانتقال
+
+            // تحميل محتوى المستوى
+            switch(level) {
+                case 1:
+                    loadWordPronunciation();
+                    break;
+                case 2:
+                    loadLetterArrangement();
+                    break;
+                case 3:
+                    loadWordArrangement();
+                    break;
+                case 4:
+                    loadWordCompletion();
+                    break;
             }
         }
 
-        function nextQuestion() {
-            if (currentQuestionIndex < quizQuestions.length - 1) {
-                currentQuestionIndex++;
-                renderQuestion();
-            } else if (!isReviewMode) {
-                endQuiz();
+        // المستوى الأول: نطق الكلمات
+        function loadWordPronunciation() {
+            const currentWord = wordsData.level1[currentWordIndex];
+            document.getElementById('current-word').textContent = currentWord.word;
+            document.getElementById('word-meaning').textContent = currentWord.meaning;
+            hideVoiceFeedback();
+        }
+
+        function playCurrentWord() {
+            const currentWord = wordsData.level1[currentWordIndex].word;
+            if ('speechSynthesis' in window) {
+                const utterance = new SpeechSynthesisUtterance(currentWord);
+                utterance.lang = 'ar-SA';
+                utterance.rate = 0.7;
+                utterance.pitch = 1.2;
+                speechSynthesis.speak(utterance);
+            }
+        }
+
+        function toggleRecording() {
+            if (!recognition) {
+                showFeedback("التعرف على الصوت غير مدعوم في هذا المتصفح", false);
+                return;
+            }
+
+            if (isRecording) {
+                stopRecording();
             } else {
-                showNotification('تم الانتهاء من مراجعة الأسئلة.', 'info');
-                showScreen('resultsScreen'); // العودة لصفحة النتائج بعد المراجعة
+                startRecording();
             }
         }
 
-        function previousQuestion() {
-            if (currentQuestionIndex > 0) {
-                currentQuestionIndex--;
-                renderQuestion();
+        function startRecording() {
+            isRecording = true;
+            const recordBtn = document.getElementById('record-btn');
+            recordBtn.classList.add('recording');
+            recordBtn.innerHTML = '🛑 توقف عن التسجيل';
+            
+            try {
+                recognition.start();
+            } catch (error) {
+                showFeedback("خطأ في بدء التسجيل", false);
+                stopRecording();
             }
         }
-        
-        function bookmarkQuestion() {
-            const questionId = quizQuestions[currentQuestionIndex].id;
-            const index = bookmarkedQuestions.indexOf(questionId);
+
+        function stopRecording() {
+            isRecording = false;
+            const recordBtn = document.getElementById('record-btn');
+            recordBtn.classList.remove('recording', 'processing');
+            recordBtn.innerHTML = '🎤 انطق الكلمة';
             
-            if (index > -1) {
-                bookmarkedQuestions.splice(index, 1);
-                showNotification('تم إزالة الإشارة المرجعية.', 'info');
-            } else {
-                bookmarkedQuestions.push(questionId);
-                showNotification('تم وضع إشارة مرجعية على السؤال.', 'success');
+            if (recognition) {
+                recognition.stop();
             }
-            renderQuestion();
         }
 
-        function startTimer() {
-            if (timerInterval) clearInterval(timerInterval);
+        function checkPronunciation(spokenText, confidence) {
+            const recordBtn = document.getElementById('record-btn');
+            recordBtn.classList.add('processing');
+            recordBtn.innerHTML = '⚙️ جاري التحليل...';
             
-            const timerElement = document.getElementById('timer');
-            
-            timerInterval = setInterval(() => {
-                if (!quizRunning) return; 
+            setTimeout(() => {
+                const currentWord = wordsData.level1[currentWordIndex].word;
+                const config = window.elementSdk ? window.elementSdk.config : defaultConfig;
                 
-                if (timeLeft <= 0) {
-                    clearInterval(timerInterval);
-                    endQuiz(true); // انتهاء الوقت
-                    return;
-                }
-
-                timeLeft--;
-                const minutes = Math.floor(timeLeft / 60);
-                const seconds = timeLeft % 60;
+                // تنظيف النص المنطوق
+                const cleanSpoken = spokenText.replace(/[^\u0600-\u06FF]/g, '').trim();
+                const cleanTarget = currentWord.replace(/[^\u0600-\u06FF]/g, '').trim();
                 
-                timerElement.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+                // تحسين دقة المقارنة
+                const similarity = calculateSimilarity(cleanSpoken, cleanTarget);
+                const isCorrect = similarity > 0.7 || cleanSpoken === cleanTarget || 
+                                spokenText.includes(currentWord) || confidence > 0.8;
                 
-                if (timeLeft < 60) {
-                    timerElement.classList.add('text-red-900'); 
+                totalQuestions++;
+                
+                if (isCorrect) {
+                    correctAnswers++;
+                    showFeedback(config.success_message || defaultConfig.success_message, true);
+                    updateScore(10);
+                    createCelebration();
+                    setTimeout(() => {
+                        nextWord();
+                    }, 2000);
                 } else {
-                    timerElement.classList.remove('text-red-900');
+                    showFeedback(config.retry_message || defaultConfig.retry_message, false);
                 }
+                
+                updateStats();
+                checkForCertificate();
+                stopRecording();
             }, 1000);
         }
-        
-        function pauseQuiz() {
-            if (timerInterval && quizRunning) {
-                clearInterval(timerInterval);
-                timerInterval = null;
-                quizRunning = false;
-                showNotification('تم إيقاف المؤقت مؤقتاً', 'info', 'إيقاف مؤقت');
-            } else if (!quizRunning) {
-                quizRunning = true;
-                startTimer();
-                showNotification('تم استئناف المؤقت', 'success', 'استئناف');
-            }
+
+        // حساب التشابه بين النصوص
+        function calculateSimilarity(str1, str2) {
+            const longer = str1.length > str2.length ? str1 : str2;
+            const shorter = str1.length > str2.length ? str2 : str1;
+            
+            if (longer.length === 0) return 1.0;
+            
+            const editDistance = levenshteinDistance(longer, shorter);
+            return (longer.length - editDistance) / longer.length;
         }
 
-        function endQuiz(timeUp = false) {
-            clearInterval(timerInterval);
-            quizRunning = false;
+        function levenshteinDistance(str1, str2) {
+            const matrix = [];
             
-            if (timeUp) {
-                showNotification('انتهى الوقت! تم إنهاء الاختبار تلقائياً.', 'error', 'انتهى الوقت');
-            } else {
-                showNotification('أحسنت! تم إنهاء الاختبار.', 'success', 'تهانينا');
+            for (let i = 0; i <= str2.length; i++) {
+                matrix[i] = [i];
             }
             
-            calculateResults();
-            showScreen('resultsScreen');
-            document.getElementById('progressBar').style.width = '100%';
-        }
-
-        // ===============================================
-        // وظائف النتائج والتحليل
-        // ===============================================
-        function calculateResults() {
-            let correctCount = 0;
-            let wrongCount = 0;
-            let earnedPoints = 0;
-            const performanceByType = {};
+            for (let j = 0; j <= str1.length; j++) {
+                matrix[0][j] = j;
+            }
             
-            quizQuestions.forEach((q, index) => {
-                const userAnswer = userAnswers[index];
-                const type = q.type;
-
-                if (!performanceByType[type]) {
-                    performanceByType[type] = { total: 0, correct: 0 };
-                }
-                performanceByType[type].total++;
-
-                if (userAnswer !== null) {
-                    if (userAnswer === q.correct) {
-                        correctCount++;
-                        earnedPoints += q.points;
-                        performanceByType[type].correct++;
+            for (let i = 1; i <= str2.length; i++) {
+                for (let j = 1; j <= str1.length; j++) {
+                    if (str2.charAt(i - 1) === str1.charAt(j - 1)) {
+                        matrix[i][j] = matrix[i - 1][j - 1];
                     } else {
-                        wrongCount++;
+                        matrix[i][j] = Math.min(
+                            matrix[i - 1][j - 1] + 1,
+                            matrix[i][j - 1] + 1,
+                            matrix[i - 1][j] + 1
+                        );
                     }
-                } else {
-                    wrongCount++; // يعتبر السؤال غير المجاب عنه خطأ
                 }
-            });
+            }
             
-            const totalQuestions = quizQuestions.length;
-            const accuracy = totalQuestions > 0 ? ((correctCount / totalQuestions) * 100).toFixed(1) : 0;
+            return matrix[str2.length][str1.length];
+        }
 
-            // تحديث النقاط المحفوظة
-            userPoints.individual += earnedPoints;
-            localStorage.setItem('individualPoints', userPoints.individual.toString());
-            updatePointsDisplay();
+        function nextWord() {
+            currentWordIndex++;
+            if (currentWordIndex >= wordsData.level1.length) {
+                currentWordIndex = 0;
+            }
+            loadWordPronunciation();
+            clearFeedback();
+        }
 
-            // عرض النتائج
-            document.getElementById('correctAnswers').textContent = correctCount;
-            document.getElementById('wrongAnswers').textContent = wrongCount;
-            document.getElementById('earnedPoints').textContent = earnedPoints;
-            document.getElementById('accuracyRate').textContent = `${accuracy}%`;
-            document.getElementById('resultIcon').textContent = accuracy >= 70 ? '🎉' : accuracy >= 50 ? '👍' : ' تحتاج المزيد';
-
-            // عرض تحليل الأداء
-            const analysisContainer = document.getElementById('performanceAnalysis');
-            analysisContainer.innerHTML = '';
-            for (const type in performanceByType) {
-                const data = performanceByType[type];
-                const typeAccuracy = (data.correct / data.total) * 100;
-                const typeName = getTypeName(type);
+        // المستوى الثاني: ترتيب الأحرف
+        function loadLetterArrangement() {
+            const currentWord = wordsData.level2[currentWordIndex];
+            document.getElementById('target-word').textContent = currentWord.word;
+            
+            const lettersContainer = document.getElementById('letters-container');
+            const wordBuilder = document.getElementById('word-builder');
+            
+            lettersContainer.innerHTML = '';
+            wordBuilder.innerHTML = '';
+            
+            // خلط الأحرف
+            const shuffledLetters = [...currentWord.letters].sort(() => Math.random() - 0.5);
+            
+            // إضافة الأحرف
+            shuffledLetters.forEach((letter, index) => {
+                const letterBox = document.createElement('div');
+                letterBox.className = 'letter-box';
+                letterBox.textContent = letter;
+                letterBox.draggable = true;
+                letterBox.dataset.letter = letter;
+                letterBox.dataset.index = index;
                 
-                const typeElement = document.createElement('div');
-                typeElement.className = 'flex justify-between items-center';
-                typeElement.innerHTML = `
-                    <span class="font-medium text-gray-700">${typeName} (${data.total} سؤال)</span>
-                    <span class="font-extrabold ${typeAccuracy >= 70 ? 'text-green-600' : typeAccuracy >= 50 ? 'text-yellow-600' : 'text-red-600'}">${typeAccuracy.toFixed(1)}%</span>
-                `;
-                analysisContainer.appendChild(typeElement);
-            }
-        }
-        
-        function getTypeName(typeKey) {
-            switch(typeKey) {
-                case 'reading': return 'استيعاب المقروء';
-                case 'relation': return 'الارتباط والاختلاف';
-                case 'context': return 'الخطأ السياقي';
-                case 'analogy': return 'التناظر اللفظي';
-                case 'completion': return 'إكمال الجمل';
-                case 'statistics': return 'تحليل وإحصاء';
-                case 'geometry': return 'هندسة';
-                case 'algebra': return 'جبر';
-                case 'arithmetic': return 'حساب';
-                case 'comparison': return 'مقارنة';
-                default: return 'نوع غير معروف';
-            }
-        }
-        
-        function startReviewMode() {
-            isReviewMode = true;
-            currentQuestionIndex = 0;
-            
-            document.getElementById('totalQuestions').textContent = quizQuestions.length;
-            document.getElementById('nextBtn').textContent = 'السؤال التالي →';
-            showScreen('quizScreen');
-            renderQuestion();
-            showNotification('بدأت مراجعة الأسئلة مع عرض الشرح والإجابة الصحيحة.', 'info', 'وضع المراجعة');
-            
-            // إيقاف عمل المؤقت إذا كان يعمل
-            if (timerInterval) clearInterval(timerInterval);
-        }
-
-        // ===============================================
-        // وظائف التنقل
-        // ===============================================
-        function startNewQuiz() {
-            quizQuestions = [];
-            showScreen('questionTypeScreen');
-            clearAllSelections();
-        }
-
-        function goHome() {
-            showScreen('modeSelectionScreen');
-        }
-
-        function updatePointsDisplay() {
-            const individualDisplay = document.getElementById('individualPointsDisplay');
-            const groupDisplay = document.getElementById('groupPointsDisplay');
-            const pointsContainer = document.getElementById('userPointsDisplay');
-
-            if (individualDisplay) individualDisplay.textContent = userPoints.individual;
-            if (groupDisplay) groupDisplay.textContent = userPoints.group;
-            if (pointsContainer) pointsContainer.classList.remove('hidden');
-        }
-
-        // ===============================================
-        // وظيفة تهيئة التطبيق عند التحميل (لضمان عمل الـ Event Listeners)
-        // ===============================================
-        document.addEventListener('DOMContentLoaded', () => {
-             // إضافة مستمع حدث Form Registration هنا لضمان وجود العنصر
-            const regForm = document.getElementById('registrationForm');
-            if (regForm) {
-                regForm.addEventListener('submit', handleRegistration);
-            }
-
-            // إضافة مستمعي حدث التغيير لمدخلات عدد الأسئلة
-            document.querySelectorAll('#questionTypeScreen input[type="number"]').forEach(input => {
-                input.addEventListener('input', updateTestSummary);
+                letterBox.addEventListener('dragstart', handleDragStart);
+                letterBox.addEventListener('dragend', handleDragEnd);
+                
+                lettersContainer.appendChild(letterBox);
             });
             
-            // Logic to start the correct screen
-            const storedUser = localStorage.getItem('currentUser');
-            if (storedUser) {
-                currentUser = storedUser;
-                showScreen('modeSelectionScreen');
-                updatePointsDisplay();
-            } else {
-                showScreen('registrationScreen');
+            // إضافة مناطق الإسقاط
+            for (let i = 0; i < currentWord.letters.length; i++) {
+                const dropZone = document.createElement('div');
+                dropZone.className = 'drop-zone';
+                dropZone.dataset.position = i;
+                
+                dropZone.addEventListener('dragover', handleDragOver);
+                dropZone.addEventListener('drop', handleDrop);
+                
+                wordBuilder.appendChild(dropZone);
             }
-            
-            // تهيئة ملخص الاختبار
-            updateTestSummary();
-        });
-
-
-        // وظائف إضافية (وهمية)
-        function showQuestionMap() {
-            showNotification('خريطة الأسئلة قيد التطوير (ستعرض حالة كل سؤال)', 'info');
         }
 
+        function handleDragStart(e) {
+            e.target.classList.add('dragging');
+            e.dataTransfer.setData('text/plain', e.target.dataset.letter);
+            e.dataTransfer.setData('source', 'letter');
+        }
+
+        function handleDragEnd(e) {
+            e.target.classList.remove('dragging');
+        }
+
+        function handleDragOver(e) {
+            e.preventDefault();
+            e.target.classList.add('drag-over');
+        }
+
+        function handleDrop(e) {
+            e.preventDefault();
+            e.target.classList.remove('drag-over');
+            
+            const letter = e.dataTransfer.getData('text/plain');
+            const source = e.dataTransfer.getData('source');
+            
+            if (source === 'letter' && !e.target.textContent.trim()) {
+                e.target.textContent = letter;
+                e.target.style.background = 'linear-gradient(45deg, #ff69b4, #ff1493)';
+                e.target.style.color = 'white';
+                
+                // إخفاء الحرف من المصدر
+                const letterBoxes = document.querySelectorAll('.letter-box');
+                letterBoxes.forEach(box => {
+                    if (box.dataset.letter === letter && box.classList.contains('dragging')) {
+                        box.style.display = 'none';
+                    }
+                });
+            }
+        }
+
+        function checkWordBuilding() {
+            const dropZones = document.querySelectorAll('#word-builder .drop-zone');
+            const builtWord = Array.from(dropZones).map(zone => zone.textContent.trim()).join('');
+            const targetWord = wordsData.level2[currentWordIndex].word;
+            
+            const config = window.elementSdk ? window.elementSdk.config : defaultConfig;
+            totalQuestions++;
+            
+            if (builtWord === targetWord) {
+                correctAnswers++;
+                showFeedback(config.success_message || defaultConfig.success_message, true);
+                updateScore(15);
+                createCelebration();
+                setTimeout(() => {
+                    nextLetterWord();
+                }, 2000);
+            } else {
+                showFeedback(config.retry_message || defaultConfig.retry_message, false);
+            }
+            
+            updateStats();
+            checkForCertificate();
+        }
+
+        function resetLetters() {
+            loadLetterArrangement();
+            clearFeedback();
+        }
+
+        function nextLetterWord() {
+            currentWordIndex++;
+            if (currentWordIndex >= wordsData.level2.length) {
+                currentWordIndex = 0;
+            }
+            loadLetterArrangement();
+            clearFeedback();
+        }
+
+        // المستوى الثالث: ترتيب الكلمات
+        function loadWordArrangement() {
+            const currentSentence = wordsData.level3[currentWordIndex];
+            
+            const wordsContainer = document.getElementById('words-container');
+            const sentenceBuilder = document.getElementById('sentence-builder');
+            
+            wordsContainer.innerHTML = '';
+            sentenceBuilder.innerHTML = '';
+            
+            // خلط الكلمات
+            const shuffledWords = [...currentSentence.words].sort(() => Math.random() - 0.5);
+            
+            // إضافة الكلمات
+            shuffledWords.forEach((word, index) => {
+                const wordBox = document.createElement('div');
+                wordBox.className = 'word-box';
+                wordBox.textContent = word;
+                wordBox.draggable = true;
+                wordBox.dataset.word = word;
+                wordBox.dataset.index = index;
+                
+                wordBox.addEventListener('dragstart', handleWordDragStart);
+                wordBox.addEventListener('dragend', handleDragEnd);
+                
+                wordsContainer.appendChild(wordBox);
+            });
+            
+            // إضافة مناطق الإسقاط
+            for (let i = 0; i < currentSentence.words.length; i++) {
+                const dropZone = document.createElement('div');
+                dropZone.className = 'drop-zone';
+                dropZone.dataset.position = i;
+                
+                dropZone.addEventListener('dragover', handleDragOver);
+                dropZone.addEventListener('drop', handleWordDrop);
+                
+                sentenceBuilder.appendChild(dropZone);
+            }
+        }
+
+        function handleWordDragStart(e) {
+            e.target.classList.add('dragging');
+            e.dataTransfer.setData('text/plain', e.target.dataset.word);
+            e.dataTransfer.setData('source', 'word');
+        }
+
+        function handleWordDrop(e) {
+            e.preventDefault();
+            e.target.classList.remove('drag-over');
+            
+            const word = e.dataTransfer.getData('text/plain');
+            const source = e.dataTransfer.getData('source');
+            
+            if (source === 'word' && !e.target.textContent.trim()) {
+                e.target.textContent = word;
+                e.target.style.background = 'linear-gradient(45deg, #ff69b4, #ff1493)';
+                e.target.style.color = 'white';
+                
+                // إخفاء الكلمة من المصدر
+                const wordBoxes = document.querySelectorAll('.word-box');
+                wordBoxes.forEach(box => {
+                    if (box.dataset.word === word && box.classList.contains('dragging')) {
+                        box.style.display = 'none';
+                    }
+                });
+            }
+        }
+
+        function checkSentenceBuilding() {
+            const dropZones = document.querySelectorAll('#sentence-builder .drop-zone');
+            const builtSentence = Array.from(dropZones).map(zone => zone.textContent.trim()).join(' ');
+            const targetSentence = wordsData.level3[currentWordIndex].sentence;
+            
+            const config = window.elementSdk ? window.elementSdk.config : defaultConfig;
+            totalQuestions++;
+            
+            if (builtSentence === targetSentence) {
+                correctAnswers++;
+                showFeedback(config.success_message || defaultConfig.success_message, true);
+                updateScore(20);
+                createCelebration();
+                setTimeout(() => {
+                    nextSentence();
+                }, 2000);
+            } else {
+                showFeedback(config.retry_message || defaultConfig.retry_message, false);
+            }
+            
+            updateStats();
+            checkForCertificate();
+        }
+
+        function resetWords() {
+            loadWordArrangement();
+            clearFeedback();
+        }
+
+        function nextSentence() {
+            currentWordIndex++;
+            if (currentWordIndex >= wordsData.level3.length) {
+                currentWordIndex = 0;
+            }
+            loadWordArrangement();
+            clearFeedback();
+        }
+
+        // المستوى الرابع: إكمال الكلمات
+        function loadWordCompletion() {
+            const currentWord = wordsData.level4[currentWordIndex];
+            document.getElementById('incomplete-word').textContent = currentWord.incomplete;
+            
+            const choicesContainer = document.getElementById('choices-container');
+            choicesContainer.innerHTML = '';
+            
+            currentWord.choices.forEach(choice => {
+                const choiceBtn = document.createElement('button');
+                choiceBtn.className = 'choice-btn';
+                choiceBtn.textContent = choice;
+                choiceBtn.addEventListener('click', () => checkWordCompletion(choice));
+                choicesContainer.appendChild(choiceBtn);
+            });
+        }
+
+        function checkWordCompletion(selectedChoice) {
+            const currentWord = wordsData.level4[currentWordIndex];
+            const config = window.elementSdk ? window.elementSdk.config : defaultConfig;
+            totalQuestions++;
+            
+            if (selectedChoice === currentWord.correct) {
+                correctAnswers++;
+                document.getElementById('incomplete-word').textContent = currentWord.word;
+                showFeedback(config.success_message || defaultConfig.success_message, true);
+                updateScore(10);
+                createCelebration();
+                setTimeout(() => {
+                    nextCompletionWord();
+                }, 2000);
+            } else {
+                showFeedback(config.retry_message || defaultConfig.retry_message, false);
+            }
+            
+            updateStats();
+            checkForCertificate();
+        }
+
+        function nextCompletionWord() {
+            currentWordIndex++;
+            if (currentWordIndex >= wordsData.level4.length) {
+                currentWordIndex = 0;
+            }
+            loadWordCompletion();
+            clearFeedback();
+        }
+
+        // تحديث الإحصائيات
+        function updateStats() {
+            document.getElementById('correct-answers').textContent = correctAnswers;
+            document.getElementById('total-questions').textContent = totalQuestions;
+            
+            const percentage = totalQuestions > 0 ? Math.round((correctAnswers / totalQuestions) * 100) : 0;
+            document.getElementById('success-percentage').textContent = percentage;
+        }
+
+        // فحص استحقاق الشهادة
+        function checkForCertificate() {
+            if (totalQuestions >= 10 && !certificateEarned) {
+                const percentage = Math.round((correctAnswers / totalQuestions) * 100);
+                if (percentage >= 70) {
+                    showCertificate(percentage);
+                    certificateEarned = true;
+                }
+            }
+        }
+
+        // عرض شهادة التفوق
+        function showCertificate(percentage) {
+            document.getElementById('student-name-cert').textContent = studentName;
+            document.getElementById('final-percentage').textContent = percentage;
+            document.getElementById('certificate-date').textContent = new Date().toLocaleDateString('ar-SA');
+            document.getElementById('certificate').classList.remove('hidden');
+            
+            // تأثير احتفالي خاص
+            createMegaCelebration();
+            
+            // حفظ إنجاز الشهادة
+            saveCertificateAchievement(percentage);
+        }
+
+        async function saveCertificateAchievement(percentage) {
+            if (window.dataSdk && currentData.length < 999) {
+                const certificateData = {
+                    student_name: studentName,
+                    level: currentLevel,
+                    score: score,
+                    total_questions: totalQuestions,
+                    correct_answers: correctAnswers,
+                    completed_words: `${correctAnswers}/${totalQuestions}`,
+                    certificate_earned: true,
+                    timestamp: new Date().toISOString()
+                };
+                
+                const result = await window.dataSdk.create(certificateData);
+                if (!result.isOk) {
+                    console.error("فشل في حفظ بيانات الشهادة");
+                }
+            }
+        }
+
+        // وظائف مساعدة
+        function showFeedback(message, isSuccess) {
+            const feedback = document.getElementById('feedback');
+            feedback.textContent = isSuccess ? `✅ ${message}` : `❌ ${message}`;
+            feedback.className = `feedback ${isSuccess ? 'success' : 'error'}`;
+        }
+
+        function clearFeedback() {
+            const feedback = document.getElementById('feedback');
+            feedback.textContent = '';
+            feedback.className = 'feedback';
+        }
+
+        function updateScore(points) {
+            score += points;
+            document.getElementById('score').textContent = score;
+            
+            // حفظ التقدم
+            saveProgress();
+            updateProgressDisplay();
+        }
+
+        async function saveProgress() {
+            if (window.dataSdk && currentData.length < 999) {
+                const progressData = {
+                    student_name: studentName,
+                    level: currentLevel,
+                    score: score,
+                    total_questions: totalQuestions,
+                    correct_answers: correctAnswers,
+                    completed_words: `${correctAnswers}/${totalQuestions}`,
+                    certificate_earned: certificateEarned,
+                    timestamp: new Date().toISOString()
+                };
+                
+                const result = await window.dataSdk.create(progressData);
+                if (!result.isOk) {
+                    console.error("فشل في حفظ التقدم");
+                }
+            }
+        }
+
+        function updateProgressDisplay() {
+            const totalWords = Object.values(wordsData).reduce((sum, level) => sum + level.length, 0);
+            const progress = Math.min((correctAnswers / totalWords) * 100, 100);
+            const progressFill = document.getElementById('progress-fill');
+            progressFill.style.width = `${progress}%`;
+            progressFill.textContent = `${Math.round(progress)}%`;
+        }
+
+        function createCelebration() {
+            const celebration = document.getElementById('celebration');
+            
+            // إنشاء فقاعات الاحتفال
+            for (let i = 0; i < 20; i++) {
+                const bubble = document.createElement('div');
+                bubble.className = 'bubble';
+                bubble.style.left = Math.random() * 100 + '%';
+                bubble.style.width = bubble.style.height = Math.random() * 20 + 10 + 'px';
+                bubble.style.animationDelay = Math.random() * 2 + 's';
+                celebration.appendChild(bubble);
+                
+                setTimeout(() => {
+                    bubble.remove();
+                }, 3000);
+            }
+            
+            // تشغيل صوت التصفيق
+            playApplauseSound();
+        }
+
+        function createMegaCelebration() {
+            const celebration = document.getElementById('celebration');
+            
+            // احتفال كبير للشهادة
+            for (let i = 0; i < 50; i++) {
+                const bubble = document.createElement('div');
+                bubble.className = 'bubble';
+                bubble.style.left = Math.random() * 100 + '%';
+                bubble.style.width = bubble.style.height = Math.random() * 30 + 15 + 'px';
+                bubble.style.animationDelay = Math.random() * 3 + 's';
+                bubble.style.background = `radial-gradient(circle, #ffd700, #ff69b4)`;
+                celebration.appendChild(bubble);
+                
+                setTimeout(() => {
+                    bubble.remove();
+                }, 5000);
+            }
+            
+            // صوت احتفالي مميز
+            playVictorySound();
+        }
+
+        function playApplauseSound() {
+            // محاكاة صوت التصفيق باستخدام Web Audio API
+            if ('AudioContext' in window || 'webkitAudioContext' in window) {
+                const AudioContext = window.AudioContext || window.webkitAudioContext;
+                const audioContext = new AudioContext();
+                
+                // إنشاء نغمة احتفالية
+                const oscillator = audioContext.createOscillator();
+                const gainNode = audioContext.createGain();
+                
+                oscillator.connect(gainNode);
+                gainNode.connect(audioContext.destination);
+                
+                oscillator.frequency.setValueAtTime(800, audioContext.currentTime);
+                oscillator.frequency.exponentialRampToValueAtTime(400, audioContext.currentTime + 0.5);
+                
+                gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+                gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.5);
+                
+                oscillator.start(audioContext.currentTime);
+                oscillator.stop(audioContext.currentTime + 0.5);
+            }
+        }
+
+        function playVictorySound() {
+            // صوت انتصار للشهادة
+            if ('AudioContext' in window || 'webkitAudioContext' in window) {
+                const AudioContext = window.AudioContext || window.webkitAudioContext;
+                const audioContext = new AudioContext();
+                
+                // نغمة انتصار متقدمة
+                const notes = [523.25, 659.25, 783.99, 1046.50]; // C5, E5, G5, C6
+                
+                notes.forEach((freq, index) => {
+                    const oscillator = audioContext.createOscillator();
+                    const gainNode = audioContext.createGain();
+                    
+                    oscillator.connect(gainNode);
+                    gainNode.connect(audioContext.destination);
+                    
+                    oscillator.frequency.setValueAtTime(freq, audioContext.currentTime + index * 0.3);
+                    gainNode.gain.setValueAtTime(0.2, audioContext.currentTime + index * 0.3);
+                    gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + index * 0.3 + 0.5);
+                    
+                    oscillator.start(audioContext.currentTime + index * 0.3);
+                    oscillator.stop(audioContext.currentTime + index * 0.3 + 0.5);
+                });
+            }
+        }
+
+        // تهيئة التطبيق عند تحميل الصفحة
+        document.addEventListener('DOMContentLoaded', initApp);
     </script>
-</body>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'99e0c18bf4199350',t:'MTc2MzA2Mjk4NS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
