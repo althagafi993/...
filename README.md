@@ -781,3 +781,1053 @@
                 { word: "دفتر", meaning: "مجموعة أوراق للكتابة" },
                 { word: "حقيبة", meaning: "وعاء لحمل الأشياء" },
                 { word: "نافذة", meaning: "فتحة في الجدار للنظر خارجاً" },
+                { word: "باب", meaning: "مدخل للغرفة أو المنزل" },
+                { word: "شمس", meaning: "النجم الذي ينير الأرض" },
+                { word: "قمر", meaning: "القمر الذي ينير الليل" },
+                { word: "نجم", meaning: "جسم مضيء في السماء" },
+                { word: "بحر", meaning: "مساحة كبيرة من الماء المالح" },
+                { word: "جبل", meaning: "ارتفاع كبير من الأرض" },
+                { word: "شجرة", meaning: "نبات كبير له جذع وأوراق" },
+                { word: "زهرة", meaning: "جزء جميل وملون من النبات" },
+                { word: "طائر", meaning: "حيوان يطير في السماء" },
+                { word: "سمك", meaning: "حيوان يعيش في الماء" },
+                { word: "قطة", meaning: "حيوان أليف صغير" },
+                { word: "كلب", meaning: "حيوان أليف وفي" },
+                { word: "حصان", meaning: "حيوان كبير للركوب" }
+            ],
+            level2: [
+                { word: "قرأ", letters: ["ق", "ر", "أ"] },
+                { word: "كتب", letters: ["ك", "ت", "ب"] },
+                { word: "زرع", letters: ["ز", "ر", "ع"] },
+                { word: "حصد", letters: ["ح", "ص", "د"] },
+                { word: "مدرسة", letters: ["م", "د", "ر", "س", "ة"] },
+                { word: "طالب", letters: ["ط", "ا", "ل", "ب"] },
+                { word: "معلم", letters: ["م", "ع", "ل", "م"] },
+                { word: "كتاب", letters: ["ك", "ت", "ا", "ب"] },
+                { word: "قلم", letters: ["ق", "ل", "م"] },
+                { word: "دفتر", letters: ["د", "ف", "ت", "ر"] },
+                { word: "حقيبة", letters: ["ح", "ق", "ي", "ب", "ة"] },
+                { word: "نافذة", letters: ["ن", "ا", "ف", "ذ", "ة"] },
+                { word: "باب", letters: ["ب", "ا", "ب"] },
+                { word: "شمس", letters: ["ش", "م", "س"] },
+                { word: "قمر", letters: ["ق", "م", "ر"] },
+                { word: "بحر", letters: ["ب", "ح", "ر"] },
+                { word: "جبل", letters: ["ج", "ب", "ل"] },
+                { word: "شجرة", letters: ["ش", "ج", "ر", "ة"] },
+                { word: "زهرة", letters: ["ز", "ه", "ر", "ة"] },
+                { word: "طائر", letters: ["ط", "ا", "ئ", "ر"] }
+            ],
+            level3: [
+                { sentence: "الطالب يقرأ الكتاب", words: ["الطالب", "يقرأ", "الكتاب"] },
+                { sentence: "المعلم يكتب على السبورة", words: ["المعلم", "يكتب", "على", "السبورة"] },
+                { sentence: "الفلاح يزرع القمح", words: ["الفلاح", "يزرع", "القمح"] },
+                { sentence: "الطفل يذهب إلى المدرسة", words: ["الطفل", "يذهب", "إلى", "المدرسة"] },
+                { sentence: "الشمس تشرق في الصباح", words: ["الشمس", "تشرق", "في", "الصباح"] },
+                { sentence: "القمر ينير في الليل", words: ["القمر", "ينير", "في", "الليل"] },
+                { sentence: "الطائر يطير في السماء", words: ["الطائر", "يطير", "في", "السماء"] },
+                { sentence: "السمك يسبح في البحر", words: ["السمك", "يسبح", "في", "البحر"] },
+                { sentence: "الزهرة تنمو في الحديقة", words: ["الزهرة", "تنمو", "في", "الحديقة"] },
+                { sentence: "الطالبة تحل الواجب", words: ["الطالبة", "تحل", "الواجب"] },
+                { sentence: "الأم تطبخ الطعام", words: ["الأم", "تطبخ", "الطعام"] },
+                { sentence: "الأب يقود السيارة", words: ["الأب", "يقود", "السيارة"] },
+                { sentence: "الطفلة تلعب بالكرة", words: ["الطفلة", "تلعب", "بالكرة"] },
+                { sentence: "الكتاب موجود على الطاولة", words: ["الكتاب", "موجود", "على", "الطاولة"] },
+                { sentence: "القطة تنام تحت الشجرة", words: ["القطة", "تنام", "تحت", "الشجرة"] }
+            ],
+            level4: [
+                { word: "مدرسة", incomplete: "مدر_ة", choices: ["س", "ص", "ض", "ط"], correct: "س" },
+                { word: "كتاب", incomplete: "كت_ب", choices: ["ا", "و", "ي", "ة"], correct: "ا" },
+                { word: "طالب", incomplete: "طا_ب", choices: ["ل", "ر", "ن", "م"], correct: "ل" },
+                { word: "معلم", incomplete: "مع_م", choices: ["ل", "ر", "ن", "د"], correct: "ل" },
+                { word: "حديقة", incomplete: "حد_قة", choices: ["ي", "و", "ا", "ة"], correct: "ي" },
+                { word: "نافذة", incomplete: "نا_ذة", choices: ["ف", "ق", "ك", "ت"], correct: "ف" },
+                { word: "طائر", incomplete: "طا_ر", choices: ["ئ", "ي", "و", "ا"], correct: "ئ" },
+                { word: "شجرة", incomplete: "ش_رة", choices: ["ج", "ح", "خ", "غ"], correct: "ج" },
+                { word: "زهرة", incomplete: "ز_رة", choices: ["ه", "ح", "خ", "غ"], correct: "ه" },
+                { word: "حقيبة", incomplete: "حق_بة", choices: ["ي", "و", "ا", "ة"], correct: "ي" },
+                { word: "سيارة", incomplete: "س_ارة", choices: ["ي", "و", "ا", "ة"], correct: "ي" },
+                { word: "طاولة", incomplete: "طا_لة", choices: ["و", "ي", "ا", "ة"], correct: "و" },
+                { word: "مكتبة", incomplete: "مكت_ة", choices: ["ب", "ت", "ث", "ن"], correct: "ب" },
+                { word: "حاسوب", incomplete: "حا_وب", choices: ["س", "ص", "ض", "ط"], correct: "س" },
+                { word: "تلفاز", incomplete: "تل_از", choices: ["ف", "ق", "ك", "ت"], correct: "ف" }
+            ]
+        };
+
+        // إعداد SDK للبيانات
+        const dataHandler = {
+            onDataChanged(data) {
+                currentData = data;
+                updateProgressDisplay();
+            }
+        };
+
+        // إعداد SDK للعناصر
+        async function onConfigChange(config) {
+            const appTitle = config.app_title || defaultConfig.app_title;
+            const welcomeMessage = config.welcome_message || defaultConfig.welcome_message;
+            const certificateTitle = config.certificate_title || defaultConfig.certificate_title;
+            
+            document.getElementById('app-title').textContent = appTitle;
+            document.getElementById('welcome-message').textContent = welcomeMessage;
+            document.getElementById('certificate-title').textContent = certificateTitle;
+            
+            // تطبيق الألوان
+            const backgroundColor = config.background_color || defaultConfig.background_color;
+            const surfaceColor = config.surface_color || defaultConfig.surface_color;
+            const textColor = config.text_color || defaultConfig.text_color;
+            const primaryActionColor = config.primary_action_color || defaultConfig.primary_action_color;
+            const secondaryActionColor = config.secondary_action_color || defaultConfig.secondary_action_color;
+            
+            document.body.style.background = `linear-gradient(135deg, ${backgroundColor} 0%, ${secondaryActionColor} 50%, ${primaryActionColor} 100%)`;
+            document.querySelector('.game-area').style.backgroundColor = surfaceColor;
+            document.querySelector('.name-registration').style.backgroundColor = surfaceColor;
+            document.querySelector('.current-word').style.color = textColor;
+        }
+
+        function mapToCapabilities(config) {
+            return {
+                recolorables: [
+                    {
+                        get: () => config.background_color || defaultConfig.background_color,
+                        set: (value) => {
+                            if (window.elementSdk) {
+                                window.elementSdk.setConfig({ background_color: value });
+                            }
+                        }
+                    },
+                    {
+                        get: () => config.surface_color || defaultConfig.surface_color,
+                        set: (value) => {
+                            if (window.elementSdk) {
+                                window.elementSdk.setConfig({ surface_color: value });
+                            }
+                        }
+                    },
+                    {
+                        get: () => config.text_color || defaultConfig.text_color,
+                        set: (value) => {
+                            if (window.elementSdk) {
+                                window.elementSdk.setConfig({ text_color: value });
+                            }
+                        }
+                    },
+                    {
+                        get: () => config.primary_action_color || defaultConfig.primary_action_color,
+                        set: (value) => {
+                            if (window.elementSdk) {
+                                window.elementSdk.setConfig({ primary_action_color: value });
+                            }
+                        }
+                    },
+                    {
+                        get: () => config.secondary_action_color || defaultConfig.secondary_action_color,
+                        set: (value) => {
+                            if (window.elementSdk) {
+                                window.elementSdk.setConfig({ secondary_action_color: value });
+                            }
+                        }
+                    }
+                ],
+                borderables: [],
+                fontEditable: undefined,
+                fontSizeable: undefined
+            };
+        }
+
+        function mapToEditPanelValues(config) {
+            return new Map([
+                ["app_title", config.app_title || defaultConfig.app_title],
+                ["welcome_message", config.welcome_message || defaultConfig.welcome_message],
+                ["success_message", config.success_message || defaultConfig.success_message],
+                ["retry_message", config.retry_message || defaultConfig.retry_message],
+                ["certificate_title", config.certificate_title || defaultConfig.certificate_title]
+            ]);
+        }
+
+        // تهيئة التطبيق
+        async function initApp() {
+            try {
+                // تهيئة SDK البيانات
+                if (window.dataSdk) {
+                    const initResult = await window.dataSdk.init(dataHandler);
+                    if (!initResult.isOk) {
+                        console.error("فشل في تهيئة SDK البيانات");
+                    }
+                }
+
+                // تهيئة SDK العناصر
+                if (window.elementSdk) {
+                    await window.elementSdk.init({
+                        defaultConfig,
+                        onConfigChange,
+                        mapToCapabilities,
+                        mapToEditPanelValues
+                    });
+                }
+
+                initSpeechRecognition();
+                setupEventListeners();
+            } catch (error) {
+                console.error("خطأ في تهيئة التطبيق:", error);
+            }
+        }
+
+        // إعداد التعرف على الصوت المحسن
+        function initSpeechRecognition() {
+            if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
+                const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+                recognition = new SpeechRecognition();
+                
+                // إعدادات محسنة للتعرف على الصوت
+                recognition.lang = 'ar-SA';
+                recognition.continuous = false;
+                recognition.interimResults = true;
+                recognition.maxAlternatives = 5;
+                
+                recognition.onstart = function() {
+                    showVoiceFeedback("جاري الاستماع...", 0);
+                };
+
+                recognition.onresult = function(event) {
+                    let finalTranscript = '';
+                    let interimTranscript = '';
+                    
+                    for (let i = event.resultIndex; i < event.results.length; i++) {
+                        const transcript = event.results[i][0].transcript;
+                        const confidence = event.results[i][0].confidence;
+                        
+                        if (event.results[i].isFinal) {
+                            finalTranscript += transcript;
+                            showVoiceFeedback(`سمعت: "${transcript}"`, confidence);
+                            checkPronunciation(transcript, confidence);
+                        } else {
+                            interimTranscript += transcript;
+                            showVoiceFeedback(`أستمع: "${interimTranscript}"`, 0);
+                        }
+                    }
+                };
+
+                recognition.onerror = function(event) {
+                    let errorMessage = "حدث خطأ في التسجيل";
+                    switch(event.error) {
+                        case 'no-speech':
+                            errorMessage = "لم أسمع صوتك، حاولي مرة أخرى";
+                            break;
+                        case 'audio-capture':
+                            errorMessage = "تأكدي من تشغيل المايك";
+                            break;
+                        case 'not-allowed':
+                            errorMessage = "يرجى السماح باستخدام المايك";
+                            break;
+                        case 'network':
+                            errorMessage = "تحققي من الاتصال بالإنترنت";
+                            break;
+                    }
+                    showFeedback(errorMessage, false);
+                    hideVoiceFeedback();
+                    stopRecording();
+                };
+
+                recognition.onend = function() {
+                    stopRecording();
+                    setTimeout(hideVoiceFeedback, 3000);
+                };
+            }
+        }
+
+        // إعداد مستمعي الأحداث
+        function setupEventListeners() {
+            // تسجيل الاسم
+            document.getElementById('start-learning').addEventListener('click', startLearning);
+            document.getElementById('student-name-input').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    startLearning();
+                }
+            });
+
+            // أزرار المستويات
+            document.querySelectorAll('.level-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const level = parseInt(e.target.dataset.level);
+                    loadLevel(level);
+                });
+            });
+
+            // أزرار التحكم
+            document.getElementById('play-word').addEventListener('click', playCurrentWord);
+            document.getElementById('record-btn').addEventListener('click', toggleRecording);
+            document.getElementById('next-word').addEventListener('click', nextWord);
+            document.getElementById('check-word').addEventListener('click', checkWordBuilding);
+            document.getElementById('reset-letters').addEventListener('click', resetLetters);
+            document.getElementById('check-sentence').addEventListener('click', checkSentenceBuilding);
+            document.getElementById('reset-words').addEventListener('click', resetWords);
+        }
+
+        // بدء التعلم
+        function startLearning() {
+            const nameInput = document.getElementById('student-name-input');
+            studentName = nameInput.value.trim();
+            
+            if (!studentName) {
+                nameInput.style.borderColor = '#dc3545';
+                nameInput.placeholder = 'يرجى كتابة اسمك أولاً';
+                return;
+            }
+
+            document.getElementById('student-name-display').textContent = studentName;
+            document.getElementById('name-registration').classList.add('hidden');
+            document.getElementById('main-game').classList.remove('hidden');
+            
+            loadLevel(1);
+        }
+
+        // عرض تغذية راجعة للصوت
+        function showVoiceFeedback(text, confidence) {
+            const feedback = document.getElementById('voice-feedback');
+            const recognizedText = document.getElementById('recognized-text');
+            const confidenceScore = document.getElementById('confidence-score');
+            
+            recognizedText.textContent = text;
+            
+            if (confidence > 0) {
+                const percentage = Math.round(confidence * 100);
+                confidenceScore.textContent = `دقة التعرف: ${percentage}%`;
+                confidenceScore.style.background = percentage > 70 ? 
+                    'linear-gradient(45deg, #28a745, #20c997)' : 
+                    'linear-gradient(45deg, #ffc107, #fd7e14)';
+            } else {
+                confidenceScore.textContent = '';
+            }
+            
+            feedback.classList.remove('hidden');
+        }
+
+        function hideVoiceFeedback() {
+            document.getElementById('voice-feedback').classList.add('hidden');
+        }
+
+        // تحميل المستوى
+        function loadLevel(level) {
+            currentLevel = level;
+            currentWordIndex = 0;
+            
+            // إخفاء جميع المستويات
+            document.querySelectorAll('.level-content').forEach(content => {
+                content.classList.add('hidden');
+            });
+            
+            // إظهار المستوى المحدد
+            document.getElementById(`level-${level}`).classList.remove('hidden');
+            
+            // تحديث أزرار المستويات
+            document.querySelectorAll('.level-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (parseInt(btn.dataset.level) === level) {
+                    btn.classList.add('active');
+                }
+            });
+
+            // تحميل محتوى المستوى
+            switch(level) {
+                case 1:
+                    loadWordPronunciation();
+                    break;
+                case 2:
+                    loadLetterArrangement();
+                    break;
+                case 3:
+                    loadWordArrangement();
+                    break;
+                case 4:
+                    loadWordCompletion();
+                    break;
+            }
+        }
+
+        // المستوى الأول: نطق الكلمات
+        function loadWordPronunciation() {
+            const currentWord = wordsData.level1[currentWordIndex];
+            document.getElementById('current-word').textContent = currentWord.word;
+            document.getElementById('word-meaning').textContent = currentWord.meaning;
+            hideVoiceFeedback();
+        }
+
+        function playCurrentWord() {
+            const currentWord = wordsData.level1[currentWordIndex].word;
+            if ('speechSynthesis' in window) {
+                const utterance = new SpeechSynthesisUtterance(currentWord);
+                utterance.lang = 'ar-SA';
+                utterance.rate = 0.7;
+                utterance.pitch = 1.2;
+                speechSynthesis.speak(utterance);
+            }
+        }
+
+        function toggleRecording() {
+            if (!recognition) {
+                showFeedback("التعرف على الصوت غير مدعوم في هذا المتصفح", false);
+                return;
+            }
+
+            if (isRecording) {
+                stopRecording();
+            } else {
+                startRecording();
+            }
+        }
+
+        function startRecording() {
+            isRecording = true;
+            const recordBtn = document.getElementById('record-btn');
+            recordBtn.classList.add('recording');
+            recordBtn.innerHTML = '🛑 توقف عن التسجيل';
+            
+            try {
+                recognition.start();
+            } catch (error) {
+                showFeedback("خطأ في بدء التسجيل", false);
+                stopRecording();
+            }
+        }
+
+        function stopRecording() {
+            isRecording = false;
+            const recordBtn = document.getElementById('record-btn');
+            recordBtn.classList.remove('recording', 'processing');
+            recordBtn.innerHTML = '🎤 انطق الكلمة';
+            
+            if (recognition) {
+                recognition.stop();
+            }
+        }
+        
+        // ** التعديل الأول: تحسين تحليل إجابة الميكروفون **
+        function checkPronunciation(spokenText, confidence) {
+            const recordBtn = document.getElementById('record-btn');
+            recordBtn.classList.add('processing');
+            recordBtn.innerHTML = '⚙️ جاري التحليل...';
+            
+            setTimeout(() => {
+                const currentWord = wordsData.level1[currentWordIndex].word;
+                const config = window.elementSdk ? window.elementSdk.config : defaultConfig;
+                
+                // تنظيف النص المنطوق
+                // إزالة التشكيل والمحارف غير العربية للمقارنة الدقيقة
+                const cleanSpoken = spokenText.replace(/[\u064b-\u065e]/g, '').replace(/[^\u0600-\u06FF\s]/g, '').trim();
+                const cleanTarget = currentWord.replace(/[\u064b-\u065e]/g, '').replace(/[^\u0600-\u06FF\s]/g, '').trim();
+
+                // حساب التشابه (Levenshtein Distance)
+                const similarity = calculateSimilarity(cleanSpoken, cleanTarget);
+                
+                // معيار القبول: تشابه عالي أو دقة التعرف عالية جداً
+                // 0.85 (85%) نسبة تشابه عالية للسماح بأخطاء نطق بسيطة
+                const requiredSimilarity = 0.85; 
+                const isCorrect = similarity >= requiredSimilarity || confidence > 0.9;
+                
+                totalQuestions++;
+                
+                if (isCorrect) {
+                    correctAnswers++;
+                    showFeedback(config.success_message || defaultConfig.success_message, true);
+                    updateScore(10);
+                    createCelebration();
+                    setTimeout(() => {
+                        nextWord();
+                    }, 2000);
+                } else {
+                    showFeedback(`الكلمة المنطوقة: "${cleanSpoken}". حاول مرة أخرى.`, false);
+                }
+                
+                updateStats();
+                checkForCertificate();
+                stopRecording();
+            }, 1000);
+        }
+
+        // حساب التشابه بين النصوص (Levenshtein Distance)
+        function calculateSimilarity(str1, str2) {
+            const longer = str1.length > str2.length ? str1 : str2;
+            const shorter = str1.length > str2.length ? str2 : str1;
+            
+            if (longer.length === 0) return 1.0;
+            
+            const editDistance = levenshteinDistance(longer, shorter);
+            // نسبة التشابه = (الطول الأقصى - مسافة التحرير) / الطول الأقصى
+            return (longer.length - editDistance) / longer.length;
+        }
+
+        function levenshteinDistance(str1, str2) {
+            const matrix = [];
+            
+            for (let i = 0; i <= str2.length; i++) {
+                matrix[i] = [i];
+            }
+            
+            for (let j = 0; j <= str1.length; j++) {
+                matrix[0][j] = j;
+            }
+            
+            for (let i = 1; i <= str2.length; i++) {
+                for (let j = 1; j <= str1.length; j++) {
+                    if (str2.charAt(i - 1) === str1.charAt(j - 1)) {
+                        matrix[i][j] = matrix[i - 1][j - 1];
+                    } else {
+                        matrix[i][j] = Math.min(
+                            matrix[i - 1][j - 1] + 1,
+                            matrix[i][j - 1] + 1,
+                            matrix[i - 1][j] + 1
+                        );
+                    }
+                }
+            }
+            
+            return matrix[str2.length][str1.length];
+        }
+
+        function nextWord() {
+            currentWordIndex++;
+            if (currentWordIndex >= wordsData.level1.length) {
+                currentWordIndex = 0;
+            }
+            loadWordPronunciation();
+            clearFeedback();
+        }
+
+        // المستوى الثاني: ترتيب الأحرف
+        // ** التعديل الثاني: إضافة الترقيم لأماكن إسقاط الأحرف **
+        function loadLetterArrangement() {
+            const currentWord = wordsData.level2[currentWordIndex];
+            document.getElementById('target-word').textContent = currentWord.word;
+            
+            const lettersContainer = document.getElementById('letters-container');
+            const wordBuilder = document.getElementById('word-builder');
+            
+            lettersContainer.innerHTML = '';
+            wordBuilder.innerHTML = '';
+            
+            // خلط الأحرف
+            const shuffledLetters = [...currentWord.letters].sort(() => Math.random() - 0.5);
+            
+            // إضافة الأحرف
+            shuffledLetters.forEach((letter, index) => {
+                const letterBox = document.createElement('div');
+                letterBox.className = 'letter-box';
+                letterBox.textContent = letter;
+                letterBox.draggable = true;
+                letterBox.dataset.letter = letter;
+                letterBox.dataset.index = index;
+                
+                letterBox.addEventListener('dragstart', handleDragStart);
+                letterBox.addEventListener('dragend', handleDragEnd);
+                
+                lettersContainer.appendChild(letterBox);
+            });
+            
+            // إضافة مناطق الإسقاط مع الترقيم
+            for (let i = 0; i < currentWord.letters.length; i++) {
+                const dropZone = document.createElement('div');
+                dropZone.className = 'drop-zone';
+                dropZone.dataset.position = i;
+                
+                // إضافة الترقيم (1, 2, 3, ...)
+                const label = document.createElement('div');
+                label.className = 'drop-label';
+                label.textContent = `${i + 1}.`; 
+                dropZone.appendChild(label);
+
+                dropZone.addEventListener('dragover', handleDragOver);
+                dropZone.addEventListener('drop', handleDrop);
+                
+                wordBuilder.appendChild(dropZone);
+            }
+        }
+
+        function handleDragStart(e) {
+            e.target.classList.add('dragging');
+            e.dataTransfer.setData('text/plain', e.target.dataset.letter);
+            e.dataTransfer.setData('source', 'letter');
+        }
+
+        function handleDragEnd(e) {
+            e.target.classList.remove('dragging');
+        }
+
+        function handleDragOver(e) {
+            e.preventDefault();
+            e.target.classList.add('drag-over');
+        }
+
+        function handleDrop(e) {
+            e.preventDefault();
+            e.target.classList.remove('drag-over');
+            
+            const letter = e.dataTransfer.getData('text/plain');
+            const source = e.dataTransfer.getData('source');
+            
+            // ** تعديل: التأكد من أن منطقة الإسقاط هي العنصر drop-zone نفسه **
+            const dropZone = e.target.classList.contains('drop-zone') ? e.target : e.target.closest('.drop-zone');
+
+            if (source === 'letter' && dropZone && dropZone.children.length === 1) { 
+                // نتحقق من أن هناك عنصر واحد فقط (وهو الترقيم)
+                
+                const letterElement = document.createElement('div');
+                letterElement.textContent = letter;
+                letterElement.className = 'dropped-item'; // للمساعدة في التحديد
+
+                dropZone.appendChild(letterElement);
+                
+                // تنسيق العنصر المسقط
+                dropZone.style.background = 'linear-gradient(45deg, #ff69b4, #ff1493)';
+                dropZone.style.color = 'white';
+                
+                // إخفاء الحرف من المصدر
+                const letterBoxes = document.querySelectorAll('.letter-box');
+                letterBoxes.forEach(box => {
+                    if (box.dataset.letter === letter && box.classList.contains('dragging')) {
+                        box.style.display = 'none';
+                    }
+                });
+            }
+        }
+
+        function checkWordBuilding() {
+            const dropZones = document.querySelectorAll('#word-builder .drop-zone');
+            
+            // قراءة الحرف المسقط (الذي هو العنصر الثاني داخل drop-zone)
+            const builtWord = Array.from(dropZones)
+                .map(zone => {
+                    const droppedItem = zone.querySelector('.dropped-item');
+                    return droppedItem ? droppedItem.textContent.trim() : '';
+                })
+                .join('');
+
+            const targetWord = wordsData.level2[currentWordIndex].word;
+            
+            const config = window.elementSdk ? window.elementSdk.config : defaultConfig;
+            totalQuestions++;
+            
+            if (builtWord === targetWord) {
+                correctAnswers++;
+                showFeedback(config.success_message || defaultConfig.success_message, true);
+                updateScore(15);
+                createCelebration();
+                setTimeout(() => {
+                    nextLetterWord();
+                }, 2000);
+            } else {
+                showFeedback(config.retry_message || defaultConfig.retry_message, false);
+            }
+            
+            updateStats();
+            checkForCertificate();
+        }
+
+        function resetLetters() {
+            loadLetterArrangement();
+            clearFeedback();
+        }
+
+        function nextLetterWord() {
+            currentWordIndex++;
+            if (currentWordIndex >= wordsData.level2.length) {
+                currentWordIndex = 0;
+            }
+            loadLetterArrangement();
+            clearFeedback();
+        }
+
+        // المستوى الثالث: ترتيب الكلمات
+        // ** التعديل الثالث: إضافة الترقيم لأماكن إسقاط الكلمات **
+        function loadWordArrangement() {
+            const currentSentence = wordsData.level3[currentWordIndex];
+            
+            const wordsContainer = document.getElementById('words-container');
+            const sentenceBuilder = document.getElementById('sentence-builder');
+            
+            wordsContainer.innerHTML = '';
+            sentenceBuilder.innerHTML = '';
+            
+            // خلط الكلمات
+            const shuffledWords = [...currentSentence.words].sort(() => Math.random() - 0.5);
+            
+            // إضافة الكلمات
+            shuffledWords.forEach((word, index) => {
+                const wordBox = document.createElement('div');
+                wordBox.className = 'word-box';
+                wordBox.textContent = word;
+                wordBox.draggable = true;
+                wordBox.dataset.word = word;
+                wordBox.dataset.index = index;
+                
+                wordBox.addEventListener('dragstart', handleWordDragStart);
+                wordBox.addEventListener('dragend', handleDragEnd);
+                
+                wordsContainer.appendChild(wordBox);
+            });
+            
+            // إضافة مناطق الإسقاط مع الترقيم
+            for (let i = 0; i < currentSentence.words.length; i++) {
+                const dropZone = document.createElement('div');
+                dropZone.className = 'drop-zone';
+                dropZone.dataset.position = i;
+                
+                // إضافة الترقيم (1, 2, 3, ...)
+                const label = document.createElement('div');
+                label.className = 'drop-label';
+                label.textContent = `${i + 1}.`; 
+                dropZone.appendChild(label);
+
+                dropZone.addEventListener('dragover', handleDragOver);
+                dropZone.addEventListener('drop', handleWordDrop);
+                
+                sentenceBuilder.appendChild(dropZone);
+            }
+        }
+
+        function handleWordDragStart(e) {
+            e.target.classList.add('dragging');
+            e.dataTransfer.setData('text/plain', e.target.dataset.word);
+            e.dataTransfer.setData('source', 'word');
+        }
+
+        function handleWordDrop(e) {
+            e.preventDefault();
+            e.target.classList.remove('drag-over');
+            
+            const word = e.dataTransfer.getData('text/plain');
+            const source = e.dataTransfer.getData('source');
+            
+            // ** تعديل: التأكد من أن منطقة الإسقاط هي العنصر drop-zone نفسه **
+            const dropZone = e.target.classList.contains('drop-zone') ? e.target : e.target.closest('.drop-zone');
+
+            if (source === 'word' && dropZone && dropZone.children.length === 1) { 
+                // نتحقق من أن هناك عنصر واحد فقط (وهو الترقيم)
+                
+                const wordElement = document.createElement('div');
+                wordElement.textContent = word;
+                wordElement.className = 'dropped-item'; // للمساعدة في التحديد
+
+                dropZone.appendChild(wordElement);
+                
+                // تنسيق العنصر المسقط
+                dropZone.style.background = 'linear-gradient(45deg, #ff69b4, #ff1493)';
+                dropZone.style.color = 'white';
+                
+                // إخفاء الكلمة من المصدر
+                const wordBoxes = document.querySelectorAll('.word-box');
+                wordBoxes.forEach(box => {
+                    if (box.dataset.word === word && box.classList.contains('dragging')) {
+                        box.style.display = 'none';
+                    }
+                });
+            }
+        }
+
+        function checkSentenceBuilding() {
+            const dropZones = document.querySelectorAll('#sentence-builder .drop-zone');
+            
+            // قراءة الكلمة المسقطة (التي هي العنصر الثاني داخل drop-zone)
+            const builtSentence = Array.from(dropZones)
+                .map(zone => {
+                    const droppedItem = zone.querySelector('.dropped-item');
+                    return droppedItem ? droppedItem.textContent.trim() : '';
+                })
+                .join(' '); // الانضمام بالمسافة لتكوين الجملة
+
+            const targetSentence = wordsData.level3[currentWordIndex].sentence;
+            
+            const config = window.elementSdk ? window.elementSdk.config : defaultConfig;
+            totalQuestions++;
+            
+            if (builtSentence === targetSentence) {
+                correctAnswers++;
+                showFeedback(config.success_message || defaultConfig.success_message, true);
+                updateScore(20);
+                createCelebration();
+                setTimeout(() => {
+                    nextSentence();
+                }, 2000);
+            } else {
+                showFeedback(config.retry_message || defaultConfig.retry_message, false);
+            }
+            
+            updateStats();
+            checkForCertificate();
+        }
+
+        function resetWords() {
+            loadWordArrangement();
+            clearFeedback();
+        }
+
+        function nextSentence() {
+            currentWordIndex++;
+            if (currentWordIndex >= wordsData.level3.length) {
+                currentWordIndex = 0;
+            }
+            loadWordArrangement();
+            clearFeedback();
+        }
+
+        // المستوى الرابع: إكمال الكلمات
+        // ** التعديل الرابع: عدم ترتيب الإجابات (الخلط العشوائي) **
+        function loadWordCompletion() {
+            const currentWord = wordsData.level4[currentWordIndex];
+            document.getElementById('incomplete-word').textContent = currentWord.incomplete;
+            
+            const choicesContainer = document.getElementById('choices-container');
+            choicesContainer.innerHTML = '';
+            
+            // خلط خيارات الإكمال قبل عرضها
+            const shuffledChoices = [...currentWord.choices];
+            shuffleArray(shuffledChoices); 
+
+            shuffledChoices.forEach(choice => {
+                const choiceBtn = document.createElement('button');
+                choiceBtn.className = 'choice-btn';
+                choiceBtn.textContent = choice;
+                choiceBtn.addEventListener('click', () => checkWordCompletion(choice));
+                choicesContainer.appendChild(choiceBtn);
+            });
+        }
+
+        function checkWordCompletion(selectedChoice) {
+            const currentWord = wordsData.level4[currentWordIndex];
+            const config = window.elementSdk ? window.elementSdk.config : defaultConfig;
+            totalQuestions++;
+            
+            if (selectedChoice === currentWord.correct) {
+                correctAnswers++;
+                document.getElementById('incomplete-word').textContent = currentWord.word;
+                showFeedback(config.success_message || defaultConfig.success_message, true);
+                updateScore(10);
+                createCelebration();
+                setTimeout(() => {
+                    nextCompletionWord();
+                }, 2000);
+            } else {
+                showFeedback(config.retry_message || defaultConfig.retry_message, false);
+            }
+            
+            updateStats();
+            checkForCertificate();
+        }
+
+        function nextCompletionWord() {
+            currentWordIndex++;
+            if (currentWordIndex >= wordsData.level4.length) {
+                currentWordIndex = 0;
+            }
+            loadWordCompletion();
+            clearFeedback();
+        }
+
+        // تحديث الإحصائيات
+        function updateStats() {
+            document.getElementById('correct-answers').textContent = correctAnswers;
+            document.getElementById('total-questions').textContent = totalQuestions;
+            
+            const percentage = totalQuestions > 0 ? Math.round((correctAnswers / totalQuestions) * 100) : 0;
+            document.getElementById('success-percentage').textContent = percentage;
+        }
+
+        // فحص استحقاق الشهادة
+        function checkForCertificate() {
+            if (totalQuestions >= 10 && !certificateEarned) {
+                const percentage = Math.round((correctAnswers / totalQuestions) * 100);
+                if (percentage >= 70) {
+                    showCertificate(percentage);
+                    certificateEarned = true;
+                }
+            }
+        }
+
+        // عرض شهادة التفوق
+        function showCertificate(percentage) {
+            document.getElementById('student-name-cert').textContent = studentName;
+            document.getElementById('final-percentage').textContent = percentage;
+            document.getElementById('certificate-date').textContent = new Date().toLocaleDateString('ar-SA');
+            document.getElementById('certificate').classList.remove('hidden');
+            
+            // تأثير احتفالي خاص
+            createMegaCelebration();
+            
+            // حفظ إنجاز الشهادة
+            saveCertificateAchievement(percentage);
+        }
+
+        async function saveCertificateAchievement(percentage) {
+            if (window.dataSdk && currentData.length < 999) {
+                const certificateData = {
+                    student_name: studentName,
+                    level: currentLevel,
+                    score: score,
+                    total_questions: totalQuestions,
+                    correct_answers: correctAnswers,
+                    completed_words: `${correctAnswers}/${totalQuestions}`,
+                    certificate_earned: true,
+                    timestamp: new Date().toISOString()
+                };
+                
+                const result = await window.dataSdk.create(certificateData);
+                if (!result.isOk) {
+                    console.error("فشل في حفظ بيانات الشهادة");
+                }
+            }
+        }
+
+        // وظائف مساعدة
+        function showFeedback(message, isSuccess) {
+            const feedback = document.getElementById('feedback');
+            feedback.textContent = isSuccess ? `✅ ${message}` : `❌ ${message}`;
+            feedback.className = `feedback ${isSuccess ? 'success' : 'error'}`;
+        }
+
+        function clearFeedback() {
+            const feedback = document.getElementById('feedback');
+            feedback.textContent = '';
+            feedback.className = 'feedback';
+        }
+
+        function updateScore(points) {
+            score += points;
+            document.getElementById('score').textContent = score;
+            
+            // حفظ التقدم
+            saveProgress();
+            updateProgressDisplay();
+        }
+
+        async function saveProgress() {
+            if (window.dataSdk && currentData.length < 999) {
+                const progressData = {
+                    student_name: studentName,
+                    level: currentLevel,
+                    score: score,
+                    total_questions: totalQuestions,
+                    correct_answers: correctAnswers,
+                    completed_words: `${correctAnswers}/${totalQuestions}`,
+                    certificate_earned: certificateEarned,
+                    timestamp: new Date().toISOString()
+                };
+                
+                const result = await window.dataSdk.create(progressData);
+                if (!result.isOk) {
+                    console.error("فشل في حفظ التقدم");
+                }
+            }
+        }
+
+        function updateProgressDisplay() {
+            const totalWords = Object.values(wordsData).reduce((sum, level) => sum + level.length, 0);
+            const progress = Math.min((correctAnswers / totalWords) * 100, 100);
+            const progressFill = document.getElementById('progress-fill');
+            progressFill.style.width = `${progress}%`;
+            progressFill.textContent = `${Math.round(progress)}%`;
+        }
+
+        function createCelebration() {
+            const celebration = document.getElementById('celebration');
+            
+            // إنشاء فقاعات الاحتفال
+            for (let i = 0; i < 20; i++) {
+                const bubble = document.createElement('div');
+                bubble.className = 'bubble';
+                bubble.style.left = Math.random() * 100 + '%';
+                bubble.style.width = bubble.style.height = Math.random() * 20 + 10 + 'px';
+                bubble.style.animationDelay = Math.random() * 2 + 's';
+                celebration.appendChild(bubble);
+                
+                setTimeout(() => {
+                    bubble.remove();
+                }, 3000);
+            }
+            
+            // تشغيل صوت التصفيق
+            playApplauseSound();
+        }
+
+        function createMegaCelebration() {
+            const celebration = document.getElementById('celebration');
+            
+            // احتفال كبير للشهادة
+            for (let i = 0; i < 50; i++) {
+                const bubble = document.createElement('div');
+                bubble.className = 'bubble';
+                bubble.style.left = Math.random() * 100 + '%';
+                bubble.style.width = bubble.style.height = Math.random() * 30 + 15 + 'px';
+                bubble.style.animationDelay = Math.random() * 3 + 's';
+                bubble.style.background = `radial-gradient(circle, #ffd700, #ff69b4)`;
+                celebration.appendChild(bubble);
+                
+                setTimeout(() => {
+                    bubble.remove();
+                }, 5000);
+            }
+            
+            // صوت احتفالي مميز
+            playVictorySound();
+        }
+
+        function playApplauseSound() {
+            // محاكاة صوت التصفيق باستخدام Web Audio API
+            if ('AudioContext' in window || 'webkitAudioContext' in window) {
+                const AudioContext = window.AudioContext || window.webkitAudioContext;
+                const audioContext = new AudioContext();
+                
+                // إنشاء نغمة احتفالية
+                const oscillator = audioContext.createOscillator();
+                const gainNode = audioContext.createGain();
+                
+                oscillator.connect(gainNode);
+                gainNode.connect(audioContext.destination);
+                
+                oscillator.frequency.setValueAtTime(800, audioContext.currentTime);
+                oscillator.frequency.exponentialRampToValueAtTime(400, audioContext.currentTime + 0.5);
+                
+                gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+                gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.5);
+                
+                oscillator.start(audioContext.currentTime);
+                oscillator.stop(audioContext.currentTime + 0.5);
+            }
+        }
+
+        function playVictorySound() {
+            // صوت انتصار للشهادة
+            if ('AudioContext' in window || 'webkitAudioContext' in window) {
+                const AudioContext = window.AudioContext || window.webkitAudioContext;
+                const audioContext = new AudioContext();
+                
+                // نغمة انتصار متقدمة
+                const notes = [523.25, 659.25, 783.99, 1046.50]; // C5, E5, G5, C6
+                
+                notes.forEach((freq, index) => {
+                    const oscillator = audioContext.createOscillator();
+                    const gainNode = audioContext.createGain();
+                    
+                    oscillator.connect(gainNode);
+                    gainNode.connect(audioContext.destination);
+                    
+                    oscillator.frequency.setValueAtTime(freq, audioContext.currentTime + index * 0.3);
+                    gainNode.gain.setValueAtTime(0.2, audioContext.currentTime + index * 0.3);
+                    gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + index * 0.3 + 0.5);
+                    
+                    oscillator.start(audioContext.currentTime + index * 0.3);
+                    oscillator.stop(audioContext.currentTime + index * 0.3 + 0.5);
+                });
+            }
+        }
+
+        // تهيئة التطبيق عند تحميل الصفحة
+        document.addEventListener('DOMContentLoaded', initApp);
+    </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'99e0c18bf4199350',t:'MTc2MzA2Mjk4NS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
+// في loadWordCompletion
+const shuffledChoices = [...currentWord.choices];
+shuffleArray(shuffledChoices); // خلط الإجابات
+
+shuffledChoices.forEach(choice => {
+    // ... إضافة الأزرار
+});
