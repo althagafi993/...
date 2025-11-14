@@ -219,17 +219,11 @@
             100% { transform: scale(1) rotate(360deg); }
         }
 
-        .drag-drop-area {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-bottom: 30px;
-            flex-wrap: wrap;
-        }
+        /* --- تنسيقات الترقيم الجديدة للتفاعل (بديل السحب) --- */
 
         .letter-box, .word-box {
             background: linear-gradient(45deg, #ffc1cc, #ffb3ba);
-            border: 3px dashed #ff69b4;
+            border: 3px solid #ff69b4;
             border-radius: 15px;
             padding: 15px 20px;
             font-size: 1.5rem;
@@ -240,44 +234,74 @@
             min-width: 60px;
             text-align: center;
             user-select: none;
+            position: relative; /* لإظهار الشارة */
+            box-shadow: 0 2px 5px rgba(255, 105, 180, 0.2);
         }
 
         .letter-box:hover, .word-box:hover {
             transform: translateY(-3px);
             box-shadow: 0 5px 15px rgba(255, 105, 180, 0.4);
         }
-
-        .letter-box.dragging, .word-box.dragging {
-            opacity: 0.5;
-            transform: rotate(5deg);
+        
+        /* شارة الترقيم التفاعلية */
+        .order-badge {
+            position: absolute;
+            top: -15px;
+            right: -15px;
+            background: linear-gradient(45deg, #ffd700, #ffc107); /* لون ذهبي */
+            color: #ff1493;
+            border: 2px solid white;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1rem;
+            font-weight: bold;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            z-index: 10;
+            animation: badge-pop 0.3s ease-out;
         }
 
-        .drop-zone {
-            background: white;
+        @keyframes badge-pop {
+            0% { transform: scale(0); opacity: 0; }
+            80% { transform: scale(1.2); opacity: 1; }
+            100% { transform: scale(1); }
+        }
+
+        /* منطقة بناء الجملة/الكلمة بعد النقر */
+        .word-builder, .sentence-builder {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+            padding: 15px;
             border: 3px dashed #ff69b4;
             border-radius: 15px;
-            padding: 20px;
-            margin: 10px;
-            min-height: 60px;
-            display: flex;
-            flex-direction: column; /* لترتيب الترقيم والنص */
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-        }
-        
-        /* تنسيق الترقيم */
-        .drop-zone .drop-label { 
-            font-size: 0.9rem;
-            color: #666;
-            margin-bottom: 5px;
+            min-height: 80px;
+            background: #fffafa;
+            flex-wrap: wrap;
         }
 
-        .drop-zone.drag-over {
-            background: linear-gradient(45deg, #ffeef8, #f8d7da);
-            border-color: #ff1493;
-            transform: scale(1.05);
+        /* تنسيق العناصر التي تم تجميعها */
+        .arranged-item {
+            background: #ff69b4;
+            color: white;
+            padding: 12px 18px;
+            border-radius: 10px;
+            font-size: 1.3rem;
+            font-weight: bold;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            margin: 5px;
         }
+        
+        /* إخفاء عناصر السحب والإفلات غير المستخدمة */
+        .drop-zone, .drop-label, .word-box.dragging, .letter-box.dragging {
+            display: none !important;
+        }
+
+        /* ------------------------------------------- */
 
         .multiple-choice {
             display: grid;
@@ -668,11 +692,13 @@
        قرأ
       </div>
       <div class="word-meaning">
-       رتب الأحرف لتكوين الكلمة بالترقيم
+       انقر على الأحرف بالترتيب الصحيح لتكوين الكلمة
       </div>
      </div>
      <div class="drag-drop-area" id="letters-container"></div>
-     <div class="drag-drop-area" id="word-builder"></div>
+     <div id="letter-builder" class="word-builder">
+      <span style="color: #ff69b4; opacity: 0.7; font-size: 1.2rem;">انقر على الأحرف هنا...</span>
+     </div>
      <div class="controls"><button class="control-btn" id="check-word">✅ تحقق من الكلمة</button> <button class="control-btn" id="reset-letters">🔄 إعادة ترتيب</button>
      </div>
     </div><div id="level-3" class="level-content hidden">
@@ -681,11 +707,13 @@
        كون جملة مفيدة
       </div>
       <div class="word-meaning">
-       اسحب الكلمات لتكوين جملة صحيحة بالترقيم
+       انقر على الكلمات بالترتيب الصحيح لتكوين جملة
       </div>
      </div>
      <div class="drag-drop-area" id="words-container"></div>
-     <div class="drag-drop-area" id="sentence-builder"></div>
+     <div id="sentence-builder-display" class="sentence-builder">
+      <span style="color: #ff69b4; opacity: 0.7; font-size: 1.2rem;">انقر على الكلمات هنا...</span>
+     </div>
      <div class="controls"><button class="control-btn" id="check-sentence">✅ تحقق من الجملة</button> <button class="control-btn" id="reset-words">🔄 إعادة ترتيب</button>
      </div>
     </div><div id="level-4" class="level-content hidden">
@@ -737,7 +765,7 @@
         function shuffleArray(array) {
             for (let i = array.length - 1; i > 0; i--) {
                 const j = Math.floor(Math.random() * (i + 1));
-                [array[i], array[j]] = [array[j], array[i]];
+                [array[i], array[j]] = [array[i], array[j]];
             }
         }
 
@@ -765,6 +793,9 @@
         let currentData = [];
         let studentName = "";
         let certificateEarned = false;
+        
+        // متغيرات الترتيب الجديدة
+        let currentArrangement = []; // لتخزين الأحرف/الكلمات التي اختارها المستخدم بالترتيب
 
         // بيانات موسعة للكلمات والجمل
         const wordsData = {
@@ -998,7 +1029,7 @@
                         
                         if (event.results[i].isFinal) {
                             finalTranscript += transcript;
-                            showVoiceFeedback(`سمعت: "${transcript}"`, confidence);
+                            // تم إزالة الاستماع المرحلي هنا لتحسين السرعة
                             checkPronunciation(transcript, confidence);
                         } else {
                             interimTranscript += transcript;
@@ -1030,7 +1061,8 @@
 
                 recognition.onend = function() {
                     stopRecording();
-                    setTimeout(hideVoiceFeedback, 3000);
+                    // تقليل وقت إخفاء التغذية الراجعة لزيادة السرعة
+                    // setTimeout(hideVoiceFeedback, 1000); 
                 };
             }
         }
@@ -1057,6 +1089,8 @@
             document.getElementById('play-word').addEventListener('click', playCurrentWord);
             document.getElementById('record-btn').addEventListener('click', toggleRecording);
             document.getElementById('next-word').addEventListener('click', nextWord);
+            
+            // تم استبدال آلية السحب والافلات بالنقر والترقيم
             document.getElementById('check-word').addEventListener('click', checkWordBuilding);
             document.getElementById('reset-letters').addEventListener('click', resetLetters);
             document.getElementById('check-sentence').addEventListener('click', checkSentenceBuilding);
@@ -1110,6 +1144,7 @@
         function loadLevel(level) {
             currentLevel = level;
             currentWordIndex = 0;
+            currentArrangement = []; // إعادة تعيين الترتيب عند تغيير المستوى
             
             // إخفاء جميع المستويات
             document.querySelectorAll('.level-content').forEach(content => {
@@ -1207,20 +1242,18 @@
             recordBtn.classList.add('processing');
             recordBtn.innerHTML = '⚙️ جاري التحليل...';
             
-            setTimeout(() => {
+            // تقليل التأخير هنا لزيادة سرعة الاستجابة
+            setTimeout(() => { 
                 const currentWord = wordsData.level1[currentWordIndex].word;
                 const config = window.elementSdk ? window.elementSdk.config : defaultConfig;
                 
                 // تنظيف النص المنطوق
-                // إزالة التشكيل والمحارف غير العربية للمقارنة الدقيقة
                 const cleanSpoken = spokenText.replace(/[\u064b-\u065e]/g, '').replace(/[^\u0600-\u06FF\s]/g, '').trim();
                 const cleanTarget = currentWord.replace(/[\u064b-\u065e]/g, '').replace(/[^\u0600-\u06FF\s]/g, '').trim();
 
-                // حساب التشابه (Levenshtein Distance)
                 const similarity = calculateSimilarity(cleanSpoken, cleanTarget);
                 
                 // معيار القبول: تشابه عالي أو دقة التعرف عالية جداً
-                // 0.85 (85%) نسبة تشابه عالية للسماح بأخطاء نطق بسيطة
                 const requiredSimilarity = 0.85; 
                 const isCorrect = similarity >= requiredSimilarity || confidence > 0.9;
                 
@@ -1241,10 +1274,10 @@
                 updateStats();
                 checkForCertificate();
                 stopRecording();
-            }, 1000);
+            }, 100); // ** تقليل التأخير **
         }
 
-        // حساب التشابه بين النصوص (Levenshtein Distance)
+        // حساب التشابه بين النصوص (Levenshtein Distance) - تبقى كما هي
         function calculateSimilarity(str1, str2) {
             const longer = str1.length > str2.length ? str1 : str2;
             const shorter = str1.length > str2.length ? str2 : str1;
@@ -1252,7 +1285,6 @@
             if (longer.length === 0) return 1.0;
             
             const editDistance = levenshteinDistance(longer, shorter);
-            // نسبة التشابه = (الطول الأقصى - مسافة التحرير) / الطول الأقصى
             return (longer.length - editDistance) / longer.length;
         }
 
@@ -1293,115 +1325,77 @@
             clearFeedback();
         }
 
-        // المستوى الثاني: ترتيب الأحرف
-        // ** التعديل الثاني: إضافة الترقيم لأماكن إسقاط الأحرف **
+        // المستوى الثاني: ترتيب الأحرف - تم التعديل إلى النقر والترقيم
         function loadLetterArrangement() {
             const currentWord = wordsData.level2[currentWordIndex];
             document.getElementById('target-word').textContent = currentWord.word;
             
             const lettersContainer = document.getElementById('letters-container');
-            const wordBuilder = document.getElementById('word-builder');
+            const letterBuilder = document.getElementById('letter-builder');
             
             lettersContainer.innerHTML = '';
-            wordBuilder.innerHTML = '';
-            
+            letterBuilder.innerHTML = '<span style="color: #ff69b4; opacity: 0.7; font-size: 1.2rem;">انقر على الأحرف هنا...</span>';
+            currentArrangement = []; // إعادة تعيين الترتيب
+
             // خلط الأحرف
-            const shuffledLetters = [...currentWord.letters].sort(() => Math.random() - 0.5);
+            const shuffledLetters = [...currentWord.letters];
+            shuffleArray(shuffledLetters); 
             
             // إضافة الأحرف
             shuffledLetters.forEach((letter, index) => {
                 const letterBox = document.createElement('div');
                 letterBox.className = 'letter-box';
                 letterBox.textContent = letter;
-                letterBox.draggable = true;
-                letterBox.dataset.letter = letter;
-                letterBox.dataset.index = index;
+                letterBox.dataset.item = letter;
+                letterBox.dataset.used = 'false';
                 
-                letterBox.addEventListener('dragstart', handleDragStart);
-                letterBox.addEventListener('dragend', handleDragEnd);
+                // إضافة مستمع النقر بدلاً من السحب
+                letterBox.addEventListener('click', handleLetterClick);
                 
                 lettersContainer.appendChild(letterBox);
             });
-            
-            // إضافة مناطق الإسقاط مع الترقيم
-            for (let i = 0; i < currentWord.letters.length; i++) {
-                const dropZone = document.createElement('div');
-                dropZone.className = 'drop-zone';
-                dropZone.dataset.position = i;
-                
-                // إضافة الترقيم (1, 2, 3, ...)
-                const label = document.createElement('div');
-                label.className = 'drop-label';
-                label.textContent = `${i + 1}.`; 
-                dropZone.appendChild(label);
-
-                dropZone.addEventListener('dragover', handleDragOver);
-                dropZone.addEventListener('drop', handleDrop);
-                
-                wordBuilder.appendChild(dropZone);
+        }
+        
+        // ** وظيفة النقر على الأحرف مع الترقيم **
+        function handleLetterClick(event) {
+            const card = event.currentTarget;
+            if (card.dataset.used === 'true') {
+                showFeedback("هذا الحرف تم اختياره مسبقاً", false);
+                return;
             }
-        }
 
-        function handleDragStart(e) {
-            e.target.classList.add('dragging');
-            e.dataTransfer.setData('text/plain', e.target.dataset.letter);
-            e.dataTransfer.setData('source', 'letter');
-        }
-
-        function handleDragEnd(e) {
-            e.target.classList.remove('dragging');
-        }
-
-        function handleDragOver(e) {
-            e.preventDefault();
-            e.target.classList.add('drag-over');
-        }
-
-        function handleDrop(e) {
-            e.preventDefault();
-            e.target.classList.remove('drag-over');
+            const item = card.dataset.item;
+            currentArrangement.push(item);
+            card.dataset.used = 'true';
             
-            const letter = e.dataTransfer.getData('text/plain');
-            const source = e.dataTransfer.getData('source');
+            // 1. إضافة الشارة (الترقيم)
+            const badge = document.createElement('span');
+            badge.className = 'order-badge';
+            badge.textContent = currentArrangement.length; 
+            card.appendChild(badge);
             
-            // ** تعديل: التأكد من أن منطقة الإسقاط هي العنصر drop-zone نفسه **
-            const dropZone = e.target.classList.contains('drop-zone') ? e.target : e.target.closest('.drop-zone');
-
-            if (source === 'letter' && dropZone && dropZone.children.length === 1) { 
-                // نتحقق من أن هناك عنصر واحد فقط (وهو الترقيم)
-                
-                const letterElement = document.createElement('div');
-                letterElement.textContent = letter;
-                letterElement.className = 'dropped-item'; // للمساعدة في التحديد
-
-                dropZone.appendChild(letterElement);
-                
-                // تنسيق العنصر المسقط
-                dropZone.style.background = 'linear-gradient(45deg, #ff69b4, #ff1493)';
-                dropZone.style.color = 'white';
-                
-                // إخفاء الحرف من المصدر
-                const letterBoxes = document.querySelectorAll('.letter-box');
-                letterBoxes.forEach(box => {
-                    if (box.dataset.letter === letter && box.classList.contains('dragging')) {
-                        box.style.display = 'none';
-                    }
-                });
+            // 2. تجميد البطاقة وتغيير التنسيق
+            card.style.opacity = '0.5';
+            card.style.cursor = 'default';
+            
+            // 3. تحديث منطقة البناء
+            const builder = document.getElementById('letter-builder');
+            // مسح العبارة الإرشادية
+            if (currentArrangement.length === 1) {
+                 builder.innerHTML = '';
             }
+
+            const arrangedItem = document.createElement('div');
+            arrangedItem.className = 'arranged-item';
+            arrangedItem.textContent = item;
+            builder.appendChild(arrangedItem);
+
+            clearFeedback();
         }
 
         function checkWordBuilding() {
-            const dropZones = document.querySelectorAll('#word-builder .drop-zone');
-            
-            // قراءة الحرف المسقط (الذي هو العنصر الثاني داخل drop-zone)
-            const builtWord = Array.from(dropZones)
-                .map(zone => {
-                    const droppedItem = zone.querySelector('.dropped-item');
-                    return droppedItem ? droppedItem.textContent.trim() : '';
-                })
-                .join('');
-
             const targetWord = wordsData.level2[currentWordIndex].word;
+            const builtWord = currentArrangement.join('');
             
             const config = window.elementSdk ? window.elementSdk.config : defaultConfig;
             totalQuestions++;
@@ -1411,6 +1405,12 @@
                 showFeedback(config.success_message || defaultConfig.success_message, true);
                 updateScore(15);
                 createCelebration();
+                
+                // تجميد الإجابة الصحيحة بشكل مميز
+                document.querySelectorAll('#letter-builder .arranged-item').forEach(item => {
+                    item.style.backgroundColor = '#28a745'; // أخضر
+                });
+                
                 setTimeout(() => {
                     nextLetterWord();
                 }, 2000);
@@ -1436,105 +1436,76 @@
             clearFeedback();
         }
 
-        // المستوى الثالث: ترتيب الكلمات
-        // ** التعديل الثالث: إضافة الترقيم لأماكن إسقاط الكلمات **
+        // المستوى الثالث: ترتيب الكلمات - تم التعديل إلى النقر والترقيم
         function loadWordArrangement() {
             const currentSentence = wordsData.level3[currentWordIndex];
             
             const wordsContainer = document.getElementById('words-container');
-            const sentenceBuilder = document.getElementById('sentence-builder');
+            const sentenceBuilder = document.getElementById('sentence-builder-display');
             
             wordsContainer.innerHTML = '';
-            sentenceBuilder.innerHTML = '';
+            sentenceBuilder.innerHTML = '<span style="color: #ff69b4; opacity: 0.7; font-size: 1.2rem;">انقر على الكلمات هنا...</span>';
+            currentArrangement = []; // إعادة تعيين الترتيب
             
             // خلط الكلمات
-            const shuffledWords = [...currentSentence.words].sort(() => Math.random() - 0.5);
+            const shuffledWords = [...currentSentence.words];
+            shuffleArray(shuffledWords); 
             
             // إضافة الكلمات
             shuffledWords.forEach((word, index) => {
                 const wordBox = document.createElement('div');
                 wordBox.className = 'word-box';
                 wordBox.textContent = word;
-                wordBox.draggable = true;
-                wordBox.dataset.word = word;
-                wordBox.dataset.index = index;
+                wordBox.dataset.item = word;
+                wordBox.dataset.used = 'false';
                 
-                wordBox.addEventListener('dragstart', handleWordDragStart);
-                wordBox.addEventListener('dragend', handleDragEnd);
+                // إضافة مستمع النقر بدلاً من السحب
+                wordBox.addEventListener('click', handleWordClick);
                 
                 wordsContainer.appendChild(wordBox);
             });
-            
-            // إضافة مناطق الإسقاط مع الترقيم
-            for (let i = 0; i < currentSentence.words.length; i++) {
-                const dropZone = document.createElement('div');
-                dropZone.className = 'drop-zone';
-                dropZone.dataset.position = i;
-                
-                // إضافة الترقيم (1, 2, 3, ...)
-                const label = document.createElement('div');
-                label.className = 'drop-label';
-                label.textContent = `${i + 1}.`; 
-                dropZone.appendChild(label);
-
-                dropZone.addEventListener('dragover', handleDragOver);
-                dropZone.addEventListener('drop', handleWordDrop);
-                
-                sentenceBuilder.appendChild(dropZone);
-            }
         }
 
-        function handleWordDragStart(e) {
-            e.target.classList.add('dragging');
-            e.dataTransfer.setData('text/plain', e.target.dataset.word);
-            e.dataTransfer.setData('source', 'word');
-        }
-
-        function handleWordDrop(e) {
-            e.preventDefault();
-            e.target.classList.remove('drag-over');
-            
-            const word = e.dataTransfer.getData('text/plain');
-            const source = e.dataTransfer.getData('source');
-            
-            // ** تعديل: التأكد من أن منطقة الإسقاط هي العنصر drop-zone نفسه **
-            const dropZone = e.target.classList.contains('drop-zone') ? e.target : e.target.closest('.drop-zone');
-
-            if (source === 'word' && dropZone && dropZone.children.length === 1) { 
-                // نتحقق من أن هناك عنصر واحد فقط (وهو الترقيم)
-                
-                const wordElement = document.createElement('div');
-                wordElement.textContent = word;
-                wordElement.className = 'dropped-item'; // للمساعدة في التحديد
-
-                dropZone.appendChild(wordElement);
-                
-                // تنسيق العنصر المسقط
-                dropZone.style.background = 'linear-gradient(45deg, #ff69b4, #ff1493)';
-                dropZone.style.color = 'white';
-                
-                // إخفاء الكلمة من المصدر
-                const wordBoxes = document.querySelectorAll('.word-box');
-                wordBoxes.forEach(box => {
-                    if (box.dataset.word === word && box.classList.contains('dragging')) {
-                        box.style.display = 'none';
-                    }
-                });
+        // ** وظيفة النقر على الكلمات مع الترقيم **
+        function handleWordClick(event) {
+            const card = event.currentTarget;
+            if (card.dataset.used === 'true') {
+                showFeedback("هذه الكلمة تم اختيارها مسبقاً", false);
+                return;
             }
+
+            const item = card.dataset.item;
+            currentArrangement.push(item);
+            card.dataset.used = 'true';
+            
+            // 1. إضافة الشارة (الترقيم)
+            const badge = document.createElement('span');
+            badge.className = 'order-badge';
+            badge.textContent = currentArrangement.length; 
+            card.appendChild(badge);
+            
+            // 2. تجميد البطاقة وتغيير التنسيق
+            card.style.opacity = '0.5';
+            card.style.cursor = 'default';
+            
+            // 3. تحديث منطقة البناء
+            const builder = document.getElementById('sentence-builder-display');
+            // مسح العبارة الإرشادية
+            if (currentArrangement.length === 1) {
+                 builder.innerHTML = '';
+            }
+
+            const arrangedItem = document.createElement('div');
+            arrangedItem.className = 'arranged-item';
+            arrangedItem.textContent = item;
+            builder.appendChild(arrangedItem);
+
+            clearFeedback();
         }
 
         function checkSentenceBuilding() {
-            const dropZones = document.querySelectorAll('#sentence-builder .drop-zone');
-            
-            // قراءة الكلمة المسقطة (التي هي العنصر الثاني داخل drop-zone)
-            const builtSentence = Array.from(dropZones)
-                .map(zone => {
-                    const droppedItem = zone.querySelector('.dropped-item');
-                    return droppedItem ? droppedItem.textContent.trim() : '';
-                })
-                .join(' '); // الانضمام بالمسافة لتكوين الجملة
-
             const targetSentence = wordsData.level3[currentWordIndex].sentence;
+            const builtSentence = currentArrangement.join(' '); // الانضمام بالمسافة
             
             const config = window.elementSdk ? window.elementSdk.config : defaultConfig;
             totalQuestions++;
@@ -1544,6 +1515,12 @@
                 showFeedback(config.success_message || defaultConfig.success_message, true);
                 updateScore(20);
                 createCelebration();
+                
+                // تجميد الإجابة الصحيحة بشكل مميز
+                document.querySelectorAll('#sentence-builder-display .arranged-item').forEach(item => {
+                    item.style.backgroundColor = '#28a745'; // أخضر
+                });
+                
                 setTimeout(() => {
                     nextSentence();
                 }, 2000);
@@ -1569,8 +1546,7 @@
             clearFeedback();
         }
 
-        // المستوى الرابع: إكمال الكلمات
-        // ** التعديل الرابع: عدم ترتيب الإجابات (الخلط العشوائي) **
+        // المستوى الرابع: إكمال الكلمات - تبقى كما هي
         function loadWordCompletion() {
             const currentWord = wordsData.level4[currentWordIndex];
             document.getElementById('incomplete-word').textContent = currentWord.incomplete;
@@ -1578,7 +1554,6 @@
             const choicesContainer = document.getElementById('choices-container');
             choicesContainer.innerHTML = '';
             
-            // خلط خيارات الإكمال قبل عرضها
             const shuffledChoices = [...currentWord.choices];
             shuffleArray(shuffledChoices); 
 
@@ -1586,15 +1561,18 @@
                 const choiceBtn = document.createElement('button');
                 choiceBtn.className = 'choice-btn';
                 choiceBtn.textContent = choice;
-                choiceBtn.addEventListener('click', () => checkWordCompletion(choice));
+                choiceBtn.addEventListener('click', (e) => checkWordCompletion(choice, e.target)); // تمرير الزر
                 choicesContainer.appendChild(choiceBtn);
             });
         }
 
-        function checkWordCompletion(selectedChoice) {
+        function checkWordCompletion(selectedChoice, buttonElement) {
             const currentWord = wordsData.level4[currentWordIndex];
             const config = window.elementSdk ? window.elementSdk.config : defaultConfig;
             totalQuestions++;
+            
+            // تعطيل جميع الأزرار بعد الاختيار
+            document.querySelectorAll('#choices-container .choice-btn').forEach(btn => btn.disabled = true);
             
             if (selectedChoice === currentWord.correct) {
                 correctAnswers++;
@@ -1602,11 +1580,28 @@
                 showFeedback(config.success_message || defaultConfig.success_message, true);
                 updateScore(10);
                 createCelebration();
+                
+                buttonElement.style.backgroundColor = '#28a745'; // أخضر
+                buttonElement.style.borderColor = '#28a745';
+                
                 setTimeout(() => {
                     nextCompletionWord();
+                    // إعادة تفعيل الأزرار للمرحلة التالية
+                    document.querySelectorAll('#choices-container .choice-btn').forEach(btn => btn.disabled = false);
                 }, 2000);
             } else {
                 showFeedback(config.retry_message || defaultConfig.retry_message, false);
+                buttonElement.style.backgroundColor = '#dc3545'; // أحمر
+                buttonElement.style.borderColor = '#dc3545';
+                
+                // إرجاع حالة الأزرار بعد فترة للسماح بالمحاولة مجدداً
+                setTimeout(() => {
+                    document.querySelectorAll('#choices-container .choice-btn').forEach(btn => {
+                        btn.disabled = false;
+                        btn.style.backgroundColor = '';
+                        btn.style.borderColor = '#ff69b4';
+                    });
+                }, 1500);
             }
             
             updateStats();
@@ -1622,7 +1617,7 @@
             clearFeedback();
         }
 
-        // تحديث الإحصائيات
+        // تحديث الإحصائيات - تبقى كما هي
         function updateStats() {
             document.getElementById('correct-answers').textContent = correctAnswers;
             document.getElementById('total-questions').textContent = totalQuestions;
@@ -1631,7 +1626,7 @@
             document.getElementById('success-percentage').textContent = percentage;
         }
 
-        // فحص استحقاق الشهادة
+        // فحص استحقاق الشهادة - تبقى كما هي
         function checkForCertificate() {
             if (totalQuestions >= 10 && !certificateEarned) {
                 const percentage = Math.round((correctAnswers / totalQuestions) * 100);
@@ -1642,17 +1637,15 @@
             }
         }
 
-        // عرض شهادة التفوق
+        // عرض شهادة التفوق - تبقى كما هي
         function showCertificate(percentage) {
             document.getElementById('student-name-cert').textContent = studentName;
             document.getElementById('final-percentage').textContent = percentage;
             document.getElementById('certificate-date').textContent = new Date().toLocaleDateString('ar-SA');
             document.getElementById('certificate').classList.remove('hidden');
             
-            // تأثير احتفالي خاص
             createMegaCelebration();
             
-            // حفظ إنجاز الشهادة
             saveCertificateAchievement(percentage);
         }
 
@@ -1676,7 +1669,7 @@
             }
         }
 
-        // وظائف مساعدة
+        // وظائف مساعدة - تبقى كما هي
         function showFeedback(message, isSuccess) {
             const feedback = document.getElementById('feedback');
             feedback.textContent = isSuccess ? `✅ ${message}` : `❌ ${message}`;
@@ -1693,7 +1686,6 @@
             score += points;
             document.getElementById('score').textContent = score;
             
-            // حفظ التقدم
             saveProgress();
             updateProgressDisplay();
         }
@@ -1720,7 +1712,7 @@
 
         function updateProgressDisplay() {
             const totalWords = Object.values(wordsData).reduce((sum, level) => sum + level.length, 0);
-            const progress = Math.min((correctAnswers / totalWords) * 100, 100);
+            const progress = totalQuestions > 0 ? Math.min((correctAnswers / totalQuestions) * 100, 100) : 0;
             const progressFill = document.getElementById('progress-fill');
             progressFill.style.width = `${progress}%`;
             progressFill.textContent = `${Math.round(progress)}%`;
@@ -1729,7 +1721,6 @@
         function createCelebration() {
             const celebration = document.getElementById('celebration');
             
-            // إنشاء فقاعات الاحتفال
             for (let i = 0; i < 20; i++) {
                 const bubble = document.createElement('div');
                 bubble.className = 'bubble';
@@ -1743,14 +1734,12 @@
                 }, 3000);
             }
             
-            // تشغيل صوت التصفيق
             playApplauseSound();
         }
 
         function createMegaCelebration() {
             const celebration = document.getElementById('celebration');
             
-            // احتفال كبير للشهادة
             for (let i = 0; i < 50; i++) {
                 const bubble = document.createElement('div');
                 bubble.className = 'bubble';
@@ -1765,17 +1754,14 @@
                 }, 5000);
             }
             
-            // صوت احتفالي مميز
             playVictorySound();
         }
 
         function playApplauseSound() {
-            // محاكاة صوت التصفيق باستخدام Web Audio API
             if ('AudioContext' in window || 'webkitAudioContext' in window) {
                 const AudioContext = window.AudioContext || window.webkitAudioContext;
                 const audioContext = new AudioContext();
                 
-                // إنشاء نغمة احتفالية
                 const oscillator = audioContext.createOscillator();
                 const gainNode = audioContext.createGain();
                 
@@ -1794,12 +1780,10 @@
         }
 
         function playVictorySound() {
-            // صوت انتصار للشهادة
             if ('AudioContext' in window || 'webkitAudioContext' in window) {
                 const AudioContext = window.AudioContext || window.webkitAudioContext;
                 const audioContext = new AudioContext();
                 
-                // نغمة انتصار متقدمة
                 const notes = [523.25, 659.25, 783.99, 1046.50]; // C5, E5, G5, C6
                 
                 notes.forEach((freq, index) => {
