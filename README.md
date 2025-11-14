@@ -3,40 +3,95 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>تطبيق ترتيب الجملة (طريقة النقر)</title>
+    <title>تطبيق الترتيب الذكي للجمل</title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
     
     <style>
         /* === 1. تنسيقات CSS (التصميم والألوان) === */
         
-        /* تطبيق اتجاه الكتابة والخط */
-        .container, .word-bank, .sentence-area {
-            direction: rtl;
+        /* إعادة تعيين الأنماط الأساسية والخط */
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #f4f7f9;
             font-family: 'Cairo', sans-serif; 
         }
 
-        body {
-            background-color: #f4f7f9;
-            display: flex;
-            justify-content: center;
-            padding: 20px;
+        /* حاوية الصفحة الكاملة (تقسيم جانبي ورئيسي) */
+        .full-page-wrapper {
+            display: flex; 
+            width: 100%;
+            min-height: 100vh;
+            direction: rtl; /* اتجاه الكتابة من اليمين لليسار */
         }
 
-        .container {
-            width: 90%;
-            max-width: 800px;
+        /* تنسيق القائمة الجانبية (Sidebar) */
+        .sidebar {
+            width: 250px;
+            background-color: #ffffff;
+            padding: 20px;
+            border-left: 1px solid #eee;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.05);
+            padding-top: 50px; /* مسافة من الأعلى */
+        }
+
+        .sidebar h3 {
+            color: #1565C0;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .sidebar li {
+            padding: 10px;
+            margin-bottom: 5px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.2s;
+            font-weight: 500;
+        }
+
+        .sidebar li:hover:not(.active) {
+            background-color: #e3f2fd;
+        }
+
+        .sidebar li.active {
+            background-color: #1565C0;
+            color: white;
+            font-weight: bold;
+        }
+
+        /* تنسيق المحتوى الرئيسي (Main Content) */
+        .content-area {
+            flex-grow: 1; 
+            padding: 30px;
+        }
+
+        .content-area h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 40px;
+            font-size: 2.2em;
+        }
+
+        /* تنسيق حاوية التمرين */
+        .exercise-container {
             background-color: white;
             padding: 30px;
             border-radius: 12px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
 
-        h2 {
+        .exercise-container h2 {
             text-align: center;
-            color: #333;
+            color: #555;
             margin-bottom: 25px;
-            border-bottom: 2px solid #eee;
-            padding-bottom: 10px;
+            font-size: 1.6em;
         }
 
         /* منطقة الكلمات العشوائية */
@@ -56,9 +111,9 @@
         .word-card {
             cursor: pointer;
             padding: 12px 18px;
-            border: 1px solid #CCCCCC; /* حد رمادي ناعم */
-            border-radius: 30px; /* جعلها مستديرة أكثر */
-            background-color: #F5F5F5; /* خلفية رمادية فاتحة */
+            border: 1px solid #CCCCCC; 
+            border-radius: 30px; 
+            background-color: #F5F5F5; 
             transition: all 0.2s ease;
             font-size: 18px;
             font-weight: 600;
@@ -91,13 +146,14 @@
             font-size: 16px;
             font-weight: bold;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            z-index: 10;
         }
 
-        /* منطقة الجملة المرتبة (حيث تظهر الكلمات بعد النقر) */
+        /* منطقة الجملة المرتبة */
         .sentence-area {
             margin: 20px 0;
             padding: 20px;
-            border: 2px dashed #B0BEC5; /* حد متقطع فاتح */
+            border: 2px dashed #B0BEC5; 
             min-height: 70px;
             display: flex;
             gap: 10px;
@@ -110,12 +166,12 @@
             color: #90A4AE;
             font-style: italic;
             font-size: 18px;
-            align-self: center; /* توسيط النص التمهيدي */
+            align-self: center; 
         }
         
         .sentence-area .word-card {
-            cursor: default; /* منع النقر عليها مرة أخرى */
-            box-shadow: none; /* إزالة الظل في منطقة العرض */
+            cursor: default; 
+            box-shadow: none; 
         }
 
         /* أزرار التحكم */
@@ -175,51 +231,127 @@
 </head>
 <body>
     
-    <div class="container">
-        <h2>رتب الكلمات لتكوين جملة مفيدة</h2>
+    <div class="full-page-wrapper">
 
-        <div id="word-bank" class="word-bank">
-            <div class="word-card" data-word="سافر">سافر</div>
-            <div class="word-card" data-word="جدة">جدة</div>
-            <div class="word-card" data-word="محمد">محمد</div>
-            <div class="word-card" data-word="إلى">إلى</div>
-        </div>
+        <aside class="sidebar">
+            <h3>📖 التمارين المتاحة</h3>
+            <ul>
+                <li class="active" data-exercise="1">تمرين 1: السفر إلى جدة</li>
+                <li data-exercise="2">تمرين 2: شروق الشمس</li>
+                <li data-exercise="3">تمرين 3: الألوان الجميلة</li>
+            </ul>
+        </aside>
 
-        <div id="sentence-area" class="sentence-area">
-            <span class="placeholder">انقر على الكلمات بالترتيب الصحيح...</span>
-        </div>
+        <main class="content-area">
+            <h1>تطبيق الترتيب الذكي للجمل</h1>
+            
+            <div class="exercise-container">
+                <h2>عنوان التمرين سيظهر هنا</h2>
+                
+                <div id="word-bank" class="word-bank">
+                    </div>
 
-        <div class="controls">
-            <button id="check-button" class="check-button">تحقق</button>
-            <button id="reset-button" class="reset-button">إعادة الترتيب</button>
-        </div>
+                <div id="sentence-area" class="sentence-area">
+                    <span class="placeholder">انقر على الكلمات بالترتيب الصحيح...</span>
+                </div>
 
-        <p id="feedback" class="feedback"></p>
+                <div class="controls">
+                    <button id="check-button" class="check-button">تحقق</button>
+                    <button id="reset-button" class="reset-button">إعادة الترتيب</button>
+                </div>
+
+                <p id="feedback" class="feedback"></p>
+            </div>
+        </main>
     </div>
 
     <script>
-        /* === 2. منطق JavaScript (الآلية التفاعلية) === */
+        /* === 2. منطق JavaScript (الآلية التفاعلية وإدارة التمارين) === */
         document.addEventListener('DOMContentLoaded', () => {
-            // ** 1. الترتيب الصحيح للجملة - يمكنك تغيير هذا لكل تمرين جديد **
-            const CORRECT_ORDER = ["سافر", "محمد", "إلى", "جدة"];
             
+            // ** 1. هيكل بيانات التمارين - يمكنك إضافة المزيد هنا **
+            const EXERCISES = {
+                '1': {
+                    title: "تمرين 1: السفر إلى جدة",
+                    correctOrder: ["سافر", "محمد", "إلى", "جدة"]
+                },
+                '2': {
+                    title: "تمرين 2: شروق الشمس",
+                    correctOrder: ["الشمس", "تشرق", "من", "الشرق"]
+                },
+                '3': {
+                    title: "تمرين 3: الألوان الجميلة",
+                    correctOrder: ["أحب", "الزهور", "ذات", "الألوان", "الجميلة"]
+                }
+            };
+            
+            let currentExerciseId = '1';
+            let userOrder = [];
+
             // العناصر البرمجية الأساسية
             const wordBank = document.getElementById('word-bank');
             const sentenceArea = document.getElementById('sentence-area');
             const checkButton = document.getElementById('check-button');
             const resetButton = document.getElementById('reset-button');
             const feedbackElement = document.getElementById('feedback');
-            const wordCards = Array.from(document.querySelectorAll('.word-card'));
-
-            let userOrder = []; // الترتيب الذي اختارته الطالبة (سيخزن الكلمات كـ strings)
-
-            // توزيع الكلمات عشوائيًا عند تحميل الصفحة
-            wordCards.sort(() => Math.random() - 0.5).forEach(card => wordBank.appendChild(card));
-            
-            // عنصر النص التمهيدي
             const placeholder = sentenceArea.querySelector('.placeholder');
             
-            // دالة معالجة النقر
+            // **********************************************
+            // دوال التحكم
+            // **********************************************
+
+            // دالة لإعادة تعيين حالة التمرين
+            const resetGame = () => {
+                userOrder = [];
+                sentenceArea.innerHTML = '';
+                if (placeholder) {
+                    sentenceArea.appendChild(placeholder);
+                    placeholder.style.display = 'block';
+                }
+                
+                // إعادة الكلمات في بنك الكلمات لحالتها الافتراضية
+                const wordCards = Array.from(wordBank.children);
+                wordCards.forEach(card => {
+                    card.classList.remove('selected');
+                    card.style.backgroundColor = '';
+                    const badge = card.querySelector('.order-badge');
+                    if (badge) {
+                        card.removeChild(badge);
+                    }
+                });
+                
+                feedbackElement.textContent = '';
+                feedbackElement.className = 'feedback';
+            };
+
+
+            // دالة لتحميل تمرين جديد
+            const loadExercise = (exerciseId) => {
+                const exercise = EXERCISES[exerciseId];
+                if (!exercise) return;
+
+                currentExerciseId = exerciseId;
+                resetGame(); // إعادة تعيين اللعبة قبل التحميل
+                
+                // 1. تحديث العنوان
+                document.querySelector('.exercise-container h2').textContent = exercise.title;
+                
+                // 2. مسح وتوليد الكلمات الجديدة
+                wordBank.innerHTML = '';
+                const wordsToShuffle = [...exercise.correctOrder]; 
+                
+                // توليد العناصر عشوائياً وربطها بـ Event Listener
+                wordsToShuffle.sort(() => Math.random() - 0.5).forEach(word => {
+                    const card = document.createElement('div');
+                    card.classList.add('word-card');
+                    card.setAttribute('data-word', word);
+                    card.textContent = word;
+                    card.addEventListener('click', handleWordClick); // ربط النقر
+                    wordBank.appendChild(card);
+                });
+            };
+
+            // دالة معالجة النقر (لبناء الجملة)
             const handleWordClick = (event) => {
                 const card = event.currentTarget;
                 const word = card.getAttribute('data-word');
@@ -229,13 +361,11 @@
                     return;
                 }
 
-                // 2. الإضافة والتحديث الداخلي
                 userOrder.push(word);
                 
-                // 3. التحديث البصري والترقيم
+                // التحديث البصري والترقيم
                 card.classList.add('selected');
                 
-                // إضافة أيقونة الترقيم
                 const badge = document.createElement('span');
                 badge.classList.add('order-badge');
                 badge.textContent = userOrder.length; 
@@ -246,75 +376,66 @@
                     placeholder.style.display = 'none';
                 }
 
-                // إنشاء نسخة من البطاقة لإضافتها لمنطقة الترتيب
+                // إنشاء نسخة للـ sentenceArea وجعلها غير قابلة للنقر
                 const orderedCard = card.cloneNode(true);
+                orderedCard.style.cursor = 'default';
                 orderedCard.removeEventListener('click', handleWordClick); 
                 sentenceArea.appendChild(orderedCard);
                 
-                // مسح رسالة التغذية الراجعة القديمة
                 feedbackElement.textContent = '';
                 feedbackElement.className = 'feedback';
             };
 
-            // ربط دالة النقر بكل كلمة
-            wordCards.forEach(card => {
-                card.addEventListener('click', handleWordClick);
-            });
+            // **********************************************
+            // ربط الأزرار والأحداث
+            // **********************************************
             
             // دالة التصحيح (عند النقر على "تحقق")
             checkButton.addEventListener('click', () => {
-                // التحقق من اكتمال الجملة
+                const CORRECT_ORDER = EXERCISES[currentExerciseId].correctOrder;
+
                 if (userOrder.length !== CORRECT_ORDER.length) {
                     feedbackElement.textContent = 'الرجاء إكمال الجملة أولاً.';
                     feedbackElement.className = 'feedback incorrect';
                     return;
                 }
 
-                // مقارنة الترتيب
                 const isCorrect = userOrder.every((word, index) => word === CORRECT_ORDER[index]);
 
                 if (isCorrect) {
-                    // حالة النجاح
                     feedbackElement.textContent = '🏆 أحسنتِ! الترتيب صحيح وممتاز.';
                     feedbackElement.className = 'feedback correct';
                     
-                    // تظليل الكلمات في منطقة الترتيب بالأخضر كإشارة نهائية
+                    // تظليل كل الكلمات في منطقة الترتيب بالأخضر
                     Array.from(sentenceArea.children).forEach(card => {
                         card.style.backgroundColor = '#C8E6C9';
                     });
                     
                 } else {
-                    // حالة الخطأ
                     feedbackElement.textContent = '❌ هناك خطأ في الترتيب. حاولي مرة أخرى!';
                     feedbackElement.className = 'feedback incorrect';
                 }
             });
             
-            // دالة إعادة الترتيب
-            resetButton.addEventListener('click', () => {
-                // إعادة تهيئة المتغيرات
-                userOrder = [];
-                
-                // إعادة الواجهة البصرية لحالتها الافتراضية
-                sentenceArea.innerHTML = '';
-                if (placeholder) {
-                    sentenceArea.appendChild(placeholder);
-                    placeholder.style.display = 'block';
-                }
-                
-                wordCards.forEach(card => {
-                    card.classList.remove('selected');
-                    // إزالة شارات الترقيم
-                    const badge = card.querySelector('.order-badge');
-                    if (badge) {
-                        card.removeChild(badge);
+            // ربط زر إعادة الترتيب
+            resetButton.addEventListener('click', resetGame);
+
+            // ** منطق التبديل بين التمارين (Sidebar Click) **
+            document.querySelectorAll('.sidebar li').forEach(item => {
+                item.addEventListener('click', (e) => {
+                    const newId = e.target.getAttribute('data-exercise');
+                    if (newId !== currentExerciseId) {
+                        // تحديث الفئة النشطة
+                        document.querySelector('.sidebar li.active').classList.remove('active');
+                        e.target.classList.add('active');
+                        
+                        loadExercise(newId); // تحميل التمرين الجديد
                     }
-                    card.style.backgroundColor = ''; // إزالة تظليل النجاح إن وجد
                 });
-                
-                feedbackElement.textContent = '';
-                feedbackElement.className = 'feedback';
             });
+
+            // تحميل التمرين الأول عند بدء التشغيل
+            loadExercise(currentExerciseId);
         });
     </script>
 </body>
