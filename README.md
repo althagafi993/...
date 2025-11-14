@@ -3,439 +3,335 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>تطبيق الترتيب الذكي للجمل</title>
+    <title>تطبيق اللغة العربية المتكامل</title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
     
     <style>
-        /* === 1. تنسيقات CSS (التصميم والألوان) === */
-        
-        /* إعادة تعيين الأنماط الأساسية والخط */
-        body {
-            margin: 0;
-            padding: 0;
-            background-color: #f4f7f9;
-            font-family: 'Cairo', sans-serif; 
-        }
-
-        /* حاوية الصفحة الكاملة (تقسيم جانبي ورئيسي) */
-        .full-page-wrapper {
+        /* === التنسيقات العامة === */
+        body { margin: 0; padding: 0; background-color: #f4f7f9; font-family: 'Cairo', sans-serif; direction: rtl; }
+        .screen { display: none; padding: 40px; min-height: 100vh; }
+        .screen.active { 
             display: flex; 
-            width: 100%;
-            min-height: 100vh;
-            direction: rtl; /* اتجاه الكتابة من اليمين لليسار */
+            flex-direction: column; 
+            align-items: center; 
+            /* لا تضع justify-content: center إلا في شاشة الدخول */
         }
-
-        /* تنسيق القائمة الجانبية (Sidebar) */
-        .sidebar {
-            width: 250px;
-            background-color: #ffffff;
-            padding: 20px;
-            border-left: 1px solid #eee;
-            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.05);
-            padding-top: 50px; /* مسافة من الأعلى */
-        }
-
-        .sidebar h3 {
-            color: #1565C0;
-            margin-bottom: 15px;
-            border-bottom: 2px solid #eee;
-            padding-bottom: 10px;
-        }
-
-        .sidebar ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        .sidebar li {
-            padding: 10px;
-            margin-bottom: 5px;
-            cursor: pointer;
-            border-radius: 5px;
-            transition: background-color 0.2s;
-            font-weight: 500;
-        }
-
-        .sidebar li:hover:not(.active) {
-            background-color: #e3f2fd;
-        }
-
-        .sidebar li.active {
-            background-color: #1565C0;
-            color: white;
-            font-weight: bold;
-        }
-
-        /* تنسيق المحتوى الرئيسي (Main Content) */
-        .content-area {
-            flex-grow: 1; 
-            padding: 30px;
-        }
-
-        .content-area h1 {
-            text-align: center;
-            color: #333;
-            margin-bottom: 40px;
-            font-size: 2.2em;
-        }
-
-        /* تنسيق حاوية التمرين */
-        .exercise-container {
-            background-color: white;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        }
-
-        .exercise-container h2 {
-            text-align: center;
-            color: #555;
-            margin-bottom: 25px;
-            font-size: 1.6em;
-        }
-
-        /* منطقة الكلمات العشوائية */
-        .word-bank {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-            padding: 20px;
-            border: 1px solid #ddd;
-            background-color: #fcfcfc;
-            border-radius: 8px;
-            min-height: 80px;
-            margin-bottom: 20px;
-        }
-
-        /* بطاقة الكلمة (الوضع الافتراضي) */
-        .word-card {
-            cursor: pointer;
-            padding: 12px 18px;
-            border: 1px solid #CCCCCC; 
-            border-radius: 30px; 
-            background-color: #F5F5F5; 
-            transition: all 0.2s ease;
-            font-size: 18px;
-            font-weight: 600;
-            position: relative; 
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-        }
-
-        /* حالة اختيار الكلمة (التظليل الأزرق) */
-        .word-card.selected {
-            background-color: #B3E5FC; /* أزرق فاتح مريح */
-            color: #000;
-            border-color: #B3E5FC;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-        }
-
-        /* أيقونة الترقيم (الشارة الزرقاء الداكنة) */
-        .word-card .order-badge {
-            position: absolute;
-            top: -10px;
-            right: -10px;
-            background-color: #1565C0; /* أزرق غامق للتباين */
-            color: white;
-            border-radius: 50%;
-            width: 28px;
-            height: 28px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 16px;
-            font-weight: bold;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-            z-index: 10;
-        }
-
-        /* منطقة الجملة المرتبة */
-        .sentence-area {
-            margin: 20px 0;
-            padding: 20px;
-            border: 2px dashed #B0BEC5; 
-            min-height: 70px;
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-            border-radius: 8px;
-            background-color: #f9f9f9;
-        }
-
-        .sentence-area .placeholder {
-            color: #90A4AE;
-            font-style: italic;
-            font-size: 18px;
-            align-self: center; 
-        }
+        .card { background-color: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); width: 100%; max-width: 800px; margin-top: 20px; }
+        .back-button { align-self: flex-start; margin-bottom: 20px; background: #607D8B; color: white; padding: 10px 15px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; }
         
-        .sentence-area .word-card {
-            cursor: default; 
-            box-shadow: none; 
-        }
+        /* === شاشة تسجيل الدخول === */
+        #login-screen { justify-content: center; }
+        #login-screen h1 { color: #1565C0; margin-bottom: 30px; }
+        #login-screen input[type="text"] { width: 100%; padding: 15px; margin-bottom: 20px; border: 1px solid #ccc; border-radius: 8px; font-size: 1.1em; }
+        #login-screen button { background-color: #4CAF50; color: white; padding: 15px 30px; border: none; border-radius: 8px; cursor: pointer; font-size: 1.2em; }
 
-        /* أزرار التحكم */
-        .controls {
-            display: flex;
-            gap: 15px;
-            justify-content: center;
-            margin-top: 20px;
-        }
+        /* === الشاشة الرئيسية (القائمة) === */
+        #main-menu .card { max-width: 900px; }
+        #main-menu h1 { color: #1565C0; margin-bottom: 30px; text-align: center; }
+        .section-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; width: 100%; margin-top: 20px; }
+        .section-card { padding: 30px; border-radius: 15px; text-align: center; font-size: 1.3em; font-weight: bold; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; color: white; }
+        .section-card:hover { transform: translateY(-5px); box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2); }
+        .section-card[data-section="sorter"] { background-color: #1565C0; } /* ترتيب الكلمة والجملة */
+        .section-card[data-section="mcq"] { background-color: #FF9800; } /* الاختيار من متعدد */
+        .section-card[data-section="fill"] { background-color: #E91E63; } /* أكمل الفراغ */
+        .section-card[data-section="grammar"] { background-color: #4CAF50; } /* قواعد وتصحيح */
 
-        .check-button, .reset-button {
-            padding: 12px 25px;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 16px;
-            font-weight: bold;
-            transition: all 0.3s;
-        }
-
-        .check-button {
-            background-color: #4CAF50; /* أخضر للتحقق */
-            color: white;
-        }
-
-        .check-button:hover {
-            background-color: #388E3C;
-        }
-
-        .reset-button {
-            background-color: #FF9800; /* برتقالي للإعادة */
-            color: white;
-        }
-
-        .reset-button:hover {
-            background-color: #FB8C00;
-        }
-
-        /* رسائل التغذية الراجعة */
-        .feedback {
-            font-weight: bold;
-            margin-top: 25px;
-            padding: 15px;
-            border-radius: 8px;
-            text-align: center;
-            font-size: 18px;
-        }
-        .feedback.correct {
-            background-color: #C8E6C9; 
-            color: #2E7D32; 
-        }
-        .feedback.incorrect {
-            background-color: #FFCDD2; 
-            color: #C62828; 
-        }
+        /* === قسم الترتيب (الآلية التي طورناها) === */
+        .word-bank { display: flex; flex-wrap: wrap; gap: 15px; padding: 20px; border: 1px solid #ddd; background-color: #fcfcfc; border-radius: 8px; min-height: 80px; margin-bottom: 20px; }
+        .word-card { cursor: pointer; padding: 12px 18px; border: 1px solid #CCCCCC; border-radius: 30px; background-color: #F5F5F5; transition: all 0.2s ease; font-size: 18px; font-weight: 600; position: relative; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05); }
+        .word-card.selected { background-color: #B3E5FC; color: #000; border-color: #B3E5FC; transform: translateY(-2px); box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); }
+        .word-card .order-badge { position: absolute; top: -10px; right: -10px; background-color: #1565C0; color: white; border-radius: 50%; width: 28px; height: 28px; display: flex; justify-content: center; align-items: center; font-size: 16px; font-weight: bold; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); z-index: 10; }
+        .sentence-area { margin: 20px 0; padding: 20px; border: 2px dashed #B0BEC5; min-height: 70px; display: flex; gap: 10px; flex-wrap: wrap; border-radius: 8px; background-color: #f9f9f9; }
+        .sentence-area .placeholder { color: #90A4AE; font-style: italic; font-size: 18px; align-self: center; }
+        .controls { display: flex; gap: 15px; justify-content: center; margin-top: 20px; }
+        .check-button, .reset-button { padding: 12px 25px; border: none; border-radius: 8px; cursor: pointer; font-size: 16px; font-weight: bold; transition: all 0.3s; }
+        .check-button { background-color: #4CAF50; color: white; }
+        .reset-button { background-color: #FF9800; color: white; }
+        .feedback { font-weight: bold; margin-top: 25px; padding: 15px; border-radius: 8px; text-align: center; font-size: 18px; }
+        .feedback.correct { background-color: #C8E6C9; color: #2E7D32; }
+        .feedback.incorrect { background-color: #FFCDD2; color: #C62828; }
+        
+        /* زر النطق (جديد) */
+        .speak-btn { background: none; border: none; cursor: pointer; margin-right: 5px; color: #1565C0; font-size: 1.5em; vertical-align: middle; }
     </style>
 </head>
 <body>
-    
-    <div class="full-page-wrapper">
 
-        <aside class="sidebar">
-            <h3>📖 التمارين المتاحة</h3>
-            <ul>
-                <li class="active" data-exercise="1">تمرين 1: السفر إلى جدة</li>
-                <li data-exercise="2">تمرين 2: شروق الشمس</li>
-                <li data-exercise="3">تمرين 3: الألوان الجميلة</li>
-            </ul>
-        </aside>
-
-        <main class="content-area">
-            <h1>تطبيق الترتيب الذكي للجمل</h1>
-            
-            <div class="exercise-container">
-                <h2>عنوان التمرين سيظهر هنا</h2>
-                
-                <div id="word-bank" class="word-bank">
-                    </div>
-
-                <div id="sentence-area" class="sentence-area">
-                    <span class="placeholder">انقر على الكلمات بالترتيب الصحيح...</span>
-                </div>
-
-                <div class="controls">
-                    <button id="check-button" class="check-button">تحقق</button>
-                    <button id="reset-button" class="reset-button">إعادة الترتيب</button>
-                </div>
-
-                <p id="feedback" class="feedback"></p>
-            </div>
-        </main>
+    <div id="login-screen" class="screen active">
+        <div class="card">
+            <h1>مرحباً بك في تطبيق اللغة العربية</h1>
+            <p>الرجاء إدخال اسم الطالبة للبدء:</p>
+            <input type="text" id="student-name" placeholder="اسم الطالبة">
+            <button onclick="goToMenu()">ابدأ</button>
+        </div>
     </div>
 
+    <div id="main-menu" class="screen">
+        <div class="card">
+            <h1 id="welcome-message"></h1>
+            <h2>الرجاء اختيار القسم المطلوب:</h2>
+            <div class="section-grid">
+                <div class="section-card" data-section="sorter" onclick="goToSection('sorter')">
+                    ترتيب الكلمة والجملة 🔢
+                </div>
+                <div class="section-card" data-section="mcq" onclick="goToSection('mcq')">
+                    الاختيار من متعدد ✔️
+                </div>
+                <div class="section-card" data-section="fill" onclick="goToSection('fill')">
+                    أكمل الفراغ ✍️
+                </div>
+                <div class="section-card" data-section="grammar" onclick="goToSection('grammar')">
+                    قواعد وتصحيح 📚
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="sorter-screen" class="screen">
+        <button class="back-button" onclick="goToMenu()">عودة للقائمة</button>
+        <div class="card">
+            <h2 id="sorter-title">عنوان التمرين سيظهر هنا</h2>
+            
+            <div id="sorter-word-bank" class="word-bank"></div>
+            
+            <div id="sorter-sentence-area" class="sentence-area">
+                <span class="placeholder">انقر على الكلمات بالترتيب الصحيح...</span>
+            </div>
+            
+            <div class="controls">
+                <button id="sorter-check-button" class="check-button">تحقق</button>
+                <button id="sorter-reset-button" class="reset-button">إعادة الترتيب</button>
+                <button id="sorter-next-button" class="check-button" style="background-color:#007bff; display:none;">التمرين التالي</button>
+            </div>
+            <p id="sorter-feedback" class="feedback"></p>
+        </div>
+    </div>
+
+    <div id="mcq-screen" class="screen">
+        <button class="back-button" onclick="goToMenu()">عودة للقائمة</button>
+        <div class="card">
+            <h2>قسم الاختيار من متعدد</h2>
+            <p>هذا القسم جاهز لاستقبال أسئلة الاختيار من متعدد (MCQ). يمكنك إضافة منطق الأسئلة هنا.</p>
+        </div>
+    </div>
+
+    <div id="fill-screen" class="screen">
+        <button class="back-button" onclick="goToMenu()">عودة للقائمة</button>
+        <div class="card">
+            <h2>قسم أكمل الفراغ (يشمل إكمال الكلمة والجملة)</h2>
+            <p>هذا القسم جاهز لاستقبال أسئلة إكمال الكلمات أو الفراغات في الجمل. يمكنك إضافة خانات الإدخال ومنطق المقارنة هنا.</p>
+        </div>
+    </div>
+    
+    <div id="grammar-screen" class="screen">
+        <button class="back-button" onclick="goToMenu()">عودة للقائمة</button>
+        <div class="card">
+            <h2>قسم قواعد وتصحيح</h2>
+            <p>هذا القسم جاهز لاستقبال أسئلة تصحيح الأخطاء النحوية أو الصرفية. يمكنك إضافة محتوى هذا النوع من الأسئلة هنا.</p>
+        </div>
+    </div>
+
+
     <script>
-        /* === 2. منطق JavaScript (الآلية التفاعلية وإدارة التمارين) === */
+        /* === منطق JavaScript: التنقل وإدارة الأقسام === */
+        
+        let currentScreenId = 'login-screen';
+        let studentName = '';
+
+        // دوال التنقل
+        const navigate = (targetId) => {
+            document.getElementById(currentScreenId).classList.remove('active');
+            document.getElementById(targetId).classList.add('active');
+            currentScreenId = targetId;
+        };
+
+        const goToMenu = () => {
+            navigate('main-menu');
+        };
+
+        const goToSection = (sectionName) => {
+            navigate(sectionName + '-screen');
+            if (sectionName === 'sorter') {
+                 // عند الدخول لقسم الترتيب، يتم تحميل التمرين الأول
+                 loadSorterExercise('1'); 
+            }
+        };
+        
+        // دالة البدء وتسجيل الاسم
+        const goToMenu = () => {
+            const nameInput = document.getElementById('student-name');
+            studentName = nameInput.value.trim();
+
+            if (studentName) {
+                document.getElementById('welcome-message').textContent = `أهلاً بك، ${studentName}!`;
+                navigate('main-menu');
+            } else {
+                alert('الرجاء إدخال الاسم للبدء.');
+            }
+        };
+
+        // **********************************************
+        // منطق قسم ترتيب الكلمة والجملة (Sorter Logic)
+        // **********************************************
+
+        // دالة النطق (Text-to-Speech)
+        const speakWord = (word) => {
+            if ('speechSynthesis' in window) {
+                const utterance = new SpeechSynthesisUtterance(word);
+                utterance.lang = 'ar-SA'; 
+                speechSynthesis.speak(utterance);
+            } else {
+                console.warn("المتصفح لا يدعم ميزة نطق النص.");
+            }
+        };
+
+        const SORTER_EXERCISES = {
+            '1': { title: "ترتيب الجملة: السفر", correctOrder: ["سافر", "محمد", "إلى", "جدة"], type: 'sentence' },
+            '2': { title: "ترتيب الكلمة: فعل الأمر", correctOrder: ["ن", "ط", "ق"], type: 'word' },
+            '3': { title: "ترتيب الجملة: الرياضة", correctOrder: ["الرياضة", "تقوي", "الجسم"], type: 'sentence' }
+        };
+        
+        let currentSorterExerciseId = '1';
+        let sorterUserOrder = [];
+
+        const sorterWordBank = document.getElementById('sorter-word-bank');
+        const sorterSentenceArea = document.getElementById('sorter-sentence-area');
+        const sorterCheckButton = document.getElementById('sorter-check-button');
+        const sorterResetButton = document.getElementById('sorter-reset-button');
+        const sorterNextButton = document.getElementById('sorter-next-button');
+        const sorterFeedbackElement = document.getElementById('sorter-feedback');
+        const sorterTitle = document.getElementById('sorter-title');
+        const sorterPlaceholder = sorterSentenceArea.querySelector('.placeholder');
+
+        const resetSorterGame = () => {
+            sorterUserOrder = [];
+            sorterSentenceArea.innerHTML = '';
+            if (sorterPlaceholder) {
+                sorterSentenceArea.appendChild(sorterPlaceholder);
+                sorterPlaceholder.style.display = 'block';
+            }
+            // إعادة تعيين الكلمات البصرية
+            const wordCards = Array.from(sorterWordBank.children);
+            wordCards.forEach(card => {
+                card.classList.remove('selected');
+                card.style.backgroundColor = '';
+                const badge = card.querySelector('.order-badge');
+                if (badge) { card.removeChild(badge); }
+            });
+            sorterFeedbackElement.textContent = '';
+            sorterFeedbackElement.className = 'feedback';
+            sorterNextButton.style.display = 'none';
+            sorterCheckButton.style.display = 'inline-block';
+            sorterResetButton.style.display = 'inline-block';
+        };
+
+        const loadSorterExercise = (exerciseId) => {
+            const exercise = SORTER_EXERCISES[exerciseId];
+            if (!exercise) return;
+
+            currentSorterExerciseId = exerciseId;
+            resetSorterGame(); 
+            
+            // 1. تحديث العنوان
+            sorterTitle.textContent = exercise.title;
+            
+            // 2. مسح وتوليد الكلمات/الأحرف الجديدة
+            sorterWordBank.innerHTML = '';
+            const itemsToShuffle = [...exercise.correctOrder]; 
+            
+            itemsToShuffle.sort(() => Math.random() - 0.5).forEach(item => {
+                const card = document.createElement('div');
+                card.classList.add('word-card');
+                card.setAttribute('data-word', item);
+                card.textContent = item;
+                card.addEventListener('click', handleSorterClick); // ربط النقر
+                sorterWordBank.appendChild(card);
+            });
+        };
+
+        const handleSorterClick = (event) => {
+            const card = event.currentTarget;
+            const item = card.getAttribute('data-word');
+
+            if (card.classList.contains('selected')) {
+                // نطق الكلمة/الحرف عند النقر مجدداً (أو النطق التلقائي عند أول نقرة)
+                speakWord(item); 
+                return;
+            }
+
+            sorterUserOrder.push(item);
+            
+            // التحديث البصري والترقيم
+            card.classList.add('selected');
+            
+            const badge = document.createElement('span');
+            badge.classList.add('order-badge');
+            badge.textContent = sorterUserOrder.length; 
+            card.appendChild(badge);
+
+            if (sorterPlaceholder) { sorterPlaceholder.style.display = 'none'; }
+
+            // إنشاء نسخة للـ sentenceArea وجعلها غير قابلة للنقر
+            const orderedCard = card.cloneNode(true);
+            orderedCard.style.cursor = 'default';
+            orderedCard.removeEventListener('click', handleSorterClick); 
+            sorterSentenceArea.appendChild(orderedCard);
+            
+            sorterFeedbackElement.textContent = '';
+            sorterFeedbackElement.className = 'feedback';
+
+            // النطق عند إضافة الكلمة
+            speakWord(item); 
+        };
+
+        sorterCheckButton.addEventListener('click', () => {
+            const CORRECT_ORDER = SORTER_EXERCISES[currentSorterExerciseId].correctOrder;
+
+            if (sorterUserOrder.length !== CORRECT_ORDER.length) {
+                sorterFeedbackElement.textContent = 'الرجاء إكمال الترتيب أولاً.';
+                sorterFeedbackElement.className = 'feedback incorrect';
+                return;
+            }
+
+            const isCorrect = sorterUserOrder.every((item, index) => item === CORRECT_ORDER[index]);
+
+            if (isCorrect) {
+                sorterFeedbackElement.textContent = '🏆 أحسنتِ! الترتيب صحيح وممتاز.';
+                sorterFeedbackElement.className = 'feedback correct';
+                
+                Array.from(sorterSentenceArea.children).forEach(card => {
+                    card.style.backgroundColor = '#C8E6C9';
+                });
+                
+                // إظهار زر التمرين التالي
+                sorterNextButton.style.display = 'inline-block';
+                sorterCheckButton.style.display = 'none';
+                
+            } else {
+                sorterFeedbackElement.textContent = '❌ هناك خطأ في الترتيب. حاولي مرة أخرى!';
+                sorterFeedbackElement.className = 'feedback incorrect';
+            }
+        });
+        
+        sorterResetButton.addEventListener('click', resetSorterGame);
+
+        sorterNextButton.addEventListener('click', () => {
+            const nextId = (parseInt(currentSorterExerciseId) + 1).toString();
+            if (SORTER_EXERCISES[nextId]) {
+                loadSorterExercise(nextId);
+            } else {
+                sorterFeedbackElement.textContent = '🎉 انتهت جميع التمارين في هذا القسم!';
+                sorterNextButton.style.display = 'none';
+            }
+        });
+
+        // **********************************************
+        // بدء التطبيق
+        // **********************************************
+        
         document.addEventListener('DOMContentLoaded', () => {
-            
-            // ** 1. هيكل بيانات التمارين - يمكنك إضافة المزيد هنا **
-            const EXERCISES = {
-                '1': {
-                    title: "تمرين 1: السفر إلى جدة",
-                    correctOrder: ["سافر", "محمد", "إلى", "جدة"]
-                },
-                '2': {
-                    title: "تمرين 2: شروق الشمس",
-                    correctOrder: ["الشمس", "تشرق", "من", "الشرق"]
-                },
-                '3': {
-                    title: "تمرين 3: الألوان الجميلة",
-                    correctOrder: ["أحب", "الزهور", "ذات", "الألوان", "الجميلة"]
-                }
-            };
-            
-            let currentExerciseId = '1';
-            let userOrder = [];
-
-            // العناصر البرمجية الأساسية
-            const wordBank = document.getElementById('word-bank');
-            const sentenceArea = document.getElementById('sentence-area');
-            const checkButton = document.getElementById('check-button');
-            const resetButton = document.getElementById('reset-button');
-            const feedbackElement = document.getElementById('feedback');
-            const placeholder = sentenceArea.querySelector('.placeholder');
-            
-            // **********************************************
-            // دوال التحكم
-            // **********************************************
-
-            // دالة لإعادة تعيين حالة التمرين
-            const resetGame = () => {
-                userOrder = [];
-                sentenceArea.innerHTML = '';
-                if (placeholder) {
-                    sentenceArea.appendChild(placeholder);
-                    placeholder.style.display = 'block';
-                }
-                
-                // إعادة الكلمات في بنك الكلمات لحالتها الافتراضية
-                const wordCards = Array.from(wordBank.children);
-                wordCards.forEach(card => {
-                    card.classList.remove('selected');
-                    card.style.backgroundColor = '';
-                    const badge = card.querySelector('.order-badge');
-                    if (badge) {
-                        card.removeChild(badge);
-                    }
-                });
-                
-                feedbackElement.textContent = '';
-                feedbackElement.className = 'feedback';
-            };
-
-
-            // دالة لتحميل تمرين جديد
-            const loadExercise = (exerciseId) => {
-                const exercise = EXERCISES[exerciseId];
-                if (!exercise) return;
-
-                currentExerciseId = exerciseId;
-                resetGame(); // إعادة تعيين اللعبة قبل التحميل
-                
-                // 1. تحديث العنوان
-                document.querySelector('.exercise-container h2').textContent = exercise.title;
-                
-                // 2. مسح وتوليد الكلمات الجديدة
-                wordBank.innerHTML = '';
-                const wordsToShuffle = [...exercise.correctOrder]; 
-                
-                // توليد العناصر عشوائياً وربطها بـ Event Listener
-                wordsToShuffle.sort(() => Math.random() - 0.5).forEach(word => {
-                    const card = document.createElement('div');
-                    card.classList.add('word-card');
-                    card.setAttribute('data-word', word);
-                    card.textContent = word;
-                    card.addEventListener('click', handleWordClick); // ربط النقر
-                    wordBank.appendChild(card);
-                });
-            };
-
-            // دالة معالجة النقر (لبناء الجملة)
-            const handleWordClick = (event) => {
-                const card = event.currentTarget;
-                const word = card.getAttribute('data-word');
-
-                // منع النقر على الكلمة المختارة مسبقاً
-                if (card.classList.contains('selected')) {
-                    return;
-                }
-
-                userOrder.push(word);
-                
-                // التحديث البصري والترقيم
-                card.classList.add('selected');
-                
-                const badge = document.createElement('span');
-                badge.classList.add('order-badge');
-                badge.textContent = userOrder.length; 
-                card.appendChild(badge);
-
-                // إخفاء النص التمهيدي
-                if (placeholder) {
-                    placeholder.style.display = 'none';
-                }
-
-                // إنشاء نسخة للـ sentenceArea وجعلها غير قابلة للنقر
-                const orderedCard = card.cloneNode(true);
-                orderedCard.style.cursor = 'default';
-                orderedCard.removeEventListener('click', handleWordClick); 
-                sentenceArea.appendChild(orderedCard);
-                
-                feedbackElement.textContent = '';
-                feedbackElement.className = 'feedback';
-            };
-
-            // **********************************************
-            // ربط الأزرار والأحداث
-            // **********************************************
-            
-            // دالة التصحيح (عند النقر على "تحقق")
-            checkButton.addEventListener('click', () => {
-                const CORRECT_ORDER = EXERCISES[currentExerciseId].correctOrder;
-
-                if (userOrder.length !== CORRECT_ORDER.length) {
-                    feedbackElement.textContent = 'الرجاء إكمال الجملة أولاً.';
-                    feedbackElement.className = 'feedback incorrect';
-                    return;
-                }
-
-                const isCorrect = userOrder.every((word, index) => word === CORRECT_ORDER[index]);
-
-                if (isCorrect) {
-                    feedbackElement.textContent = '🏆 أحسنتِ! الترتيب صحيح وممتاز.';
-                    feedbackElement.className = 'feedback correct';
-                    
-                    // تظليل كل الكلمات في منطقة الترتيب بالأخضر
-                    Array.from(sentenceArea.children).forEach(card => {
-                        card.style.backgroundColor = '#C8E6C9';
-                    });
-                    
-                } else {
-                    feedbackElement.textContent = '❌ هناك خطأ في الترتيب. حاولي مرة أخرى!';
-                    feedbackElement.className = 'feedback incorrect';
-                }
-            });
-            
-            // ربط زر إعادة الترتيب
-            resetButton.addEventListener('click', resetGame);
-
-            // ** منطق التبديل بين التمارين (Sidebar Click) **
-            document.querySelectorAll('.sidebar li').forEach(item => {
-                item.addEventListener('click', (e) => {
-                    const newId = e.target.getAttribute('data-exercise');
-                    if (newId !== currentExerciseId) {
-                        // تحديث الفئة النشطة
-                        document.querySelector('.sidebar li.active').classList.remove('active');
-                        e.target.classList.add('active');
-                        
-                        loadExercise(newId); // تحميل التمرين الجديد
-                    }
-                });
-            });
-
-            // تحميل التمرين الأول عند بدء التشغيل
-            loadExercise(currentExerciseId);
+            // يتم تحميل شاشة الدخول أولاً بشكل افتراضي
+            document.getElementById('login-screen').classList.add('active');
         });
     </script>
 </body>
