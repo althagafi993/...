@@ -761,11 +761,14 @@
    </div>
   </div>
   <script>
-        // دالة مساعدة لخلط المصفوفة (لضمان عدم ترتيب الإجابات)
+        // دالة مساعدة لخلط المصفوفة (لضمان عدم ترتيب الإجابات). تم تصحيحها لضمان التشتيت الفعال.
         function shuffleArray(array) {
             for (let i = array.length - 1; i > 0; i--) {
                 const j = Math.floor(Math.random() * (i + 1));
-                [array[i], array[j]] = [array[i], array[j]];
+                // التبديل باستخدام متغير مؤقت (Fisher-Yates)
+                let temp = array[i];
+                array[i] = array[j];
+                array[j] = temp;
             }
         }
 
@@ -1337,7 +1340,7 @@
             letterBuilder.innerHTML = '<span style="color: #ff69b4; opacity: 0.7; font-size: 1.2rem;">انقر على الأحرف هنا...</span>';
             currentArrangement = []; // إعادة تعيين الترتيب
 
-            // خلط الأحرف
+            // خلط الأحرف (تطبيق دالة التشتيت المصححة)
             const shuffledLetters = [...currentWord.letters];
             shuffleArray(shuffledLetters); 
             
@@ -1447,7 +1450,7 @@
             sentenceBuilder.innerHTML = '<span style="color: #ff69b4; opacity: 0.7; font-size: 1.2rem;">انقر على الكلمات هنا...</span>';
             currentArrangement = []; // إعادة تعيين الترتيب
             
-            // خلط الكلمات
+            // خلط الكلمات (تطبيق دالة التشتيت المصححة)
             const shuffledWords = [...currentSentence.words];
             shuffleArray(shuffledWords); 
             
@@ -1554,6 +1557,7 @@
             const choicesContainer = document.getElementById('choices-container');
             choicesContainer.innerHTML = '';
             
+            // خلط الخيارات (تطبيق دالة التشتيت المصححة)
             const shuffledChoices = [...currentWord.choices];
             shuffleArray(shuffledChoices); 
 
